@@ -12,6 +12,7 @@
 		3549BDCD1F75FF6900501356 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3549BDCB1F75FF6900501356 /* Main.storyboard */; };
 		3549BDCF1F75FF6900501356 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3549BDCE1F75FF6900501356 /* Assets.xcassets */; };
 		3549BDD21F75FF6900501356 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3549BDD01F75FF6900501356 /* LaunchScreen.storyboard */; };
+		7BEFF1D55B2FF0E3EE247314 /* Pods_Glue.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7CAE39EEA533C2C4E871EDA /* Pods_Glue.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,9 @@
 		3549BDCE1F75FF6900501356 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3549BDD11F75FF6900501356 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3549BDD31F75FF6900501356 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		42DBFA76F7861006EAD602CB /* Pods-Glue.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Glue.release.xcconfig"; path = "Pods/Target Support Files/Pods-Glue/Pods-Glue.release.xcconfig"; sourceTree = "<group>"; };
+		83FBE68615665A42583891C5 /* Pods-Glue.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Glue.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Glue/Pods-Glue.debug.xcconfig"; sourceTree = "<group>"; };
+		A7CAE39EEA533C2C4E871EDA /* Pods_Glue.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Glue.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +33,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7BEFF1D55B2FF0E3EE247314 /* Pods_Glue.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +45,8 @@
 			children = (
 				3549BDC61F75FF6900501356 /* Glue */,
 				3549BDC51F75FF6900501356 /* Products */,
+				4A5BE1F558B3CE68FDDB1809 /* Pods */,
+				DBB6B79CA369450A84EBF0D5 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -64,6 +71,23 @@
 			path = Glue;
 			sourceTree = "<group>";
 		};
+		4A5BE1F558B3CE68FDDB1809 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				83FBE68615665A42583891C5 /* Pods-Glue.debug.xcconfig */,
+				42DBFA76F7861006EAD602CB /* Pods-Glue.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		DBB6B79CA369450A84EBF0D5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A7CAE39EEA533C2C4E871EDA /* Pods_Glue.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -71,9 +95,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3549BDD61F75FF6900501356 /* Build configuration list for PBXNativeTarget "Glue" */;
 			buildPhases = (
+				2EDCB81961B0ACD175F70382 /* [CP] Check Pods Manifest.lock */,
 				3549BDC01F75FF6900501356 /* Sources */,
 				3549BDC11F75FF6900501356 /* Frameworks */,
 				3549BDC21F75FF6900501356 /* Resources */,
+				6B015BE7596A553A37018CFC /* [CP] Embed Pods Frameworks */,
+				55AE88D46A909DD48968D8A3 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -130,6 +157,66 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2EDCB81961B0ACD175F70382 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Glue-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		55AE88D46A909DD48968D8A3 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Glue/Pods-Glue-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6B015BE7596A553A37018CFC /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Glue/Pods-Glue-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/MagicalRecord/MagicalRecord.framework",
+				"${BUILT_PRODUCTS_DIR}/Material/Material.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MagicalRecord.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Material.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Glue/Pods-Glue-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		3549BDC01F75FF6900501356 /* Sources */ = {
@@ -272,14 +359,17 @@
 		};
 		3549BDD71F75FF6900501356 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 83FBE68615665A42583891C5 /* Pods-Glue.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = S8EHWVRC9K;
 				INFOPLIST_FILE = Glue/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Genbi.Glue;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -287,14 +377,17 @@
 		};
 		3549BDD81F75FF6900501356 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 42DBFA76F7861006EAD602CB /* Pods-Glue.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = S8EHWVRC9K;
 				INFOPLIST_FILE = Glue/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Genbi.Glue;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
