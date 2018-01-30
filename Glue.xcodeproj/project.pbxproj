@@ -12,6 +12,14 @@
 		3549BDCD1F75FF6900501356 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3549BDCB1F75FF6900501356 /* Main.storyboard */; };
 		3549BDCF1F75FF6900501356 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3549BDCE1F75FF6900501356 /* Assets.xcassets */; };
 		3549BDD21F75FF6900501356 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3549BDD01F75FF6900501356 /* LaunchScreen.storyboard */; };
+		522D7694201E0F1300061BB2 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522D7693201E0F1300061BB2 /* Config.swift */; };
+		522E73EF201F74390067BCC4 /* DrawerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522E73E8201F74370067BCC4 /* DrawerProtocol.swift */; };
+		522E73F0201F74390067BCC4 /* DrawerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522E73E9201F74380067BCC4 /* DrawerCell.swift */; };
+		522E73F1201F74390067BCC4 /* DrawerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522E73EA201F74380067BCC4 /* DrawerView.swift */; };
+		522E73F2201F74390067BCC4 /* DrawerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 522E73EB201F74380067BCC4 /* DrawerCell.xib */; };
+		522E73F3201F74390067BCC4 /* LayoutTwo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522E73EC201F74380067BCC4 /* LayoutTwo.swift */; };
+		522E73F4201F74390067BCC4 /* proPicOne.png in Resources */ = {isa = PBXBuildFile; fileRef = 522E73ED201F74380067BCC4 /* proPicOne.png */; };
+		522E73F5201F74390067BCC4 /* proPicTwo.png in Resources */ = {isa = PBXBuildFile; fileRef = 522E73EE201F74380067BCC4 /* proPicTwo.png */; };
 		7BEFF1D55B2FF0E3EE247314 /* Pods_Glue.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7CAE39EEA533C2C4E871EDA /* Pods_Glue.framework */; };
 /* End PBXBuildFile section */
 
@@ -24,6 +32,14 @@
 		3549BDD11F75FF6900501356 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3549BDD31F75FF6900501356 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		42DBFA76F7861006EAD602CB /* Pods-Glue.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Glue.release.xcconfig"; path = "Pods/Target Support Files/Pods-Glue/Pods-Glue.release.xcconfig"; sourceTree = "<group>"; };
+		522D7693201E0F1300061BB2 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		522E73E8201F74370067BCC4 /* DrawerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawerProtocol.swift; sourceTree = "<group>"; };
+		522E73E9201F74380067BCC4 /* DrawerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawerCell.swift; sourceTree = "<group>"; };
+		522E73EA201F74380067BCC4 /* DrawerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawerView.swift; sourceTree = "<group>"; };
+		522E73EB201F74380067BCC4 /* DrawerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DrawerCell.xib; sourceTree = "<group>"; };
+		522E73EC201F74380067BCC4 /* LayoutTwo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutTwo.swift; sourceTree = "<group>"; };
+		522E73ED201F74380067BCC4 /* proPicOne.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = proPicOne.png; sourceTree = "<group>"; };
+		522E73EE201F74380067BCC4 /* proPicTwo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = proPicTwo.png; sourceTree = "<group>"; };
 		83FBE68615665A42583891C5 /* Pods-Glue.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Glue.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Glue/Pods-Glue.debug.xcconfig"; sourceTree = "<group>"; };
 		A7CAE39EEA533C2C4E871EDA /* Pods_Glue.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Glue.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -61,12 +77,20 @@
 		3549BDC61F75FF6900501356 /* Glue */ = {
 			isa = PBXGroup;
 			children = (
+				522E73E9201F74380067BCC4 /* DrawerCell.swift */,
+				522E73EB201F74380067BCC4 /* DrawerCell.xib */,
+				522E73E8201F74370067BCC4 /* DrawerProtocol.swift */,
+				522E73EA201F74380067BCC4 /* DrawerView.swift */,
+				522E73EC201F74380067BCC4 /* LayoutTwo.swift */,
+				522E73ED201F74380067BCC4 /* proPicOne.png */,
+				522E73EE201F74380067BCC4 /* proPicTwo.png */,
 				3549BDC71F75FF6900501356 /* AppDelegate.swift */,
 				3549BDC91F75FF6900501356 /* ViewController.swift */,
 				3549BDCB1F75FF6900501356 /* Main.storyboard */,
 				3549BDCE1F75FF6900501356 /* Assets.xcassets */,
 				3549BDD01F75FF6900501356 /* LaunchScreen.storyboard */,
 				3549BDD31F75FF6900501356 /* Info.plist */,
+				522D7693201E0F1300061BB2 /* Config.swift */,
 			);
 			path = Glue;
 			sourceTree = "<group>";
@@ -150,9 +174,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				522E73F2201F74390067BCC4 /* DrawerCell.xib in Resources */,
 				3549BDD21F75FF6900501356 /* LaunchScreen.storyboard in Resources */,
 				3549BDCF1F75FF6900501356 /* Assets.xcassets in Resources */,
 				3549BDCD1F75FF6900501356 /* Main.storyboard in Resources */,
+				522E73F4201F74390067BCC4 /* proPicOne.png in Resources */,
+				522E73F5201F74390067BCC4 /* proPicTwo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -200,16 +227,26 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Glue/Pods-Glue-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/MagicalRecord/MagicalRecord.framework",
-				"${BUILT_PRODUCTS_DIR}/Material/Material.framework",
+				"${BUILT_PRODUCTS_DIR}/Eureka/Eureka.framework",
+				"${BUILT_PRODUCTS_DIR}/FSPagerView/FSPagerView.framework",
+				"${BUILT_PRODUCTS_DIR}/HGPlaceholders/HGPlaceholders.framework",
+				"${BUILT_PRODUCTS_DIR}/MGSwipeTableCell/MGSwipeTableCell.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/Sparrow/Sparrow.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyUserDefaults/SwiftyUserDefaults.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MagicalRecord.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Material.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Eureka.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FSPagerView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HGPlaceholders.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MGSwipeTableCell.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Sparrow.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyUserDefaults.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -225,6 +262,11 @@
 			files = (
 				3549BDCA1F75FF6900501356 /* ViewController.swift in Sources */,
 				3549BDC81F75FF6900501356 /* AppDelegate.swift in Sources */,
+				522E73EF201F74390067BCC4 /* DrawerProtocol.swift in Sources */,
+				522E73F1201F74390067BCC4 /* DrawerView.swift in Sources */,
+				522E73F3201F74390067BCC4 /* LayoutTwo.swift in Sources */,
+				522D7694201E0F1300061BB2 /* Config.swift in Sources */,
+				522E73F0201F74390067BCC4 /* DrawerCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -364,8 +406,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = S8EHWVRC9K;
 				INFOPLIST_FILE = Glue/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Genbi.Glue;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -382,8 +425,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = S8EHWVRC9K;
 				INFOPLIST_FILE = Glue/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Genbi.Glue;
 				PRODUCT_NAME = "$(TARGET_NAME)";
