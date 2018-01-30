@@ -1,5 +1,5 @@
 //
-//  VIewBiodata.swift
+//  ViewBiodata.swift
 //  Glue
 //
 //  Created by Macbook Pro on 30/01/18.
