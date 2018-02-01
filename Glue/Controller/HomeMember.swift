@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import InteractiveSideMenu
 
-class HomeMember: UIViewController {
+class HomeMember: UIViewController, SideMenuItemContent {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,5 +19,8 @@ class HomeMember: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    @IBAction func openMenu(_ sender: Any) {
+        showSideMenu()
     }
 }

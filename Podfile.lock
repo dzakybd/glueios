@@ -3,6 +3,7 @@ PODS:
   - Eureka (4.0.1)
   - FSPagerView (0.7.1)
   - HGPlaceholders (0.3.0)
+  - InteractiveSideMenu (2.1)
   - MGSwipeTableCell (1.6.6)
   - SDWebImage (4.2.3):
     - SDWebImage/Core (= 4.2.3)
@@ -18,6 +19,7 @@ DEPENDENCIES:
   - Eureka
   - FSPagerView
   - HGPlaceholders
+  - InteractiveSideMenu
   - MGSwipeTableCell
   - SDWebImage
   - Sparrow/Modules/RequestPermission (from `https://github.com/IvanVorobei/Sparrow.git`)
@@ -38,12 +40,13 @@ SPEC CHECKSUMS:
   Eureka: c8bd5cc07143b6f66268c208d28a246c99b41955
   FSPagerView: 958aba39684e1573755ddcfcc29f7eebb8413cee
   HGPlaceholders: 2df01c51b04a30acd0b8c9c7161c7cdde4541109
+  InteractiveSideMenu: 9e3c8b004edd8b8c2ebaef2c3f0fde87c357b904
   MGSwipeTableCell: c3bc6e261e7bc06c112909fe3fb8205de286082c
   SDWebImage: 791bb72962b3492327ddcac4b1880bd1b5458431
   Sparrow: 86b8f0d7598dc52ff2b06bb1df05feb297d1821f
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
   SwiftyUserDefaults: 0f1d45fc3aafb9064dac661e367f8f83fe21a4b4
 
-PODFILE CHECKSUM: 7fd81b02cc63718ecf6a366d1bbd75d913367722
+PODFILE CHECKSUM: 734a69d92aa3e9ed02b894c2e4a69189e3c966a3
 
 COCOAPODS: 1.4.0

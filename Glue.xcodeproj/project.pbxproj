@@ -13,13 +13,11 @@
 		3549BDCF1F75FF6900501356 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3549BDCE1F75FF6900501356 /* Assets.xcassets */; };
 		3549BDD21F75FF6900501356 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3549BDD01F75FF6900501356 /* LaunchScreen.storyboard */; };
 		522D7694201E0F1300061BB2 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522D7693201E0F1300061BB2 /* Config.swift */; };
-		522E73EF201F74390067BCC4 /* DrawerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522E73E8201F74370067BCC4 /* DrawerProtocol.swift */; };
-		522E73F0201F74390067BCC4 /* DrawerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522E73E9201F74380067BCC4 /* DrawerCell.swift */; };
-		522E73F1201F74390067BCC4 /* DrawerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522E73EA201F74380067BCC4 /* DrawerView.swift */; };
-		522E73F2201F74390067BCC4 /* DrawerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 522E73EB201F74380067BCC4 /* DrawerCell.xib */; };
-		522E73F3201F74390067BCC4 /* DrawerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522E73EC201F74380067BCC4 /* DrawerController.swift */; };
 		522E73F4201F74390067BCC4 /* proPicOne.png in Resources */ = {isa = PBXBuildFile; fileRef = 522E73ED201F74380067BCC4 /* proPicOne.png */; };
 		522E73F5201F74390067BCC4 /* proPicTwo.png in Resources */ = {isa = PBXBuildFile; fileRef = 522E73EE201F74380067BCC4 /* proPicTwo.png */; };
+		527D2FCE2023781C00CA8ADF /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D2FCD2023781C00CA8ADF /* Chat.swift */; };
+		527D2FD22023803800CA8ADF /* NavigationMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D2FD02023803700CA8ADF /* NavigationMenuViewController.swift */; };
+		527D2FD32023803800CA8ADF /* HostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D2FD12023803800CA8ADF /* HostViewController.swift */; };
 		52E47A9920204D5B0015828E /* Signup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E47A9820204D5B0015828E /* Signup.swift */; };
 		52E47A9B20204F000015828E /* Changepass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E47A9A20204F000015828E /* Changepass.swift */; };
 		52E47A9D202050BB0015828E /* EditBiodata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E47A9C202050BB0015828E /* EditBiodata.swift */; };
@@ -43,13 +41,11 @@
 		3549BDD31F75FF6900501356 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		42DBFA76F7861006EAD602CB /* Pods-Glue.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Glue.release.xcconfig"; path = "Pods/Target Support Files/Pods-Glue/Pods-Glue.release.xcconfig"; sourceTree = "<group>"; };
 		522D7693201E0F1300061BB2 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
-		522E73E8201F74370067BCC4 /* DrawerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawerProtocol.swift; sourceTree = "<group>"; };
-		522E73E9201F74380067BCC4 /* DrawerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawerCell.swift; sourceTree = "<group>"; };
-		522E73EA201F74380067BCC4 /* DrawerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawerView.swift; sourceTree = "<group>"; };
-		522E73EB201F74380067BCC4 /* DrawerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DrawerCell.xib; sourceTree = "<group>"; };
-		522E73EC201F74380067BCC4 /* DrawerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawerController.swift; sourceTree = "<group>"; };
 		522E73ED201F74380067BCC4 /* proPicOne.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = proPicOne.png; sourceTree = "<group>"; };
 		522E73EE201F74380067BCC4 /* proPicTwo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = proPicTwo.png; sourceTree = "<group>"; };
+		527D2FCD2023781C00CA8ADF /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
+		527D2FD02023803700CA8ADF /* NavigationMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationMenuViewController.swift; sourceTree = "<group>"; };
+		527D2FD12023803800CA8ADF /* HostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HostViewController.swift; sourceTree = "<group>"; };
 		52E47A9820204D5B0015828E /* Signup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Signup.swift; sourceTree = "<group>"; };
 		52E47A9A20204F000015828E /* Changepass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Changepass.swift; sourceTree = "<group>"; };
 		52E47A9C202050BB0015828E /* EditBiodata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditBiodata.swift; sourceTree = "<group>"; };
@@ -97,7 +93,8 @@
 		3549BDC61F75FF6900501356 /* Glue */ = {
 			isa = PBXGroup;
 			children = (
-				52E47A9720204B0F0015828E /* Drawer */,
+				527D2FD12023803800CA8ADF /* HostViewController.swift */,
+				527D2FD02023803700CA8ADF /* NavigationMenuViewController.swift */,
 				52E47A9420204A5A0015828E /* Controller */,
 				522E73ED201F74380067BCC4 /* proPicOne.png */,
 				522E73EE201F74380067BCC4 /* proPicTwo.png */,
@@ -123,6 +120,7 @@
 		52E47A9420204A5A0015828E /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				527D2FCD2023781C00CA8ADF /* Chat.swift */,
 				3549BDC91F75FF6900501356 /* Login.swift */,
 				52E47A9820204D5B0015828E /* Signup.swift */,
 				52E47A9A20204F000015828E /* Changepass.swift */,
@@ -136,18 +134,6 @@
 				52E47AAA202051C30015828E /* ViewBiodata.swift */,
 			);
 			path = Controller;
-			sourceTree = "<group>";
-		};
-		52E47A9720204B0F0015828E /* Drawer */ = {
-			isa = PBXGroup;
-			children = (
-				522E73E9201F74380067BCC4 /* DrawerCell.swift */,
-				522E73EB201F74380067BCC4 /* DrawerCell.xib */,
-				522E73E8201F74370067BCC4 /* DrawerProtocol.swift */,
-				522E73EA201F74380067BCC4 /* DrawerView.swift */,
-				522E73EC201F74380067BCC4 /* DrawerController.swift */,
-			);
-			path = Drawer;
 			sourceTree = "<group>";
 		};
 		DBB6B79CA369450A84EBF0D5 /* Frameworks */ = {
@@ -220,7 +206,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				522E73F2201F74390067BCC4 /* DrawerCell.xib in Resources */,
 				3549BDD21F75FF6900501356 /* LaunchScreen.storyboard in Resources */,
 				3549BDCF1F75FF6900501356 /* Assets.xcassets in Resources */,
 				3549BDCD1F75FF6900501356 /* Main.storyboard in Resources */,
@@ -276,6 +261,7 @@
 				"${BUILT_PRODUCTS_DIR}/Eureka/Eureka.framework",
 				"${BUILT_PRODUCTS_DIR}/FSPagerView/FSPagerView.framework",
 				"${BUILT_PRODUCTS_DIR}/HGPlaceholders/HGPlaceholders.framework",
+				"${BUILT_PRODUCTS_DIR}/InteractiveSideMenu/InteractiveSideMenu.framework",
 				"${BUILT_PRODUCTS_DIR}/MGSwipeTableCell/MGSwipeTableCell.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/Sparrow/Sparrow.framework",
@@ -288,6 +274,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Eureka.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FSPagerView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HGPlaceholders.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/InteractiveSideMenu.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MGSwipeTableCell.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Sparrow.framework",
@@ -306,23 +293,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				527D2FD32023803800CA8ADF /* HostViewController.swift in Sources */,
 				52E47AA12020513B0015828E /* HomeMember.swift in Sources */,
 				52E47AA9202051980015828E /* ViewNews.swift in Sources */,
+				527D2FD22023803800CA8ADF /* NavigationMenuViewController.swift in Sources */,
 				3549BDCA1F75FF6900501356 /* Login.swift in Sources */,
 				3549BDC81F75FF6900501356 /* AppDelegate.swift in Sources */,
 				52E47A9B20204F000015828E /* Changepass.swift in Sources */,
-				522E73EF201F74390067BCC4 /* DrawerProtocol.swift in Sources */,
 				52E47A9920204D5B0015828E /* Signup.swift in Sources */,
 				52E47AA72020518D0015828E /* EditNews.swift in Sources */,
-				522E73F1201F74390067BCC4 /* DrawerView.swift in Sources */,
 				52E47AA32020514F0015828E /* HomeChat.swift in Sources */,
 				52E47AA5202051630015828E /* HomeNearme.swift in Sources */,
 				52E47A9F202050E00015828E /* HomeNews.swift in Sources */,
 				52E47A9D202050BB0015828E /* EditBiodata.swift in Sources */,
-				522E73F3201F74390067BCC4 /* DrawerController.swift in Sources */,
+				527D2FCE2023781C00CA8ADF /* Chat.swift in Sources */,
 				52E47AAB202051C30015828E /* ViewBiodata.swift in Sources */,
 				522D7694201E0F1300061BB2 /* Config.swift in Sources */,
-				522E73F0201F74390067BCC4 /* DrawerCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

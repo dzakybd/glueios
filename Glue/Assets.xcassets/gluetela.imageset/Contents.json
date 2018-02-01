@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "gluetela.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "gluetela.png",
       "scale" : "2x"
     },
     {

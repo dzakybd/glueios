@@ -15,6 +15,7 @@ target 'Glue' do
     pod 'HGPlaceholders'
     pod 'Sparrow/Modules/RequestPermission', :git => 'https://github.com/IvanVorobei/Sparrow.git'
     pod 'FSPagerView'
+    pod 'InteractiveSideMenu'
   # Pods for Glue
 
 end
