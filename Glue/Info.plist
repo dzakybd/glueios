@@ -2,6 +2,18 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>GLUE requires access to your location</string>
+    <key>NSLocationAlwaysUsageDescription</key>
+    <string>GLUE requires access to your location realtime</string>
+    <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+    <string>GLUE requires access to your location</string>
+	<key>NSCameraUsageDescription</key>
+	<string>GLUE requires access to the camera</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>GLUE requires access to the photo library</string>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
@@ -41,5 +53,17 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+    
+    <key>NSAppTransportSecurity</key>
+    <dict>
+        <key>NSAllowsArbitraryLoads</key>
+        <true/>
+        <key>NSExceptionDomains</key>
+        <dict>
+            <key>128.199.190.115</key>
+            <string></string>
+        </dict>
+    </dict>
+    
 </dict>
 </plist>

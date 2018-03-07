@@ -1,52 +1,61 @@
 PODS:
-  - Alamofire (4.6.0)
-  - Eureka (4.0.1)
-  - FSPagerView (0.7.1)
+  - Alamofire (4.7.0)
+  - ChameleonFramework/Default (2.1.0)
+  - ChameleonFramework/Swift (2.1.0):
+    - ChameleonFramework/Default
+  - Eureka (4.1.0)
+  - GenericPasswordRow (3.0.0):
+    - Eureka (~> 4.0)
   - HGPlaceholders (0.3.0)
-  - InteractiveSideMenu (2.1)
+  - ImageRow (3.0.0):
+    - Eureka (~> 4.0)
+  - InteractiveSideMenu (2.3)
+  - INTULocationManager (4.3.0)
   - MGSwipeTableCell (1.6.6)
-  - SDWebImage (4.2.3):
-    - SDWebImage/Core (= 4.2.3)
-  - SDWebImage/Core (4.2.3)
-  - Sparrow/Core (1.1.0)
-  - Sparrow/Modules/RequestPermission (1.1.0):
-    - Sparrow/Core
-  - SwiftyJSON (4.0.0)
-  - SwiftyUserDefaults (3.0.0)
+  - SDWebImage (4.3.2):
+    - SDWebImage/Core (= 4.3.2)
+  - SDWebImage/Core (4.3.2)
+  - SKPhotoBrowser (5.0.5)
+  - SwiftIconFont (2.7.3)
 
 DEPENDENCIES:
   - Alamofire
+  - ChameleonFramework/Swift (from `https://github.com/ViccAlexander/Chameleon.git`, branch `wip/swift4`)
   - Eureka
-  - FSPagerView
+  - GenericPasswordRow
   - HGPlaceholders
+  - ImageRow
   - InteractiveSideMenu
+  - INTULocationManager
   - MGSwipeTableCell
   - SDWebImage
-  - Sparrow/Modules/RequestPermission (from `https://github.com/IvanVorobei/Sparrow.git`)
-  - SwiftyJSON
-  - SwiftyUserDefaults
+  - SKPhotoBrowser
+  - SwiftIconFont
 
 EXTERNAL SOURCES:
-  Sparrow:
-    :git: https://github.com/IvanVorobei/Sparrow.git
+  ChameleonFramework:
+    :branch: wip/swift4
+    :git: https://github.com/ViccAlexander/Chameleon.git
 
 CHECKOUT OPTIONS:
-  Sparrow:
-    :commit: d3becbdd5dbc982a53a461188ea35b818342a9ed
-    :git: https://github.com/IvanVorobei/Sparrow.git
+  ChameleonFramework:
+    :commit: db432ca1b1a3d8f83ee1f881208c0c960a325e73
+    :git: https://github.com/ViccAlexander/Chameleon.git
 
 SPEC CHECKSUMS:
-  Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
-  Eureka: c8bd5cc07143b6f66268c208d28a246c99b41955
-  FSPagerView: 958aba39684e1573755ddcfcc29f7eebb8413cee
+  Alamofire: 907e0a98eb68cdb7f9d1f541a563d6ac5dc77b25
+  ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
+  Eureka: 5770ef95bbbbe52f8abbc0d9bea6ee8282c50209
+  GenericPasswordRow: 27a52c727c47b2e4d50c2295d1cc7d32c5883e70
   HGPlaceholders: 2df01c51b04a30acd0b8c9c7161c7cdde4541109
-  InteractiveSideMenu: 9e3c8b004edd8b8c2ebaef2c3f0fde87c357b904
+  ImageRow: 048123c296de9a6ac3998c415a6706c45ce480af
+  InteractiveSideMenu: d503a508c6d62a4d5d4372d9fb9e1795637a8e45
+  INTULocationManager: 0ca5c76eacc029ba15938fc699520bc333ed6435
   MGSwipeTableCell: c3bc6e261e7bc06c112909fe3fb8205de286082c
-  SDWebImage: 791bb72962b3492327ddcac4b1880bd1b5458431
-  Sparrow: 86b8f0d7598dc52ff2b06bb1df05feb297d1821f
-  SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
-  SwiftyUserDefaults: 0f1d45fc3aafb9064dac661e367f8f83fe21a4b4
+  SDWebImage: 29bd3c0bc1f01e5eb59720847c64ad4c4ca1af5d
+  SKPhotoBrowser: 5969c3813727f11fe37bea74a40425cafcb32f61
+  SwiftIconFont: ebd8ee931a1e7072b61a87aec53f3a0786ef7f2b
 
-PODFILE CHECKSUM: 734a69d92aa3e9ed02b894c2e4a69189e3c966a3
+PODFILE CHECKSUM: 6692fcb58f97e73e71d2a7bfc802a8b86a5e40a8
 
 COCOAPODS: 1.4.0

@@ -135,27 +135,31 @@ strip_invalid_archs() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/ChameleonFramework/ChameleonFramework.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Eureka/Eureka.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/FSPagerView/FSPagerView.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/GenericPasswordRow/GenericPasswordRow.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/HGPlaceholders/HGPlaceholders.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/INTULocationManager/INTULocationManager.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/ImageRow/ImageRow.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/InteractiveSideMenu/InteractiveSideMenu.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/MGSwipeTableCell/MGSwipeTableCell.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/Sparrow/Sparrow.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/SwiftyUserDefaults/SwiftyUserDefaults.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/SKPhotoBrowser/SKPhotoBrowser.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/SwiftIconFont/SwiftIconFont.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/ChameleonFramework/ChameleonFramework.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Eureka/Eureka.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/FSPagerView/FSPagerView.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/GenericPasswordRow/GenericPasswordRow.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/HGPlaceholders/HGPlaceholders.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/INTULocationManager/INTULocationManager.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/ImageRow/ImageRow.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/InteractiveSideMenu/InteractiveSideMenu.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/MGSwipeTableCell/MGSwipeTableCell.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/Sparrow/Sparrow.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/SwiftyUserDefaults/SwiftyUserDefaults.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/SKPhotoBrowser/SKPhotoBrowser.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/SwiftIconFont/SwiftIconFont.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then
   wait

@@ -20,6 +20,7 @@ class HomeNews: UIViewController, SideMenuItemContent {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
     @IBAction func openMenu(_ sender: Any) {
         showSideMenu()
     }

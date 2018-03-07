@@ -5,17 +5,17 @@ target 'Glue' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
     use_frameworks!
     pod 'Alamofire'
-#    pod 'Iconic'
-#    pod 'ChameleonFramework/Swift'
-    pod 'SwiftyJSON'
-    pod 'SwiftyUserDefaults'
+    pod 'ChameleonFramework/Swift', :git => 'https://github.com/ViccAlexander/Chameleon.git', :branch => 'wip/swift4'
     pod 'SDWebImage'
     pod 'Eureka'
+    pod 'ImageRow'
+    pod 'GenericPasswordRow'    
     pod 'MGSwipeTableCell'
     pod 'HGPlaceholders'
-    pod 'Sparrow/Modules/RequestPermission', :git => 'https://github.com/IvanVorobei/Sparrow.git'
-    pod 'FSPagerView'
+    pod 'SKPhotoBrowser'
+    pod 'INTULocationManager'
     pod 'InteractiveSideMenu'
+    pod 'SwiftIconFont'
   # Pods for Glue
 
 end
