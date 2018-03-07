@@ -9,6 +9,7 @@
 import UIKit
 import Alamofire
 import INTULocationManager
+import DefaultsKit
 
 class Login: UIViewController {
     @IBOutlet weak var emailtext: UITextField!
@@ -20,6 +21,7 @@ class Login: UIViewController {
     @IBAction func cancelclick(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
+    
     @IBAction func loginclick(_ sender: Any) {
       
         let parameters = [
@@ -32,13 +34,14 @@ class Login: UIViewController {
         Alamofire.request(Keys.URL_LOGIN, method:.post, parameters:parameters).responseJSON { response in
             switch response.result {
             case .success:
-            let JSON = response.result.value as? NSDictionary
+            let JSON = response.result.value as! NSDictionary
             
-            let defaults = UserDefaults.standard
-            for (key, value) in JSON! {
-                let temp = key as? String
-                defaults.set(value, forKey: temp!)
-            }
+            let akun = user()
+            akun.Populate(dictionary: JSON)
+            
+            let defaults = Defaults()
+            defaults.set(akun,for: Key<user>(Keys.saved_user))
+            
             self.performSegue(withIdentifier: "homesegue", sender: self)
             case .failure( _):
                 let alertController = UIAlertController(title: "Login", message:
@@ -49,6 +52,7 @@ class Login: UIViewController {
             }
         }
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let locationManager = INTULocationManager.sharedInstance()

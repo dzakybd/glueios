@@ -8,7 +8,7 @@
 
 import Foundation
 
-class UserTautan
+class UserTautan: Codable
 {
     var idtautan:String = ""
     var user_nrp:String = ""
@@ -18,7 +18,6 @@ class UserTautan
     var tautan_updated:String = ""
     
     func Populate(dictionary:NSDictionary) {
-        
         idtautan = dictionary["idtautan"] as! String
         user_nrp = dictionary["user_nrp"] as! String
         tautan_judul = dictionary["tautan_judul"] as! String
@@ -26,12 +25,12 @@ class UserTautan
         tautan_created = dictionary["tautan_created"] as! String
         tautan_updated = dictionary["tautan_updated"] as! String
     }
-    class func PopulateArray(array:NSArray) -> [UserTautan]
-    {
+    
+    class func PopulateArray(array:NSArray) -> [UserTautan]{
         var result:[UserTautan] = []
         for item in array
         {
-            var newItem = UserTautan()
+            let newItem = UserTautan()
             newItem.Populate(dictionary: item as! NSDictionary)
             result.append(newItem)
         }

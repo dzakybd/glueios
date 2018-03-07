@@ -3,15 +3,14 @@ PODS:
   - ChameleonFramework/Default (2.1.0)
   - ChameleonFramework/Swift (2.1.0):
     - ChameleonFramework/Default
+  - DefaultsKit (0.0.8)
   - Eureka (4.1.0)
   - GenericPasswordRow (3.0.0):
     - Eureka (~> 4.0)
-  - HGPlaceholders (0.3.0)
   - ImageRow (3.0.0):
     - Eureka (~> 4.0)
   - InteractiveSideMenu (2.3)
   - INTULocationManager (4.3.0)
-  - MGSwipeTableCell (1.6.6)
   - SDWebImage (4.3.2):
     - SDWebImage/Core (= 4.3.2)
   - SDWebImage/Core (4.3.2)
@@ -21,13 +20,12 @@ PODS:
 DEPENDENCIES:
   - Alamofire
   - ChameleonFramework/Swift (from `https://github.com/ViccAlexander/Chameleon.git`, branch `wip/swift4`)
+  - DefaultsKit
   - Eureka
   - GenericPasswordRow
-  - HGPlaceholders
   - ImageRow
   - InteractiveSideMenu
   - INTULocationManager
-  - MGSwipeTableCell
   - SDWebImage
   - SKPhotoBrowser
   - SwiftIconFont
@@ -45,17 +43,16 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   Alamofire: 907e0a98eb68cdb7f9d1f541a563d6ac5dc77b25
   ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
+  DefaultsKit: d4e4271525388e33a17ee6842f2ded78f6892bc7
   Eureka: 5770ef95bbbbe52f8abbc0d9bea6ee8282c50209
   GenericPasswordRow: 27a52c727c47b2e4d50c2295d1cc7d32c5883e70
-  HGPlaceholders: 2df01c51b04a30acd0b8c9c7161c7cdde4541109
   ImageRow: 048123c296de9a6ac3998c415a6706c45ce480af
   InteractiveSideMenu: d503a508c6d62a4d5d4372d9fb9e1795637a8e45
   INTULocationManager: 0ca5c76eacc029ba15938fc699520bc333ed6435
-  MGSwipeTableCell: c3bc6e261e7bc06c112909fe3fb8205de286082c
   SDWebImage: 29bd3c0bc1f01e5eb59720847c64ad4c4ca1af5d
   SKPhotoBrowser: 5969c3813727f11fe37bea74a40425cafcb32f61
   SwiftIconFont: ebd8ee931a1e7072b61a87aec53f3a0786ef7f2b
 
-PODFILE CHECKSUM: 6692fcb58f97e73e71d2a7bfc802a8b86a5e40a8
+PODFILE CHECKSUM: ba572e0c5bb0a7e72e2650112b3a84626c290032
 
 COCOAPODS: 1.4.0

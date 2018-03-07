@@ -9,13 +9,12 @@ target 'Glue' do
     pod 'SDWebImage'
     pod 'Eureka'
     pod 'ImageRow'
-    pod 'GenericPasswordRow'    
-    pod 'MGSwipeTableCell'
-    pod 'HGPlaceholders'
+    pod 'GenericPasswordRow'
     pod 'SKPhotoBrowser'
     pod 'INTULocationManager'
     pod 'InteractiveSideMenu'
     pod 'SwiftIconFont'
+    pod 'DefaultsKit'
   # Pods for Glue
 
 end

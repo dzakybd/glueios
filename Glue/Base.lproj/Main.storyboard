@@ -492,6 +492,7 @@
                         <outlet property="labelnama" destination="QJB-Kd-lRw" id="Br4-2i-Eod"/>
                         <outlet property="tableView" destination="oPr-ga-WM3" id="z6d-Qq-c1n"/>
                         <segue destination="Rdx-Rw-I93" kind="show" identifier="loginsegue" id="Rwg-5w-3SX"/>
+                        <segue destination="Xno-Kb-ssq" kind="show" identifier="ubahakunsegue" id="v4m-sJ-XZh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yAA-8z-R7x" sceneMemberID="firstResponder"/>

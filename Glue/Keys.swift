@@ -104,6 +104,15 @@ public struct Keys {
     static let idwilayah_new = "idwilayah_new"
     static let error_exist = "error_exist"
     static let error_nrp = "error_nrp"
-    
+    static let saved_user = "saved_user"
 }
+
+//class func DateFromString(dateString:String) -> NSDate
+//{
+//    let dateFormatter = DateFormatter()
+//    let enUSPosixLocale = NSLocale(localeIdentifier: "en_US_POSIX")
+//    dateFormatter.locale = enUSPosixLocale as Locale!
+//    dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
+//    return dateFormatter.date(from: dateString)! as NSDate
+//}
 

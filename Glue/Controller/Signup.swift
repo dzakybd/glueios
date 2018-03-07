@@ -12,6 +12,7 @@ import ImageRow
 import GenericPasswordRow
 import Alamofire
 import INTULocationManager
+import DefaultsKit
 
 class Signup: FormViewController {
     var userlat = String()
@@ -129,13 +130,14 @@ class Signup: FormViewController {
                             switch response.result {
                             case .success:
                             
-                                let JSON = response.result.value as? NSDictionary
+                                let JSON = response.result.value as! NSDictionary
                                 
-                                let defaults = UserDefaults.standard
-                                for (key, value) in JSON! {
-                                    let temp = key as? String
-                                    defaults.set(value, forKey: temp!)
-                                }
+                                let akun = user()
+                                akun.Populate(dictionary: JSON)
+                                
+                                let defaults = Defaults()
+                                defaults.set(akun,for: Key<user>(Keys.saved_user))
+                                
                                 self.performSegue(withIdentifier: "homesegue2", sender: self)
                                 
                             case .failure( _):

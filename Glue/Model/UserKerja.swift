@@ -8,7 +8,7 @@
 
 import Foundation
 
-class UserKerja
+class UserKerja: Codable
 {
     var idkerja:String = ""
     var user_nrp:String = ""
@@ -20,7 +20,6 @@ class UserKerja
     var kerja_updated:String = ""
     
     func Populate(dictionary:NSDictionary) {
-        
         idkerja = dictionary["idkerja"] as! String
         user_nrp = dictionary["user_nrp"] as! String
         kerja_jabatan = dictionary["kerja_jabatan"] as! String
@@ -30,12 +29,13 @@ class UserKerja
         kerja_created = dictionary["kerja_created"] as! String
         kerja_updated = dictionary["kerja_updated"] as! String
     }
+
     class func PopulateArray(array:NSArray) -> [UserKerja]
     {
         var result:[UserKerja] = []
         for item in array
         {
-            var newItem = UserKerja()
+            let newItem = UserKerja()
             newItem.Populate(dictionary: item as! NSDictionary)
             result.append(newItem)
         }

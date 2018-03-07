@@ -22,6 +22,7 @@ import SwiftIconFont
 import ChameleonFramework
 import SDWebImage
 import SKPhotoBrowser
+import DefaultsKit
 
 /**
  Menu controller is responsible for creating its content and showing/hiding menu using 'menuContainerViewController' property.
@@ -30,15 +31,14 @@ class SampleMenuViewController: MenuViewController, Storyboardable {
 
     @IBOutlet fileprivate weak var tableView: UITableView!
     @IBOutlet fileprivate weak var avatarImageView: UIImageView!
-
-    
     @IBOutlet weak var buttonakun: UIButton!
     @IBOutlet weak var labelnama: UILabel!
     @IBOutlet weak var labelemail: UILabel!
     @IBOutlet weak var labelakses: UILabel!
     @IBOutlet weak var imageprofile: UIImageView!
-    let defaults = UserDefaults.standard
+    let defaults = Defaults()
     var issigned = false
+    var foto = String()
     
     override var prefersStatusBarHidden: Bool {
         return true
@@ -46,21 +46,28 @@ class SampleMenuViewController: MenuViewController, Storyboardable {
 
     @IBAction func buttonakunclick(_ sender: Any) {
         if(issigned){
-            let vc = UbahAkun()
-            vc.own = true
-            
-            navigationController?.pushViewController(vc, animated: true)
+            self.performSegue(withIdentifier: "ubahakunsegue", sender: self)
         }else{
             self.performSegue(withIdentifier: "loginsegue", sender: self)
         }
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ubahakunsegue"  {
+            if let navController = segue.destination as? UINavigationController {
+                if let childVC = navController.topViewController as? UbahAkun {
+                    childVC.own = true
+                }
+            }
+        }
+    }
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 //        defaults.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
         buttonakun.layer.cornerRadius = 5
-        imageprofile.sd_setImage(with: URL(string: defaults.string(forKey: Keys.user_thumbnail)!))
-
+    
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(SampleMenuViewController.tapDetected))
         imageprofile.isUserInteractionEnabled = true
         imageprofile.addGestureRecognizer(tapGestureRecognizer)
@@ -70,12 +77,15 @@ class SampleMenuViewController: MenuViewController, Storyboardable {
 
         avatarImageView.layer.cornerRadius = avatarImageView.frame.size.width/2
         
-        if (defaults.object(forKey: Keys.user_email) != nil){
+        if defaults.has(Key<user>(Keys.saved_user)){
             issigned=true
+            let akun = defaults.get(for: Key<user>(Keys.saved_user))
+            imageprofile.sd_setImage(with: URL(string: (akun?.user_thumbnail)!))
             buttonakun.setTitle(" fa:edit Ubah akun", for: .normal)
-            labelnama.text = defaults.string(forKey: Keys.user_nama)
-            labelemail.text = defaults.string(forKey: Keys.user_email)
-            switch defaults.string(forKey: Keys.user_akses)!{
+            labelnama.text = akun?.user_nama
+            labelemail.text = akun?.user_email
+            foto = (akun?.user_foto)!
+            switch (akun?.user_akses)! {
             case "0":
                 labelakses.text = "Admin"
             case "1":
@@ -92,13 +102,15 @@ class SampleMenuViewController: MenuViewController, Storyboardable {
     }
     
     @objc func tapDetected() {
-        // 1. create URL Array
         var images = [SKPhoto]()
-        let photo = SKPhoto.photoWithImageURL(defaults.string(forKey: Keys.user_foto)!)
+        var photo:SKPhoto
+        if foto.isEmpty {
+            photo = SKPhoto.photoWithImage(UIImage(named: "icon")!)
+        }else{
+            photo = SKPhoto.photoWithImageURL(foto)
+        }
         photo.shouldCachePhotoURLImage = false
         images.append(photo)
-        
-        // 2. create PhotoBrowser Instance, and present.
         let browser = SKPhotoBrowser(photos: images)
         browser.initializePageIndex(0)
         present(browser, animated: true, completion: {})

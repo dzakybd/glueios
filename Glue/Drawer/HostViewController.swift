@@ -18,6 +18,7 @@
 
 import UIKit
 import InteractiveSideMenu
+import DefaultsKit
 
 /*
  HostViewController is container view controller, contains menu controller and the list of relevant view controllers.
@@ -31,8 +32,7 @@ class HostViewController: MenuContainerViewController {
         return false
     }
     
-    let defaults = UserDefaults.standard
-
+    let defaults = Defaults()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,7 +69,7 @@ class HostViewController: MenuContainerViewController {
 
     private func contentControllers() -> [UIViewController] {
         var controllersIdentifiers: [String]
-        if (defaults.object(forKey: Keys.user_email) != nil){
+        if defaults.has(Key<user>(Keys.saved_user)) {
             controllersIdentifiers = ["HomeNews", "HomeMember", "HomeChat", "HomeNearme"]
         }else {
             controllersIdentifiers = ["HomeNews"]
