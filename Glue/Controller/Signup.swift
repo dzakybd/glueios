@@ -22,7 +22,7 @@ class Signup: FormViewController {
         // Do any additional setup after loading the view, typically from a nib.
         form +++ Section("Data utama")
             <<< ImageRow() {
-                $0.tag="image"
+                $0.tag = Keys.image
                 $0.title = "Gambar profil"
                 $0.sourceTypes = [.PhotoLibrary, .SavedPhotosAlbum, .Camera]
                 $0.clearAction = .yes(style: UIAlertActionStyle.destructive)
@@ -31,7 +31,7 @@ class Signup: FormViewController {
                 $0.title = "NRP"
                 $0.add(rule: RuleRequired())
                 $0.placeholder = "Masukan nrp anda"
-                $0.tag="nrp"
+                $0.tag = Keys.user_nrp
                 $0.validationOptions = .validatesOnChange
             }.cellUpdate { cell, row in
                 if !row.isValid {
@@ -39,7 +39,7 @@ class Signup: FormViewController {
                 }
             }
             <<< NameRow(){
-                $0.tag="nama"
+                $0.tag = Keys.user_nama
                 $0.title = "Nama"
                 $0.add(rule: RuleRequired())
                 $0.placeholder = "Masukan nama anda"
@@ -50,7 +50,7 @@ class Signup: FormViewController {
                 }
             }
             <<< EmailRow(){
-                $0.tag="email"
+                $0.tag = Keys.user_email
                 $0.title = "Email"
                 $0.add(rule: RuleRequired())
                 $0.add(rule: RuleEmail())
@@ -62,7 +62,7 @@ class Signup: FormViewController {
                 }
             }
             <<< GenericPasswordRow(){
-                $0.tag="password"
+                $0.tag = Keys.user_password
                 $0.add(rule: RuleRequired())
                 $0.placeholder = "Masukan password anda"
                 $0.validationOptions = .validatesOnChange
@@ -72,7 +72,7 @@ class Signup: FormViewController {
                 }
             }
             <<< PhoneRow(){
-                $0.tag="nohp"
+                $0.tag = Keys.user_no_hp
                 $0.title = "Nomor HP"
                 $0.placeholder = "Masukan nomor hp anda"
             }
@@ -99,13 +99,13 @@ class Signup: FormViewController {
     @IBAction func signupclick(_ sender: Any) {
         if form.validate().isEmpty {
             let formvalues = form.values()
-            let imageui = formvalues["image"]! ?? nil
+            let imageui = formvalues[Keys.image]! ?? nil
             let parameters = [
-                Keys.user_email: formvalues["email"] as! String,
-                Keys.user_password: formvalues["password"] as! String,
-                Keys.user_nrp: String(formvalues["nrp"] as! Int),
-                Keys.user_nama: formvalues["nama"] as! String,
-                Keys.user_no_hp: formvalues["nohp"] as! String,
+                Keys.user_email: formvalues[Keys.user_email] as! String,
+                Keys.user_password: formvalues[Keys.user_password] as! String,
+                Keys.user_nrp: String(formvalues[Keys.user_nrp] as! Int),
+                Keys.user_nama: formvalues[Keys.user_nama] as! String,
+                Keys.user_no_hp: formvalues[Keys.user_no_hp] as! String,
                 Keys.user_lat: userlat,
                 Keys.user_lng: userlng
             ]
@@ -116,7 +116,7 @@ class Signup: FormViewController {
             
             Alamofire.upload( multipartFormData: { multipartFormData in
                 if imageui != nil {
-                    multipartFormData.append(imageData, withName: "image", fileName: "image.png" , mimeType: "image/png")
+                    multipartFormData.append(imageData, withName: Keys.image, fileName: "image.png" , mimeType: "image/png")
                 }
                 for (key, val) in parameters {
                     multipartFormData.append(val.data(using: .utf8)!, withName: key)
@@ -132,11 +132,11 @@ class Signup: FormViewController {
                             
                                 let JSON = response.result.value as! NSDictionary
                                 
-                                let akun = user()
+                                let akun = User()
                                 akun.Populate(dictionary: JSON)
                                 
                                 let defaults = Defaults()
-                                defaults.set(akun,for: Key<user>(Keys.saved_user))
+                                defaults.set(akun,for: Key<User>(Keys.saved_user))
                                 
                                 self.performSegue(withIdentifier: "homesegue2", sender: self)
                                 
@@ -145,12 +145,12 @@ class Signup: FormViewController {
                             }
                         }
                     case "error_nrp":
-                        let alertController = UIAlertController(title: "Login", message:
+                        let alertController = UIAlertController(title: "Error", message:
                             "NRP belum terdaftar", preferredStyle: UIAlertControllerStyle.alert)
                         alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
                         self.present(alertController, animated: true, completion: nil)
                     case "error_signed":
-                        let alertController = UIAlertController(title: "Login", message:
+                        let alertController = UIAlertController(title: "Error", message:
                             "Anda sudah terdaftar", preferredStyle: UIAlertControllerStyle.alert)
                         alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
                         self.present(alertController, animated: true, completion: nil)

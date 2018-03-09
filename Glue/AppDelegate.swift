@@ -16,8 +16,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        configureTheme()
         UIApplication.shared.statusBarStyle = .lightContent
+        UINavigationBar.appearance().barTintColor =  Keys.gradcolors[0]
+        UINavigationBar.appearance().tintColor = UIColor.flatWhite
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.flatWhite]
         return true
     }
 
@@ -44,11 +46,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 }
-
-extension AppDelegate {
-    
-    func configureTheme() {
-        StyleManager.setUpTheme()
-    }
-}
-

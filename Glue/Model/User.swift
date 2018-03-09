@@ -8,8 +8,7 @@
 
 import Foundation
 
-class user
-{
+class User: Codable{
     var user_nrp:String = ""
     var user_no_kta:String = ""
     var user_akses:String = ""
@@ -45,6 +44,10 @@ class user
     var user_last_login:String = ""
     var user_created:String = ""
     var user_updated:String = ""
+    var iduniversitas:String = ""
+    var universitas_nama:String = ""
+    var idwilayah:String = ""
+    var wilayah_nama:String = ""
     var user_kerjas:[UserKerja] = []
     var user_tautans:[UserTautan] = []
     
@@ -85,27 +88,12 @@ class user
         user_last_login = dictionary["user_last_login"] as! String
         user_created = dictionary["user_created"] as! String
         user_updated = dictionary["user_updated"] as! String
+        iduniversitas = dictionary["iduniversitas"] as! String
+        universitas_nama = dictionary["universitas_nama"] as! String
+        idwilayah = dictionary["idwilayah"] as! String
+        wilayah_nama = dictionary["wilayah_nama"] as! String
         user_kerjas = UserKerja.PopulateArray(array: dictionary["user_kerja"] as! [NSArray] as NSArray)
         user_tautans = UserTautan.PopulateArray(array: dictionary["user_tautan"] as! [NSArray] as NSArray)
-    }
-    
-    class func DateFromString(dateString:String) -> NSDate
-    {
-        let dateFormatter = DateFormatter()
-        let enUSPosixLocale = NSLocale(localeIdentifier: "en_US_POSIX")
-        dateFormatter.locale = enUSPosixLocale as Locale!
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
-        return dateFormatter.date(from: dateString)! as NSDate
-    }
-    class func Populate(data:Data) -> user {
-        return Populate(dictionary:  try! JSONSerialization.jsonObject(with: data, options: []) as! NSDictionary)
-    }
-    
-    class func Populate(dictionary:NSDictionary) -> user
-    {
-        let result = user()
-        result.Populate(dictionary: dictionary)
-        return result
     }
     
 }

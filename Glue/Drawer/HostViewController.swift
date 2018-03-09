@@ -69,7 +69,7 @@ class HostViewController: MenuContainerViewController {
 
     private func contentControllers() -> [UIViewController] {
         var controllersIdentifiers: [String]
-        if defaults.has(Key<user>(Keys.saved_user)) {
+        if defaults.has(Key<User>(Keys.saved_user)) {
             controllersIdentifiers = ["HomeNews", "HomeMember", "HomeChat", "HomeNearme"]
         }else {
             controllersIdentifiers = ["HomeNews"]

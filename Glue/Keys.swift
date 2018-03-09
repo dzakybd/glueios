@@ -6,7 +6,9 @@
 //  Copyright © 2018 Dzaky ZF. All rights reserved.
 //
 
-public struct Keys {
+import Foundation
+import ChameleonFramework
+public class Keys {
     static let URL_BASE = "http://128.199.190.115/glue/ios/"
     static let URL_CRD_COMMENT = URL_BASE+"crd_comment.php"
     static let URL_CRUD_EVENT = URL_BASE+"crud_event.php"
@@ -105,14 +107,37 @@ public struct Keys {
     static let error_exist = "error_exist"
     static let error_nrp = "error_nrp"
     static let saved_user = "saved_user"
-}
+    static let idlocale = "id_ID"
+    
+    static func DateFromString(dateString:String) -> Date
+    {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        return dateFormatter.date(from: dateString)!
+    }
+    
+    static func UserAksesName(kode:String) -> String{
+        var result = String()
+        switch kode {
+        case "0":
+            result = "Admin"
+        case "1":
+            result = "Pembina"
+        case "2":
+            result = "Pengurus"
+        case "3":
+            result = "Anggota"
+        default:
+            result = ""
+        }
+        return result
+    }
+    
+    static let gradcolors:[UIColor] = [
+        UIColor(red: 16.0/255.0, green: 12.0/255.0, blue: 54.0/255.0, alpha: 1.0),
+        UIColor(red: 57.0/255.0, green: 33.0/255.0, blue: 61.0/255.0, alpha: 1.0)
+    ]
 
-//class func DateFromString(dateString:String) -> NSDate
-//{
-//    let dateFormatter = DateFormatter()
-//    let enUSPosixLocale = NSLocale(localeIdentifier: "en_US_POSIX")
-//    dateFormatter.locale = enUSPosixLocale as Locale!
-//    dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
-//    return dateFormatter.date(from: dateString)! as NSDate
-//}
+
+}
 

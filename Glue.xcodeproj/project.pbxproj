@@ -12,7 +12,6 @@
 		3549BDCD1F75FF6900501356 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3549BDCB1F75FF6900501356 /* Main.storyboard */; };
 		3549BDD21F75FF6900501356 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3549BDD01F75FF6900501356 /* LaunchScreen.storyboard */; };
 		5209F820204D185C00AEAEDF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5209F81F204D185C00AEAEDF /* Assets.xcassets */; };
-		5209F823204D464700AEAEDF /* StyleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5209F822204D464700AEAEDF /* StyleManager.swift */; };
 		522D7694201E0F1300061BB2 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522D7693201E0F1300061BB2 /* Keys.swift */; };
 		52346D8A204C8AF90011F70B /* Storyboardable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52346D89204C8AF80011F70B /* Storyboardable.swift */; };
 		52346D8C204C8B360011F70B /* SampleMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52346D8B204C8B360011F70B /* SampleMenuViewController.swift */; };
@@ -20,9 +19,13 @@
 		52376BC1204FA26F00472F47 /* UbahAkun.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52376BC0204FA26F00472F47 /* UbahAkun.swift */; };
 		52376BC5204FD10900472F47 /* UserKerja.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52376BC4204FD10900472F47 /* UserKerja.swift */; };
 		52376BC7204FD11F00472F47 /* UserTautan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52376BC6204FD11F00472F47 /* UserTautan.swift */; };
-		52376BCB204FD1DD00472F47 /* user.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52376BCA204FD1DD00472F47 /* user.swift */; };
+		52376BCB204FD1DD00472F47 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52376BCA204FD1DD00472F47 /* User.swift */; };
 		527D2FCE2023781C00CA8ADF /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D2FCD2023781C00CA8ADF /* Chat.swift */; };
 		527D2FD32023803800CA8ADF /* HostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D2FD12023803800CA8ADF /* HostViewController.swift */; };
+		52BB42E02050F7C90084894A /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BB42DF2050F7C90084894A /* Event.swift */; };
+		52BB42E22050F7DA0084894A /* EventComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BB42E12050F7DA0084894A /* EventComment.swift */; };
+		52BB42E42050F8D50084894A /* Wilayah.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BB42E32050F8D50084894A /* Wilayah.swift */; };
+		52BB42E62050F98B0084894A /* Universitas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BB42E52050F98B0084894A /* Universitas.swift */; };
 		52E47A9920204D5B0015828E /* Signup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E47A9820204D5B0015828E /* Signup.swift */; };
 		52E47A9B20204F000015828E /* Changepass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E47A9A20204F000015828E /* Changepass.swift */; };
 		52E47A9D202050BB0015828E /* EditBiodata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E47A9C202050BB0015828E /* EditBiodata.swift */; };
@@ -45,7 +48,6 @@
 		3549BDD31F75FF6900501356 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		42DBFA76F7861006EAD602CB /* Pods-Glue.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Glue.release.xcconfig"; path = "Pods/Target Support Files/Pods-Glue/Pods-Glue.release.xcconfig"; sourceTree = "<group>"; };
 		5209F81F204D185C00AEAEDF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		5209F822204D464700AEAEDF /* StyleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleManager.swift; sourceTree = "<group>"; };
 		522D7693201E0F1300061BB2 /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		52346D89204C8AF80011F70B /* Storyboardable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storyboardable.swift; sourceTree = "<group>"; };
 		52346D8B204C8B360011F70B /* SampleMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SampleMenuViewController.swift; sourceTree = "<group>"; };
@@ -53,9 +55,13 @@
 		52376BC0204FA26F00472F47 /* UbahAkun.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UbahAkun.swift; sourceTree = "<group>"; };
 		52376BC4204FD10900472F47 /* UserKerja.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserKerja.swift; sourceTree = "<group>"; };
 		52376BC6204FD11F00472F47 /* UserTautan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTautan.swift; sourceTree = "<group>"; };
-		52376BCA204FD1DD00472F47 /* user.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = user.swift; sourceTree = "<group>"; };
+		52376BCA204FD1DD00472F47 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		527D2FCD2023781C00CA8ADF /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
 		527D2FD12023803800CA8ADF /* HostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HostViewController.swift; sourceTree = "<group>"; };
+		52BB42DF2050F7C90084894A /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		52BB42E12050F7DA0084894A /* EventComment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventComment.swift; sourceTree = "<group>"; };
+		52BB42E32050F8D50084894A /* Wilayah.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wilayah.swift; sourceTree = "<group>"; };
+		52BB42E52050F98B0084894A /* Universitas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Universitas.swift; sourceTree = "<group>"; };
 		52E47A9820204D5B0015828E /* Signup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Signup.swift; sourceTree = "<group>"; };
 		52E47A9A20204F000015828E /* Changepass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Changepass.swift; sourceTree = "<group>"; };
 		52E47A9C202050BB0015828E /* EditBiodata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditBiodata.swift; sourceTree = "<group>"; };
@@ -112,7 +118,6 @@
 				3549BDD01F75FF6900501356 /* LaunchScreen.storyboard */,
 				3549BDD31F75FF6900501356 /* Info.plist */,
 				522D7693201E0F1300061BB2 /* Keys.swift */,
-				5209F822204D464700AEAEDF /* StyleManager.swift */,
 			);
 			path = Glue;
 			sourceTree = "<group>";
@@ -142,7 +147,11 @@
 			children = (
 				52376BC4204FD10900472F47 /* UserKerja.swift */,
 				52376BC6204FD11F00472F47 /* UserTautan.swift */,
-				52376BCA204FD1DD00472F47 /* user.swift */,
+				52376BCA204FD1DD00472F47 /* User.swift */,
+				52BB42DF2050F7C90084894A /* Event.swift */,
+				52BB42E12050F7DA0084894A /* EventComment.swift */,
+				52BB42E32050F8D50084894A /* Wilayah.swift */,
+				52BB42E52050F98B0084894A /* Universitas.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -334,17 +343,20 @@
 				52346D8E204C8B570011F70B /* SampleTableCell.swift in Sources */,
 				52E47A9B20204F000015828E /* Changepass.swift in Sources */,
 				52376BC1204FA26F00472F47 /* UbahAkun.swift in Sources */,
+				52BB42E62050F98B0084894A /* Universitas.swift in Sources */,
 				52E47A9920204D5B0015828E /* Signup.swift in Sources */,
-				5209F823204D464700AEAEDF /* StyleManager.swift in Sources */,
+				52BB42E42050F8D50084894A /* Wilayah.swift in Sources */,
 				52E47AA72020518D0015828E /* EditNews.swift in Sources */,
 				52E47AA32020514F0015828E /* HomeChat.swift in Sources */,
 				52E47AA5202051630015828E /* HomeNearme.swift in Sources */,
 				52376BC7204FD11F00472F47 /* UserTautan.swift in Sources */,
+				52BB42E02050F7C90084894A /* Event.swift in Sources */,
 				52E47A9F202050E00015828E /* HomeNews.swift in Sources */,
 				52E47A9D202050BB0015828E /* EditBiodata.swift in Sources */,
+				52BB42E22050F7DA0084894A /* EventComment.swift in Sources */,
 				527D2FCE2023781C00CA8ADF /* Chat.swift in Sources */,
 				52E47AAB202051C30015828E /* ViewBiodata.swift in Sources */,
-				52376BCB204FD1DD00472F47 /* user.swift in Sources */,
+				52376BCB204FD1DD00472F47 /* User.swift in Sources */,
 				522D7694201E0F1300061BB2 /* Keys.swift in Sources */,
 				52346D8A204C8AF90011F70B /* Storyboardable.swift in Sources */,
 			);

@@ -57,15 +57,16 @@ class SampleMenuViewController: MenuViewController, Storyboardable {
             if let navController = segue.destination as? UINavigationController {
                 if let childVC = navController.topViewController as? UbahAkun {
                     childVC.own = true
+                    childVC.create = false
                 }
             }
         }
     }
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        defaults.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
+//        let defa = UserDefaults.standard
+//        defa.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
         buttonakun.layer.cornerRadius = 5
     
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(SampleMenuViewController.tapDetected))
@@ -77,26 +78,15 @@ class SampleMenuViewController: MenuViewController, Storyboardable {
 
         avatarImageView.layer.cornerRadius = avatarImageView.frame.size.width/2
         
-        if defaults.has(Key<user>(Keys.saved_user)){
+        if defaults.has(Key<User>(Keys.saved_user)){
             issigned=true
-            let akun = defaults.get(for: Key<user>(Keys.saved_user))
-            imageprofile.sd_setImage(with: URL(string: (akun?.user_thumbnail)!))
+            let akun = defaults.get(for: Key<User>(Keys.saved_user))!
+            imageprofile.sd_setImage(with: URL(string: akun.user_thumbnail))
             buttonakun.setTitle(" fa:edit Ubah akun", for: .normal)
-            labelnama.text = akun?.user_nama
-            labelemail.text = akun?.user_email
-            foto = (akun?.user_foto)!
-            switch (akun?.user_akses)! {
-            case "0":
-                labelakses.text = "Admin"
-            case "1":
-                labelakses.text = "Pembina"
-            case "2":
-                labelakses.text = "Pengurus"
-            case "3":
-                labelakses.text = "Anggota"
-            default:
-                labelakses.text = ""
-            }
+            labelnama.text = akun.user_nama
+            labelemail.text = akun.user_email
+            foto = akun.user_foto
+            labelakses.text = Keys.UserAksesName(kode: akun.user_akses)
         }
         buttonakun.parseIcon()
     }
@@ -118,10 +108,8 @@ class SampleMenuViewController: MenuViewController, Storyboardable {
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        view.backgroundColor = GradientColor(.topToBottom, frame: view.frame, colors: StyleManager.gradcolors)
+        view.backgroundColor = GradientColor(.topToBottom, frame: view.frame, colors: Keys.gradcolors)
     }
-    
-    
 
     deinit{
         print()

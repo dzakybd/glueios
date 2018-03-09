@@ -36,11 +36,11 @@ class Login: UIViewController {
             case .success:
             let JSON = response.result.value as! NSDictionary
             
-            let akun = user()
+            let akun = User()
             akun.Populate(dictionary: JSON)
             
             let defaults = Defaults()
-            defaults.set(akun,for: Key<user>(Keys.saved_user))
+            defaults.set(akun,for: Key<User>(Keys.saved_user))
             
             self.performSegue(withIdentifier: "homesegue", sender: self)
             case .failure( _):
