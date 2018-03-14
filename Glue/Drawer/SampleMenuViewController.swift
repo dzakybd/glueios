@@ -35,7 +35,6 @@ class SampleMenuViewController: MenuViewController, Storyboardable {
     @IBOutlet weak var labelnama: UILabel!
     @IBOutlet weak var labelemail: UILabel!
     @IBOutlet weak var labelakses: UILabel!
-    @IBOutlet weak var imageprofile: UIImageView!
     let defaults = Defaults()
     var issigned = false
     var foto = String()
@@ -46,16 +45,16 @@ class SampleMenuViewController: MenuViewController, Storyboardable {
 
     @IBAction func buttonakunclick(_ sender: Any) {
         if(issigned){
-            self.performSegue(withIdentifier: "ubahakunsegue", sender: self)
+            self.performSegue(withIdentifier: "menu_to_editmember", sender: self)
         }else{
-            self.performSegue(withIdentifier: "loginsegue", sender: self)
+            self.performSegue(withIdentifier: "menu_to_login", sender: self)
         }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "ubahakunsegue"  {
+        if segue.identifier == "menu_to_editmember"  {
             if let navController = segue.destination as? UINavigationController {
-                if let childVC = navController.topViewController as? UbahAkun {
+                if let childVC = navController.topViewController as? EditMember {
                     childVC.own = true
                     childVC.create = false
                 }
@@ -65,23 +64,22 @@ class SampleMenuViewController: MenuViewController, Storyboardable {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        let defa = UserDefaults.standard
-//        defa.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
         buttonakun.layer.cornerRadius = 5
     
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(SampleMenuViewController.tapDetected))
-        imageprofile.isUserInteractionEnabled = true
-        imageprofile.addGestureRecognizer(tapGestureRecognizer)
+        avatarImageView.isUserInteractionEnabled = true
+        avatarImageView.addGestureRecognizer(tapGestureRecognizer)
         
         // Select the initial row
         tableView.selectRow(at: IndexPath(row: 0, section: 0), animated: false, scrollPosition: UITableViewScrollPosition.none)
 
-        avatarImageView.layer.cornerRadius = avatarImageView.frame.size.width/2
+        let wid = avatarImageView.frame.size.width/2
+        avatarImageView.layer.cornerRadius = wid
         
         if defaults.has(Key<User>(Keys.saved_user)){
             issigned=true
             let akun = defaults.get(for: Key<User>(Keys.saved_user))!
-            imageprofile.sd_setImage(with: URL(string: akun.user_thumbnail))
+            avatarImageView.sd_setImage(with: URL(string: akun.user_thumbnail), placeholderImage: UIImage(named: "icon"))
             buttonakun.setTitle(" fa:edit Ubah akun", for: .normal)
             labelnama.text = akun.user_nama
             labelemail.text = akun.user_email
@@ -92,20 +90,20 @@ class SampleMenuViewController: MenuViewController, Storyboardable {
     }
     
     @objc func tapDetected() {
-        var images = [SKPhoto]()
-        var photo:SKPhoto
+       var photo:SKPhoto
         if foto.isEmpty {
             photo = SKPhoto.photoWithImage(UIImage(named: "icon")!)
         }else{
-            photo = SKPhoto.photoWithImageURL(foto)
+            photo = SKPhoto.photoWithImageURL(self.foto)
+            photo.shouldCachePhotoURLImage = false
         }
-        photo.shouldCachePhotoURLImage = false
+        var images = [SKPhoto]()
         images.append(photo)
         let browser = SKPhotoBrowser(photos: images)
         browser.initializePageIndex(0)
         present(browser, animated: true, completion: {})
     }
-
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         view.backgroundColor = GradientColor(.topToBottom, frame: view.frame, colors: Keys.gradcolors)
@@ -134,20 +132,29 @@ extension SampleMenuViewController: UITableViewDelegate, UITableViewDataSource {
         cell.titleLabel.text = menuContainerViewController?.contentViewControllers[indexPath.row].title ?? "A Controller"
         
         var icon = ""
+        var title = ""
         switch cell.titleLabel.text! {
-        case "News":
+        case "Navigation Home News":
             icon="newspapero"
-        case "Member":
+            title="News"
+        case "Navigation Home Member":
             icon="users"
-        case "Chat":
+            title="Member"
+        case "Navigation Home Chat":
             icon="comment"
-        case "Near me":
+            title="Chat"
+        case "Navigation Home Near Me":
             icon="locationarrow"
+            title="Near me"
+        case "Wilayah & Universitas":
+            icon="university"
+            title="Wilayah & Universitas"
         default:
             icon="newspaper"
         }
+        
         cell.titleLabel.font = UIFont.icon(from: .FontAwesome, ofSize: cell.titleLabel.font.pointSize)
-        cell.titleLabel.text = String.fontAwesomeIcon(icon)! + " " + cell.titleLabel.text!
+        cell.titleLabel.text = String.fontAwesomeIcon(icon)! + " " + title
         
         return cell
     }

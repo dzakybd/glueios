@@ -71,6 +71,13 @@ class HostViewController: MenuContainerViewController {
         var controllersIdentifiers: [String]
         if defaults.has(Key<User>(Keys.saved_user)) {
             controllersIdentifiers = ["HomeNews", "HomeMember", "HomeChat", "HomeNearme"]
+            
+            let temp = defaults.get(for: Key<User>(Keys.saved_user))!
+            
+            if temp.user_akses == "0" || temp.user_akses == "1" {
+                controllersIdentifiers.append("WilayahUniversitas")
+            }
+            
         }else {
             controllersIdentifiers = ["HomeNews"]
         }

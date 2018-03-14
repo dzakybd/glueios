@@ -8,6 +8,9 @@
 
 import Foundation
 import ChameleonFramework
+import INTULocationManager
+import Alamofire
+
 public class Keys {
     static let URL_BASE = "http://128.199.190.115/glue/ios/"
     static let URL_CRD_COMMENT = URL_BASE+"crd_comment.php"
@@ -108,12 +111,37 @@ public class Keys {
     static let error_nrp = "error_nrp"
     static let saved_user = "saved_user"
     static let idlocale = "id_ID"
+    static let error = "Error"
+    static let dismiss = "Dismiss"
+    static let admin = "admin"
+    
+    
+    static func TimeFromString(dateString:String) -> Date
+    {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "hh:mm:ss"
+        return dateFormatter.date(from: dateString)!
+    }
+    
+    static func StringFromTime(date:Date) -> String
+    {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "hh:mm:ss"
+        return dateFormatter.string(from: date)
+    }
     
     static func DateFromString(dateString:String) -> Date
     {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
         return dateFormatter.date(from: dateString)!
+    }
+    
+    static func StringFromdate(date:Date) -> String
+    {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        return dateFormatter.string(from: date)
     }
     
     static func UserAksesName(kode:String) -> String{
@@ -133,11 +161,92 @@ public class Keys {
         return result
     }
     
+    static func UserAksesCode(kode:String) -> String{
+        var result = String()
+        switch kode {
+        case "Admin":
+            result = "0"
+        case "Pembina":
+            result = "1"
+        case "Pengurus":
+            result = "2"
+        case "Anggota":
+            result = "3"
+        default:
+            result = ""
+        }
+        return result
+    }
+    
     static let gradcolors:[UIColor] = [
         UIColor(red: 16.0/255.0, green: 12.0/255.0, blue: 54.0/255.0, alpha: 1.0),
         UIColor(red: 57.0/255.0, green: 33.0/255.0, blue: 61.0/255.0, alpha: 1.0)
     ]
-
+    
+    static func getlocation(completion: @escaping (String, String) -> ()) {
+        var userlat = String()
+        var userlng = String()
+        let locationManager = INTULocationManager.sharedInstance()
+        locationManager.requestLocation(withDesiredAccuracy: .city,
+                                        timeout: 10.0,
+                                        delayUntilAuthorized: true) { (currentLocation, achievedAccuracy, status) in
+                                            if (status == INTULocationStatus.success) {
+                                                userlat = "\(currentLocation?.coordinate.latitude ?? 0)"
+                                                userlng = "\(currentLocation?.coordinate.longitude ?? 0)"
+                                            }
+//                                            else if (status == INTULocationStatus.timedOut) {
+//                                            }
+                                            completion(userlat, userlng)
+        }
+    }
+    
+    
+    static func getwilayah(completion: @escaping ([String: String],[String]) -> ()) {
+        let parameters = [
+            Keys.mode: Keys.read
+        ]
+        Alamofire.request(Keys.URL_CRUD_WILAYAH, method:.post, parameters:parameters).responseJSON { response in
+            var dict = [String: String]()
+            var text = [String]()
+            switch response.result {
+            case .success:
+                let arrJson = response.result.value as! NSArray
+                for element in arrJson {
+                    let data = element as! NSDictionary
+                    dict[data[Keys.wilayah_nama] as! String] = (data[Keys.idwilayah] as! String)
+                    text.append(data[Keys.wilayah_nama] as! String)
+                }
+                
+            case .failure( _):
+               print("Error")
+            }
+            completion(dict, text)
+        }
+    }
+    
+    
+    static func getuniversitas(wilayah_idwilayah: String,completion: @escaping ([String: String],[String]) -> ()) {
+        let parameters = [
+            Keys.mode: Keys.read,
+            Keys.wilayah_idwilayah: wilayah_idwilayah
+        ]
+        Alamofire.request(Keys.URL_CRUD_UNIVERSITAS, method:.post, parameters:parameters).responseJSON { response in
+            var dict = [String: String]()
+            var text = [String]()
+            switch response.result {
+            case .success:
+                let arrJson = response.result.value as! NSArray
+                for element in arrJson {
+                    let data = element as! NSDictionary
+                    dict[data[Keys.universitas_nama] as! String] = (data[Keys.iduniversitas] as! String)
+                    text.append(data[Keys.universitas_nama] as! String)
+                }
+            case .failure( _):
+                print("Error")
+            }
+            completion(dict, text)
+        }
+    }
 
 }
 
