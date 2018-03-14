@@ -523,7 +523,7 @@ class EditMember: FormViewController {
                 
                 for (index, kerja) in akun.user_kerjas.enumerated(){
                     let countext = String(index)
-                    form +++ Section("Pekerjaan " + countext){
+                    form +++ Section("Pekerjaan \(index+1)"){
                         $0.hidden = Condition(stringLiteral: "\(segmenttext)'\(kategori[2])'")
                     }
                         <<< TextRow(Keys.kerja_perusahaan + countext){
@@ -642,7 +642,7 @@ class EditMember: FormViewController {
                 
                 for (index, tautan) in akun.user_tautans.enumerated(){
                     let countext = String(index)
-                    form +++ Section("Tautan " + countext){
+                    form +++ Section("Tautan \(index+1)"){
                         $0.hidden = Condition(stringLiteral: "\(segmenttext)'\(kategori[3])'")
                         }
                         <<< TextRow(Keys.tautan_judul + countext){
