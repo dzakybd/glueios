@@ -10,6 +10,7 @@ import Foundation
 import ChameleonFramework
 import INTULocationManager
 import Alamofire
+import DefaultsKit
 
 public class Keys {
     static let URL_BASE = "http://128.199.190.115/glue/ios/"
@@ -23,8 +24,9 @@ public class Keys {
     static let URL_GET_NEARME = URL_BASE+"get_nearme.php"
     static let URL_LIKE_DISLIKE = URL_BASE+"like_dislike.php"
     static let URL_LOGIN = URL_BASE+"login.php"
-    static let URL_RESETPASS = URL_BASE+"resetpass.php"
+    static let URL_RESET_PASS = URL_BASE+"resetpass.php"
     static let URL_SIGNUP = URL_BASE+"signup.php"
+    static let URL_KODE_PASS = "http://irelandhealthawareness.xyz/glue/mail.php"
     
     static let idevent = "idevent"
     static let event_judul = "event_judul"
@@ -114,6 +116,7 @@ public class Keys {
     static let error = "Error"
     static let dismiss = "Dismiss"
     static let admin = "admin"
+    static let kode_reset = "kode_reset"
     
     
     static func TimeFromString(dateString:String) -> Date
@@ -245,6 +248,31 @@ public class Keys {
                 print("Error")
             }
             completion(dict, text)
+        }
+    }
+    
+    static func getowndata(completion: @escaping (Bool) -> ()) {
+        let defaults = Defaults()
+        let temp = defaults.get(for: Key<User>(Keys.saved_user))!
+        let parameters = [
+            Keys.user_email: temp.user_email,
+            Keys.user_password: temp.user_password,
+            Keys.own: Keys.yes
+        ]
+        Alamofire.request(Keys.URL_LOGIN, method:.post, parameters:parameters).responseJSON { response in
+            switch response.result {
+            case .success:
+                let JSON = response.result.value as! NSDictionary
+                let akun = User()
+                akun.Populate(dictionary: JSON)
+                let key = Key<User>(Keys.saved_user)
+                defaults.clear(key)
+                defaults.set(akun, for: key)
+                completion(true)
+            case .failure( _):
+                print(Keys.error)
+                completion(false)
+            }
         }
     }
 

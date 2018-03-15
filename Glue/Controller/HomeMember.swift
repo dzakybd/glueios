@@ -24,6 +24,7 @@ class HomeMember: UIViewController, SideMenuItemContent, UICollectionViewDelegat
     var notregistered:Bool = true
     var parameters = [String: String]()
     var index = Int()
+    var create = Bool()
     
     @IBOutlet weak var addbutton: UIBarButtonItem!
     @IBOutlet weak var membercollection: UICollectionView!
@@ -42,7 +43,7 @@ class HomeMember: UIViewController, SideMenuItemContent, UICollectionViewDelegat
         hud.textLabel.text = "Memuat"
         hud.show(in: self.view)
         Alamofire.request(Keys.URL_CRUD_USER, method:.post, parameters:parameters).responseJSON { response in
-            hud.dismiss(afterDelay: 1.0)
+            hud.dismiss()
             self.akuns = [User]()
             switch response.result {
             case .success:
@@ -62,6 +63,7 @@ class HomeMember: UIViewController, SideMenuItemContent, UICollectionViewDelegat
     @objc func tap(_ sender: UITapGestureRecognizer) {
         let indexa = self.membercollection.indexPathForItem(at: sender.location(in: self.membercollection))
         self.index = (indexa?.row)!
+        create = false
         self.performSegue(withIdentifier: "homemember_to_editmember", sender: self)
     }
     
@@ -109,7 +111,7 @@ class HomeMember: UIViewController, SideMenuItemContent, UICollectionViewDelegat
         
         if defaults.has(Key<User>(Keys.saved_user)) {
             akun = defaults.get(for: Key<User>(Keys.saved_user))!
-            if akun.user_akses == "0" && akun.user_akses == "1" {
+            if akun.user_akses == "0" || akun.user_akses == "1" {
                 admin = true
             }
             if !akun.user_email.isEmpty {
@@ -151,8 +153,11 @@ class HomeMember: UIViewController, SideMenuItemContent, UICollectionViewDelegat
         else if segue.identifier == "homemember_to_editmember"  {
             if let navController = segue.destination as? UINavigationController {
                 if let childVC = navController.topViewController as? EditMember {
-                    childVC.akun = akuns[index]
-                    childVC.create = false
+                    childVC.create = create
+                    childVC.user_akses = akun.user_akses
+                    if !create {
+                        childVC.akun = akuns[index]
+                    }
                 }
             }
         }
@@ -164,5 +169,9 @@ class HomeMember: UIViewController, SideMenuItemContent, UICollectionViewDelegat
     }
     @IBAction func openMenu(_ sender: Any) {
         showSideMenu()
+    }
+    @IBAction func addclick(_ sender: Any) {
+        create = true
+        self.performSegue(withIdentifier: "homemember_to_editmember", sender: self)
     }
 }

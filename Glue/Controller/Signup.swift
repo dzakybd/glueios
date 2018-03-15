@@ -109,24 +109,9 @@ class Signup: FormViewController {
                     case .success(let upload, _, _): upload.responseString { response in
                         switch response.result.value! {
                         case "berhasil", "":
-                            Alamofire.request(Keys.URL_LOGIN, method:.post, parameters:parameters).responseJSON { response in
-                                switch response.result {
-                                case .success:
-                                    
-                                    let JSON = response.result.value as! NSDictionary
-                                    
-                                    let akun = User()
-                                    akun.Populate(dictionary: JSON)
-                                    
-                                    let defaults = Defaults()
-                                    defaults.set(akun,for: Key<User>(Keys.saved_user))
-                                    
-                                    self.performSegue(withIdentifier: "signup_to_home", sender: self)
-                                    
-                                case .failure( _):
-                                    print("error")
-                                }
-                            }
+                            Keys.getowndata(completion: { (result) in
+                                self.performSegue(withIdentifier: "signup_to_home", sender: self)
+                            })
                         case "error_nrp":
                             let alertController = UIAlertController(title: "Error", message:
                                 "NRP belum terdaftar", preferredStyle: UIAlertControllerStyle.alert)

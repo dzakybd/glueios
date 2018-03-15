@@ -48,14 +48,17 @@ class NewsFilter: FormViewController {
                 $0.options = ["Terbaru","Terlama"]
                 $0.value = $0.options?.first
             }
-            
-            <<< SwitchRow(Keys.event_internal){
+            <<< ActionSheetRow<String>(Keys.event_internal) {
+                $0.title = "Untuk internal"
                 $0.hidden = Condition(booleanLiteral: !admin)
-                $0.title = "Hanya untuk internal"
+                $0.options = ["Ya","Tidak","Semua"]
+                $0.value = $0.options?.last
             }
-            <<< SwitchRow(Keys.event_published){
-                $0.hidden = Condition(booleanLiteral: !admin)
+            <<< ActionSheetRow<String>(Keys.event_published) {
                 $0.title = "Dipublikasikan"
+                $0.hidden = Condition(booleanLiteral: !admin)
+                $0.options = ["Ya","Tidak","Semua"]
+                $0.value = $0.options?.last
             }
     }
 
@@ -94,9 +97,14 @@ class NewsFilter: FormViewController {
             parameters[Keys.order] = (order == "Terbaru" ? "0" : "1")
            
             if admin {
-                parameters[Keys.event_internal] = (formvalues[Keys.event_internal] as! Bool ? "1" : "0")
-                
-                parameters[Keys.event_published] = (formvalues[Keys.event_published] as! Bool ? "1" : "0")
+                let inter = (formvalues[Keys.event_internal]! ?? "") as! String
+                if inter != "Semua"{
+                    parameters[Keys.event_internal] = (inter == "Tidak" ? "0" : "1")
+                }
+                let pub = (formvalues[Keys.event_published]! ?? "") as! String
+                if pub != "Semua"{
+                    parameters[Keys.event_published] = (pub == "Tidak" ? "0" : "1")
+                }
             }
            
             delegate.sharedfilter(data: parameters)

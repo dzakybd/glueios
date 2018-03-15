@@ -18,15 +18,20 @@ import JGProgressHUD
 import SDWebImage
 
 class EditMember: FormViewController {
-    var own = Bool()
+    var own:Bool = false
     var create = Bool()
+    var createtautan = Bool()
+    var createkerja = Bool()
     var akun = User()
+    var kerja = UserKerja()
+    var tautan = UserTautan()
     var notregistered = true
     var admin:Bool = false
     var ishide_nohp:Bool = false
     var ishide_agama:Bool = false
     var ishide_suku:Bool = false
     var ishide_tautan:Bool = false
+    var user_akses = ""
     var wilayahdict = [String: String]()
     var univdict = [String: String]()
     let defaults = Defaults()
@@ -43,16 +48,22 @@ class EditMember: FormViewController {
             akun = defaults.get(for: Key<User>(Keys.saved_user))!
         }
         
-        if akun.user_akses == "0" {
+        if !akun.user_email.isEmpty {
+            notregistered = false
+        }
+        
+        if user_akses == "0" {
             admin = true
-        } else if akun.user_akses == "1" && own {
+        } else if user_akses == "1" && own {
             admin = true
-        }else if akun.user_akses == "1" && !own {
+        }else if user_akses == "1" && !own && !notregistered {
             let akuntemp = defaults.get(for: Key<User>(Keys.saved_user))!
             if akun.idwilayah == akuntemp.idwilayah{
                 admin = true
             }
         }
+        
+        print(admin)
         
         if akun.ishide_no_hp == "1" && !own{
             ishide_nohp = true
@@ -69,10 +80,7 @@ class EditMember: FormViewController {
         if akun.ishide_tautan == "1"  && !own{
             ishide_tautan = true
         }
-        
-        if !akun.user_email.isEmpty {
-            notregistered = false
-        }
+    
         
         if !create && !notregistered  {
             kategori.append("Data lain")
@@ -100,7 +108,8 @@ class EditMember: FormViewController {
                 $0.options = kategori
                 $0.value = kategori[0]
             }
-            +++ Section(kategori[0]){
+            +++ Section(){
+                $0.tag = kategori[0]
                 $0.hidden = Condition(stringLiteral: "\(segmenttext)'\(kategori[0])'")
                 
                 var head = HeaderFooterView<MemberImage>(.nibFile(name: "MemberImage", bundle: nil))
@@ -164,7 +173,7 @@ class EditMember: FormViewController {
                     row.title = "Wilayah"
                     row.add(rule: RuleRequired())
                     row.disabled = Condition(booleanLiteral: !admin)
-                    row.hidden = Condition(stringLiteral: "$\(Keys.user_akses) = 'Admin'")
+                    row.hidden = Condition(stringLiteral: "$\(Keys.user_akses) == 'Admin'")
                     Keys.getwilayah(completion: { (dict, text) in
                         self.wilayahdict = [String: String]()
                         self.wilayahdict = dict
@@ -198,14 +207,14 @@ class EditMember: FormViewController {
                     $0.title = "Universitas"
                     $0.add(rule: RuleRequired())
                     $0.disabled = Condition(booleanLiteral: !admin)
-                    $0.hidden = Condition(stringLiteral: "$\(Keys.user_akses) = 'Admin' || $\(Keys.user_akses) = 'Pembina'")
+                    $0.hidden = Condition(stringLiteral: "$\(Keys.user_akses) == 'Admin' || $\(Keys.user_akses) == 'Pembina'")
                 }
                 <<< MultipleSelectorRow<String>(Keys.user_tahun_beasiswa) {
                     $0.title = "Tahun beasiswa"
                     $0.options = angkatext
                     $0.add(rule: RuleRequired())
                     $0.disabled = Condition(booleanLiteral: !admin)
-                    $0.hidden = Condition(stringLiteral: "$\(Keys.user_akses) = 'Admin' || $\(Keys.user_akses) = 'Pembina'")
+                    $0.hidden = Condition(stringLiteral: "$\(Keys.user_akses) == 'Admin' || $\(Keys.user_akses) == 'Pembina'")
                     if !akun.user_tahun_beasiswa.isEmpty{
                         let array = akun.user_tahun_beasiswa.components(separatedBy: ",")
                         $0.value = Set(array)
@@ -319,7 +328,8 @@ class EditMember: FormViewController {
                 }
         
             if !create && !notregistered {
-                form +++ Section(kategori[1]){
+                form +++ Section(){
+                    $0.tag = kategori[1]
                     $0.hidden = Condition(stringLiteral: "\(segmenttext)'\(kategori[1])'")
                     }
                     <<< TextAreaRow(Keys.user_bio){
@@ -517,198 +527,107 @@ class EditMember: FormViewController {
                     }
                 }
             
-                form +++ Section(kategori[2]){
+                form +++ Section(){
+                    $0.tag = kategori[2]
                     $0.hidden = Condition(stringLiteral: "\(segmenttext)'\(kategori[2])'")
                 }
                 
                 for (index, kerja) in akun.user_kerjas.enumerated(){
-                    let countext = String(index)
                     form +++ Section("Pekerjaan \(index+1)"){
                         $0.hidden = Condition(stringLiteral: "\(segmenttext)'\(kategori[2])'")
                     }
-                        <<< TextRow(Keys.kerja_perusahaan + countext){
+                        <<< LabelRow(){
                             $0.title = "Perusahaan"
-                            $0.placeholder = "Masukan perusahaan"
-                            $0.disabled = Condition(booleanLiteral: !own)
                             $0.value = kerja.kerja_perusahaan
                             }
                         
-                        <<< TextRow(Keys.kerja_jabatan + countext){
+                        <<< LabelRow(){
                             $0.title = "Jabatan"
-                            $0.placeholder = "Masukan jabatan"
-                            $0.disabled = Condition(booleanLiteral: !own)
                             $0.value = kerja.kerja_jabatan
                         }
-                        
-                        <<< TextRow(Keys.kerja_lokasi + countext){
+    
+                        <<< LabelRow(){
                             $0.title = "Lokasi"
-                            $0.placeholder = "Masukan lokasi"
-                            $0.disabled = Condition(booleanLiteral: !own)
                             $0.value = kerja.kerja_lokasi
                         }
-                        <<< PickerInputRow<String>(Keys.kerja_masuk_keluar + "1-" + countext){
+                        <<< LabelRow(){
                             $0.title = "Tahun masuk kerja"
-                            $0.options = angkatext
-                            $0.disabled = Condition(booleanLiteral: !own)
-                            if !kerja.kerja_masuk_keluar.isEmpty{
+                            if kerja.kerja_masuk_keluar.isEmpty{
+                                $0.value = ""
+                            }else{
                                 let array = kerja.kerja_masuk_keluar.components(separatedBy: ",")
                                 $0.value = array[0]
-                            }else{
-                                $0.value = ""
                             }
                         }
-                        <<< PickerInputRow<String>(Keys.kerja_masuk_keluar + "2-" + countext){
+                        <<< LabelRow(){
                             $0.title = "Tahun keluar kerja"
-                            $0.options = angkatext
-                            $0.disabled = Condition(booleanLiteral: !own)
-                            if !kerja.kerja_masuk_keluar.isEmpty{
+                            if kerja.kerja_masuk_keluar.isEmpty{
+                                $0.value = ""
+                            }else{
                                 let array = kerja.kerja_masuk_keluar.components(separatedBy: ",")
                                 $0.value = array[1]
-                            }else{
-                                $0.value = ""
                             }
                         }
                         <<< ButtonRow() {
                             $0.hidden = Condition(booleanLiteral: !own)
-                            $0.title = "Hapus"
+                            $0.title = "Edit pekerjaan"
                             }.onCellSelection { (cell, row) in
-                                let popup = PopupDialog(title: "Peringatan", message: "Anda yakin menghapus?", buttonAlignment: .horizontal, gestureDismissal: true)
-                                let buttonOne = CancelButton(title: "Batal") {
-                                }
-                                let buttonTwo = DestructiveButton(title: "Ya") {
-                                    self.hapuskerja(idkerja: kerja.idkerja)
-                                }
-                                popup.addButtons([buttonOne, buttonTwo])
-                                self.present(popup, animated: true, completion: nil)
-                            }.cellSetup({ (cell,row) in
-                                cell.tintColor = .flatRed
-                            })
+                                self.createkerja = false
+                                self.kerja = kerja
+                                self.performSegue(withIdentifier: "editmember_to_editkerja", sender: self)
+                            }
                 }
                 
-                if own{
-                let countext = "baru"
-                form +++ Section("Pekerjaan " + countext){
-                    $0.hidden = Condition(stringLiteral: "\(segmenttext)'\(kategori[2])'")
-                    }
-                    <<< TextRow(Keys.kerja_perusahaan + countext){
-                        $0.title = "Perusahaan"
-                        $0.placeholder = "Masukan perusahaan"
-                        $0.disabled = Condition(booleanLiteral: !own)
-                        }
-                    
-                        <<< TextRow(Keys.kerja_jabatan + countext){
-                            $0.title = "Jabatan"
-                            $0.placeholder = "Masukan jabatan"
-                            $0.disabled = Condition(booleanLiteral: !own)
-                        }
-                    
-                        <<< TextRow(Keys.kerja_lokasi + countext){
-                            $0.title = "Lokasi"
-                            $0.placeholder = "Masukan lokasi"
-                            $0.disabled = Condition(booleanLiteral: !own)
-                        }
-                        <<< PickerInputRow<String>(Keys.kerja_masuk_keluar + "1-" + countext){
-                            $0.title = "Tahun masuk kerja"
-                            $0.options = angkatext
-                            $0.disabled = Condition(booleanLiteral: !own)
-                            $0.value = ""
-                        }
-                        <<< PickerInputRow<String>(Keys.kerja_masuk_keluar + "2-" + countext){
-                            $0.title = "Tahun keluar kerja"
-                            $0.options = angkatext
-                            $0.disabled = Condition(booleanLiteral: !own)
-                            $0.value = ""
-                        }
-                        <<< ButtonRow() {
-                            $0.hidden = Condition(booleanLiteral: !own)
-                            $0.title = "Buat baru"
-                            }.onCellSelection { (cell, row) in
-                                let popup = PopupDialog(title: "Peringatan", message: "Anda yakin membuat baru?", buttonAlignment: .horizontal, gestureDismissal: true)
-                                let buttonOne = CancelButton(title: "Batal") {
-                                }
-                                let buttonTwo = DestructiveButton(title: "Ya") {
-                                    self.createkerja()
-                                }
-                                popup.addButtons([buttonOne, buttonTwo])
-                                self.present(popup, animated: true, completion: nil)
-                            }.cellSetup({ (cell,row) in
-                                cell.tintColor = .flatGreen
-                            })
-                }
-                
-                form +++ Section(kategori[3]){
+                form +++ Section(){
+                    $0.tag = kategori[3]
                     $0.hidden = Condition(stringLiteral: "\(segmenttext)'\(kategori[3])'")
                 }
                 
                 for (index, tautan) in akun.user_tautans.enumerated(){
-                    let countext = String(index)
                     form +++ Section("Tautan \(index+1)"){
                         $0.hidden = Condition(stringLiteral: "\(segmenttext)'\(kategori[3])'")
                         }
-                        <<< TextRow(Keys.tautan_judul + countext){
+                        <<< LabelRow(){
                             $0.title = "Judul"
-                            $0.placeholder = "Masukan judul"
-                            $0.disabled = Condition(booleanLiteral: !own)
                             $0.value = tautan.tautan_judul
                         }
-                        <<< TextRow(Keys.tautan_text + countext){
+                        <<< LabelRow(){
                             $0.title = "Detail"
-                            $0.placeholder = "Masukan url atau id sosmed"
-                            $0.disabled = Condition(booleanLiteral: !own)
                             $0.value = tautan.tautan_text
                         }
                         <<< ButtonRow() {
                             $0.hidden = Condition(booleanLiteral: !own)
-                            $0.title = "Hapus"
+                            $0.title = "Edit tautan"
                             }.onCellSelection { (cell, row) in
-                                let popup = PopupDialog(title: "Peringatan", message: "Anda yakin menghapus?", buttonAlignment: .horizontal, gestureDismissal: true)
-                                let buttonOne = CancelButton(title: "Batal") {
-                                }
-                                let buttonTwo = DestructiveButton(title: "Ya") {
-                                    self.hapustautan(idtautan: tautan.idtautan)
-                                }
-                                popup.addButtons([buttonOne, buttonTwo])
-                                self.present(popup, animated: true, completion: nil)
-                            }.cellSetup({ (cell,row) in
-                                cell.tintColor = .flatRed
-                            })
+                                self.createtautan = false
+                                self.tautan = tautan
+                                self.performSegue(withIdentifier: "editmember_to_edittautan", sender: self)
+                            }
                 }
                 
-                if own{
-                    let countext = "baru"
-                    form +++ Section("Tautan " + countext){
-                        $0.hidden = Condition(stringLiteral: "\(segmenttext)'\(kategori[3])'")
-                        }
-                        <<< TextRow(Keys.tautan_judul + countext){
-                            $0.title = "Judul"
-                            $0.placeholder = "Masukan judul"
-                        }
-                        <<< TextRow(Keys.tautan_text + countext){
-                            $0.title = "Detail"
-                            $0.placeholder = "Masukan url atau id sosmed"
+                if own {
+                    form +++ Section()
+                        <<< ButtonRow() {
+                            $0.hidden = Condition(stringLiteral: "\(segmenttext)'\(kategori[2])'")
+                            $0.title = "Tambah pekerjaan"
+                            }.onCellSelection { (cell, row) in
+                                self.createkerja = true
+                                self.performSegue(withIdentifier: "editmember_to_editkerja", sender: self)
                         }
                         <<< ButtonRow() {
-                            $0.hidden = Condition(booleanLiteral: !own)
-                            $0.title = "Buat baru"
+                            $0.hidden = Condition(stringLiteral: "\(segmenttext)'\(kategori[3])'")
+                            $0.title = "Tambah tautan"
                             }.onCellSelection { (cell, row) in
-                                let popup = PopupDialog(title: "Peringatan", message: "Anda yakin membuat baru?", buttonAlignment: .horizontal, gestureDismissal: true)
-                                let buttonOne = CancelButton(title: "Batal") {
-                                }
-                                let buttonTwo = DestructiveButton(title: "Ya") {
-                                    self.createtautan()
-                                }
-                                popup.addButtons([buttonOne, buttonTwo])
-                                self.present(popup, animated: true, completion: nil)
-                            }.cellSetup({ (cell,row) in
-                                cell.tintColor = .flatGreen
-                            })
+                                self.createtautan = true
+                                self.performSegue(withIdentifier: "editmember_to_edittautan", sender: self)
+                        }
                 }
+                
                 
                 form +++ Section("Opsi lain"){
                     $0.hidden = Condition(booleanLiteral: !(!create && (admin || own)) )
                 }
                     <<< ButtonRow() {
-                        $0.hidden = Condition(booleanLiteral: !(!create && (admin || own)) )
                         $0.title = "Hapus akun"
                         }.onCellSelection { (cell, row) in
                             let popup = PopupDialog(title: "Peringatan", message: "Anda yakin menghapus akun?", buttonAlignment: .horizontal, gestureDismissal: true)
@@ -724,7 +643,7 @@ class EditMember: FormViewController {
                             cell.tintColor = .flatRed
                         })
                     <<< ButtonRow() {
-                        $0.hidden = Condition(booleanLiteral: (create || !own))
+                        $0.hidden = Condition(booleanLiteral: !own)
                         $0.title = "Keluar"
                         }.onCellSelection { (cell, row) in
                             let popup = PopupDialog(title: "Peringatan", message: "Anda yakin keluar?", buttonAlignment: .horizontal, gestureDismissal: true)
@@ -765,163 +684,17 @@ class EditMember: FormViewController {
             switch response.result {
             case .success:
                 if response.result.value == "berhasil"{
-                    hud.textLabel.text = "Success"
-                    hud.indicatorView = JGProgressHUDSuccessIndicatorView()
+                    
                     self.performSegue(withIdentifier: "editmember_to_home", sender: self)
                 }
             case .failure( _):
                 print(Keys.error)
             }
-            hud.dismiss(afterDelay: 1.0)
+            hud.dismiss()
         }
         
     }
     
-    func hapuskerja(idkerja: String){
-        let hud = JGProgressHUD(style: .light)
-        hud.textLabel.text = "Menghapus"
-        hud.show(in: self.view)
-        let parameters = [
-            Keys.mode: Keys.delete,
-            Keys.idkerja: idkerja
-        ]
-        Alamofire.request(Keys.URL_CRUD_KERJA, method:.post, parameters:parameters).responseString { response in
-            switch response.result {
-            case .success:
-                if response.result.value == "berhasil"{
-                    hud.textLabel.text = "Success"
-                    hud.indicatorView = JGProgressHUDSuccessIndicatorView()
-                    self.performSegue(withIdentifier: "editmember_to_home", sender: self)
-                }
-            case .failure( _):
-                print(Keys.error)
-            }
-            hud.dismiss(afterDelay: 1.0)
-        }
-    }
-    
-    func hapustautan(idtautan: String){
-        let hud = JGProgressHUD(style: .light)
-        hud.textLabel.text = "Menghapus"
-        hud.show(in: self.view)
-        let parameters = [
-            Keys.mode: Keys.delete,
-            Keys.idkerja: idtautan
-        ]
-        Alamofire.request(Keys.URL_CRUD_TAUTAN, method:.post, parameters:parameters).responseString { response in
-            switch response.result {
-            case .success:
-                if response.result.value == "berhasil"{
-                    hud.textLabel.text = "Success"
-                    hud.indicatorView = JGProgressHUDSuccessIndicatorView()
-                    self.performSegue(withIdentifier: "editmember_to_home", sender: self)
-                }
-            case .failure( _):
-                print(Keys.error)
-            }
-            hud.dismiss(afterDelay: 1.0)
-        }
-    }
-    
-    
-    func createkerja(){
-        let formvalues = self.form.values()
-        let hud = JGProgressHUD(style: .light)
-        hud.textLabel.text = "Membuat"
-        hud.show(in: self.view)
-        let counttext = "baru"
-        let parameters = [
-            Keys.mode: Keys.create,
-            Keys.user_nrp: akun.user_nrp,
-            Keys.kerja_jabatan: formvalues[Keys.kerja_jabatan + counttext] as! String,
-            Keys.kerja_perusahaan: formvalues[Keys.kerja_perusahaan + counttext] as! String,
-            Keys.kerja_lokasi: formvalues[Keys.kerja_lokasi + counttext] as! String,
-            Keys.kerja_masuk_keluar: "\(formvalues[Keys.kerja_masuk_keluar + "1-" + counttext] as! String),\(formvalues[Keys.kerja_masuk_keluar + "2-" + counttext] as! String)"
-        ]
-        Alamofire.request(Keys.URL_CRUD_KERJA, method:.post, parameters:parameters).responseString { response in
-            switch response.result {
-            case .success:
-                if response.result.value == "berhasil"{
-                    hud.textLabel.text = "Success"
-                    hud.indicatorView = JGProgressHUDSuccessIndicatorView()
-                    self.performSegue(withIdentifier: "editmember_to_home", sender: self)
-                }
-            case .failure( _):
-                print(Keys.error)
-            }
-            hud.dismiss(afterDelay: 1.0)
-        }
-    }
-    
-    func createtautan(){
-        let formvalues = self.form.values()
-        let hud = JGProgressHUD(style: .light)
-        hud.textLabel.text = "Membuat"
-        hud.show(in: self.view)
-        let parameters = [
-            Keys.mode: Keys.create,
-            Keys.user_nrp: akun.user_nrp,
-            Keys.tautan_judul: formvalues[Keys.tautan_judul + "baru"] as! String,
-            Keys.tautan_text: formvalues[Keys.tautan_text + "baru"] as! String
-        ]
-        Alamofire.request(Keys.URL_CRUD_TAUTAN, method:.post, parameters:parameters).responseString { response in
-            switch response.result {
-            case .success:
-                if response.result.value == "berhasil"{
-                    hud.textLabel.text = "Success"
-                    hud.indicatorView = JGProgressHUDSuccessIndicatorView()
-                    //                    self.performSegue(withIdentifier: "editmember_to_home", sender: self)
-                }
-            case .failure( _):
-                print(Keys.error)
-            }
-            hud.dismiss(afterDelay: 1.0)
-        }
-    }
-    
-    func postkerja(){
-        let formvalues = self.form.values()
-        for (index, kerja) in akun.user_kerjas.enumerated(){
-            let counttext = String(index)
-            let parameters = [
-                Keys.mode: Keys.create,
-                Keys.idkerja: kerja.idkerja,
-                Keys.tautan_judul: formvalues[Keys.tautan_judul + counttext] as! String,
-                Keys.tautan_text: formvalues[Keys.tautan_text + counttext] as! String
-            ]
-            Alamofire.request(Keys.URL_CRUD_TAUTAN, method:.post, parameters:parameters).responseString { response in
-                switch response.result {
-                case .success:
-                    print(Keys.berhasil)
-                case .failure( _):
-                    print(Keys.error)
-                }
-            }
-        }
-    }
-    
-    func posttautan(){
-        let formvalues = self.form.values()
-        for (index, tautan) in akun.user_tautans.enumerated(){
-            let counttext = String(index)
-            let parameters = [
-                Keys.mode: Keys.create,
-                Keys.idtautan: tautan.idtautan,
-                Keys.kerja_jabatan: formvalues[Keys.kerja_jabatan + counttext] as! String,
-                Keys.kerja_perusahaan: formvalues[Keys.kerja_perusahaan + counttext] as! String,
-                Keys.kerja_lokasi: formvalues[Keys.kerja_lokasi + counttext] as! String,
-                Keys.kerja_masuk_keluar: "\(formvalues[Keys.kerja_masuk_keluar + "1-" + counttext] as! String),\(formvalues[Keys.kerja_masuk_keluar + "2-" + counttext] as! String)"
-            ]
-            Alamofire.request(Keys.URL_CRUD_KERJA, method:.post, parameters:parameters).responseString { response in
-                switch response.result {
-                case .success:
-                    print(Keys.berhasil)
-                case .failure( _):
-                    print(Keys.error)
-                }
-            }
-        }
-    }
     
     func editakunadmin(){
         if form.validate().isEmpty {
@@ -934,10 +707,9 @@ class EditMember: FormViewController {
                 Keys.user_akses: Keys.UserAksesCode(kode: formvalues[Keys.user_akses] as! String)
             ]
             
-            let tahunbea = formvalues[Keys.user_no_hp] as! [String]
+            let tahunbea = (formvalues[Keys.user_tahun_beasiswa] ?? "") as! [String]
             if !tahunbea.isEmpty{
-                let tahunbea2 = tahunbea.map{String($0)}
-                parameters[Keys.user_tahun_beasiswa] = tahunbea2.joined(separator:",")
+                parameters[Keys.user_tahun_beasiswa] = tahunbea.joined(separator:",")
             }
             
             if create {
@@ -961,7 +733,7 @@ class EditMember: FormViewController {
                     if response.result.value == "berhasil" {
                         hud.textLabel.text = "Success"
                         hud.indicatorView = JGProgressHUDSuccessIndicatorView()
-                        hud.dismiss(afterDelay: 1.0)
+                        hud.dismiss()
                         self.dismiss(animated: true, completion: nil)
                     }
                     
@@ -978,14 +750,12 @@ class EditMember: FormViewController {
         if form.validate().isEmpty {
             Keys.getlocation(completion: { (userlat, userlng) in
                 let formvalues = self.form.values(includeHidden: true)
-                let email = formvalues[Keys.user_email] as! String
-                let password = formvalues[Keys.user_password] as! String
                 var parameters = [
                     Keys.mode: Keys.update,
                     Keys.own: Keys.yes,
                     Keys.user_nrp: String(formvalues[Keys.user_nrp] as! Int),
                     Keys.user_nama: formvalues[Keys.user_nama] as! String,
-                    Keys.user_email: email,
+                    Keys.user_email: formvalues[Keys.user_email] as! String,
                     Keys.user_password: formvalues[Keys.user_password] as! String,
                     Keys.user_jk: ((formvalues[Keys.user_jk] as! String) == "Perempuan" ? "0" : "1"),
                     Keys.user_no_hp: formvalues[Keys.user_no_hp] as! String,
@@ -1073,13 +843,12 @@ class EditMember: FormViewController {
                     switch encodingResult {
                     case .success(let upload, _, _): upload.responseString { response in
                         if response.result.value == "berhasil" {
-                            self.postkerja()
-                            self.posttautan()
-                            self.getowndata(email, password, userlat, userlng)
                             hud.textLabel.text = "Success"
                             hud.indicatorView = JGProgressHUDSuccessIndicatorView()
-                            hud.dismiss(afterDelay: 1.0)
-                            self.performSegue(withIdentifier: "editmember_to_home", sender: self)
+                            hud.dismiss()
+                            Keys.getowndata(completion: { (result) in
+                                self.performSegue(withIdentifier: "editmember_to_home", sender: self)
+                            })
                         }
                     }case .failure( _):
                         let popup = PopupDialog(title: "Error", message: "Server bermasalah", gestureDismissal: true)
@@ -1087,31 +856,6 @@ class EditMember: FormViewController {
                     }
                 })
             })
-        }
-    }
-    
-    func getowndata(_ email: String,_ password: String,_ userlat: String, _ userlng: String){
-        let parameters = [
-            Keys.user_email: email,
-            Keys.user_password: password,
-            Keys.user_lat: userlat,
-            Keys.user_lng: userlng
-        ]
-        Alamofire.request(Keys.URL_LOGIN, method:.post, parameters:parameters).responseJSON { response in
-            switch response.result {
-            case .success:
-                
-                let JSON = response.result.value as! NSDictionary
-                
-                let akun = User()
-                akun.Populate(dictionary: JSON)
-                
-                let defaults = Defaults()
-                defaults.set(akun,for: Key<User>(Keys.saved_user))
-                
-            case .failure( _):
-                print("error")
-            }
         }
     }
     
@@ -1138,6 +882,25 @@ class EditMember: FormViewController {
         let browser = SKPhotoBrowser(photos: images)
         browser.initializePageIndex(0)
         present(browser, animated: true, completion: {})
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "editmember_to_editkerja"  {
+            if let vc = segue.destination as? EditKerja {
+                vc.create = createkerja
+                if !createkerja {
+                    vc.kerja = kerja
+                }
+            }
+        }
+        else if segue.identifier == "editmember_to_edittautan"  {
+            if let vc = segue.destination as? EditTautan {
+                vc.create = createtautan
+                if !createtautan {
+                    vc.tautan = tautan
+                }
+            }
+        }
     }
 
 }

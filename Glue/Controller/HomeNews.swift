@@ -25,12 +25,15 @@ class HomeNews: UIViewController, SideMenuItemContent, UICollectionViewDelegate,
     var notregistered:Bool = true
     var parameters = [String: String]()
     var index = Int()
+    var create = Bool()
     @IBOutlet weak var addbutton: UIBarButtonItem!
    
     func sharedfilter(data: [String: String]) {
-        parameters = [String: String]()
-        parameters = data
-        getdata()
+        if data.count > 0 {
+            parameters = [String: String]()
+            parameters = data
+            getdata()
+        }
     }
     
     
@@ -69,6 +72,7 @@ class HomeNews: UIViewController, SideMenuItemContent, UICollectionViewDelegate,
     @objc func tap(_ sender: UITapGestureRecognizer) {
         let indexa = self.newscollection.indexPathForItem(at: sender.location(in: self.newscollection))
         self.index = (indexa?.row)!
+        self.create = false
         self.performSegue(withIdentifier: "homenews_to_editnews", sender: self)
     }
 
@@ -79,13 +83,14 @@ class HomeNews: UIViewController, SideMenuItemContent, UICollectionViewDelegate,
         
         if defaults.has(Key<User>(Keys.saved_user)) {
             akun = defaults.get(for: Key<User>(Keys.saved_user))!
-            if akun.user_akses == "0" && akun.user_akses == "1" {
+            if akun.user_akses == "0" || akun.user_akses == "1" {
                 admin = true
             }
             if !akun.user_email.isEmpty {
                 notregistered = false
             }
         }
+        
         if !admin {
             addbutton.title = ""
             addbutton.isEnabled = false
@@ -128,7 +133,7 @@ class HomeNews: UIViewController, SideMenuItemContent, UICollectionViewDelegate,
         hud.textLabel.text = "Memuat"
         hud.show(in: self.view)
         Alamofire.request(Keys.URL_CRUD_EVENT, method:.post, parameters:parameters).responseJSON { response in
-            hud.dismiss(afterDelay: 1.0)
+            hud.dismiss()
             self.beritas = [Event]()
             switch response.result {
             case .success:
@@ -154,6 +159,11 @@ class HomeNews: UIViewController, SideMenuItemContent, UICollectionViewDelegate,
         showSideMenu()
     }
     
+    @IBAction func addclick(_ sender: Any) {
+        create = true
+        performSegue(withIdentifier: "homenews_to_editnews", sender: self)
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "homenews_to_newsfilter"  {
             if let vc = segue.destination as? NewsFilter {
@@ -164,8 +174,10 @@ class HomeNews: UIViewController, SideMenuItemContent, UICollectionViewDelegate,
         else if segue.identifier == "homenews_to_editnews"  {
             if let navController = segue.destination as? UINavigationController {
                 if let childVC = navController.topViewController as? EditNews {
-                    childVC.berita = beritas[index]
-                    childVC.create = false
+                    childVC.create = create
+                    if !create {
+                        childVC.berita = beritas[index]
+                    }
                 }
             }
         }

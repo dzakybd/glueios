@@ -67,7 +67,7 @@ class HomeNearme: UIViewController, SideMenuItemContent {
             hud.textLabel.text = "Memuat"
             hud.show(in: self.view)
             Alamofire.request(Keys.URL_GET_NEARME, method:.post, parameters:parameters).responseJSON { response in
-                hud.dismiss(afterDelay: 1.0)
+                hud.dismiss()
                 self.akuns = [User]()
                 switch response.result {
                 case .success:
@@ -98,8 +98,9 @@ class HomeNearme: UIViewController, SideMenuItemContent {
         if segue.identifier == "homenearme_to_editmember"  {
             if let navController = segue.destination as? UINavigationController {
                 if let childVC = navController.topViewController as? EditMember {
-                    childVC.akun = akuns[index]
                     childVC.create = false
+                    childVC.user_akses = akun.user_akses
+                    childVC.akun = akuns[index]
                 }
             }
         }

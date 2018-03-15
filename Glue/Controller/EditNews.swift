@@ -21,7 +21,55 @@ class EditNews: FormViewController {
     var create = Bool()
     var berita = Event()
     let defaults = Defaults()
+    
     @IBOutlet weak var savebutton: UIBarButtonItem!
+    
+    @IBAction func simpanclick(_ sender: Any) {
+        if form.validate().isEmpty {
+            let formvalues = self.form.values(includeHidden: true)
+            var parameters = [
+                Keys.user_nrp: akun.user_nrp,
+                Keys.event_judul: formvalues[Keys.event_judul] as! String,
+                Keys.event_deskripsi: formvalues[Keys.event_deskripsi] as! String,
+                Keys.event_lokasi: formvalues[Keys.event_lokasi] as! String,
+                Keys.event_published: (formvalues[Keys.event_published] as! Bool ? "1" : "0"),
+                Keys.event_internal: (formvalues[Keys.event_internal] as! Bool ? "1" : "0"),
+                ]
+            if create {
+                parameters[Keys.mode] = Keys.create
+                parameters[Keys.idevent] = berita.idevent
+            }else{
+                parameters[Keys.mode] = Keys.update
+            }
+            let imageui = formvalues[Keys.image]! ?? nil
+            var imageData : Data!
+            if imageui != nil {
+                imageData = UIImagePNGRepresentation(imageui as! UIImage)
+            }
+            let hud = JGProgressHUD(style: .light)
+            //            hud.textLabel.text = ""
+            hud.show(in: self.view)
+            Alamofire.upload( multipartFormData: { multipartFormData in
+                if imageui != nil {
+                    multipartFormData.append(imageData, withName: Keys.image, fileName: "image.png" , mimeType: "image/png")
+                }
+                for (key, val) in parameters {
+                    multipartFormData.append(val.data(using: .utf8)!, withName: key)
+                }
+            }, to: Keys.URL_CRUD_EVENT, encodingCompletion: { encodingResult in
+                hud.dismiss()
+                switch encodingResult {
+                case .success(let upload, _, _): upload.responseString { response in
+                    if response.result.value == "berhasil" {
+                        self.performSegue(withIdentifier: "editnews_to_home", sender: self)
+                    }
+                    }case .failure( _):
+                        let popup = PopupDialog(title: "Error", message: "Server bermasalah", gestureDismissal: true)
+                        self.present(popup, animated: true, completion: nil)
+                }
+            })
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -123,7 +171,7 @@ class EditNews: FormViewController {
             }
             <<< LabelRow (Keys.wilayah_nama) {
                 $0.title = "Wilayah"
-                $0.hidden = Condition(booleanLiteral: create && berita.user_akses=="0")
+                $0.hidden = Condition(booleanLiteral: create || berita.user_akses=="0")
                 if !berita.wilayah_nama.isEmpty{
                     $0.value = berita.wilayah_nama
                 }
@@ -134,43 +182,6 @@ class EditNews: FormViewController {
                 if !berita.user_nama.isEmpty{
                     $0.value = "\(berita.user_nama) (\(Keys.UserAksesName(kode: berita.user_akses)))"
                 }
-            }
-            <<< ButtonRow(){
-                $0.hidden = Condition(booleanLiteral: create)
-                if berita.isulike == "1"{
-                    $0.title = "\(berita.likes) ❤️"
-                }else{
-                    $0.title = "\(berita.likes) 💔"
-                }
-                
-                }.onCellSelection {  (cell, row) in
-                    let parameters = [
-                        Keys.mode: (self.berita.isulike == "0" ? Keys.create : Keys.delete),
-                        Keys.user_nrp: self.akun.user_nrp,
-                        Keys.idevent: self.berita.idevent
-                    ]
-                    let hud = JGProgressHUD(style: .light)
-                    hud.textLabel.text = "Menghapus"
-                    hud.show(in: (self.view)!)
-                    Alamofire.request(Keys.URL_LIKE_DISLIKE, method:.post, parameters:parameters).responseString { response in
-                        hud.dismiss(afterDelay: 1.0)
-                        switch response.result {
-                        case .success:
-                            let responsecode = response.response!.statusCode
-                            if responsecode == 200{
-                                if self.berita.isulike == "0" {
-                                    row.title = "\(String(describing: self.berita.likes)) ❤️"
-                                    self.berita.isulike = "1"
-                                }else {
-                                    row.title = "\(String(describing: self.berita.likes)) 💔"
-                                    self.berita.isulike = "0"
-                                }
-
-                            }
-                        case .failure( _):
-                            print(Keys.error)
-                        }
-                    }
             }
             <<< SwitchRow(Keys.event_published){
                 $0.title = "Dipublikasikan"
@@ -190,61 +201,102 @@ class EditNews: FormViewController {
                     $0.value = true
                 }
             }
+            <<< ButtonRow(){
+                $0.title = "Hapus"
+                $0.hidden = Condition(booleanLiteral: !admin || create)
+                }.onCellSelection { (cell, row) in
+                    let popup = PopupDialog(title: "Peringatan", message: "Anda yakin menghapus?", buttonAlignment: .horizontal, gestureDismissal: true)
+                    let buttonOne = CancelButton(title: "Batal") {
+                    }
+                    let buttonTwo = DestructiveButton(title: "Ya") {
+                        self.hapusnews()
+                    }
+                    popup.addButtons([buttonOne, buttonTwo])
+                    self.present(popup, animated: true, completion: nil)
+                }.cellSetup({ (cell,row) in
+                    cell.tintColor = .flatRed
+                })
+            <<< ButtonRow(){
+                $0.hidden = Condition(booleanLiteral: create)
+                if berita.isulike == "1"{
+                    $0.title = "\(berita.likes) ❤️"
+                }else{
+                    $0.title = "\(berita.likes) 💔"
+                }
+                
+                }.onCellSelection {  (cell, row) in
+                    let parameters = [
+                        Keys.mode: (self.berita.isulike == "0" ? Keys.create : Keys.delete),
+                        Keys.user_nrp: self.akun.user_nrp,
+                        Keys.event_idevent: self.berita.idevent
+                    ]
+                    let hud = JGProgressHUD(style: .light)
+                    hud.show(in: (self.view)!)
+                    Alamofire.request(Keys.URL_LIKE_DISLIKE, method:.post, parameters:parameters).responseString { response in
+                        hud.dismiss()
+                        switch response.result {
+                        case .success:
+                            if Int(response.result.value!) != nil{
+                                self.berita.likes = response.result.value!
+                                if self.berita.isulike == "0" {
+                                    self.berita.isulike = "1"
+                                    row.title = "\(self.berita.likes) ❤️"
+                                }else {
+                                    self.berita.isulike = "0"
+                                    row.title = "\(self.berita.likes) 💔"
+                                }
+                                row.reload()
+                            }
+                        case .failure( _):
+                            print(Keys.error)
+                        }
+                    }
+            }
+            <<< ButtonRow(){
+                $0.title = "Komentar 💬"
+                $0.hidden = Condition(booleanLiteral: create)
+                }.onCellSelection({ (cell, row) in
+                    self.performSegue(withIdentifier: "editnews_to_komentar", sender: self)
+                })
             
     }
+    
+    func hapusnews(){
+        let hud = JGProgressHUD(style: .light)
+        hud.textLabel.text = "Menghapus"
+        hud.show(in: self.view)
+        let parameters = [
+            Keys.mode: Keys.delete,
+            Keys.idevent: berita.idevent
+        ]
+        Alamofire.request(Keys.URL_CRUD_EVENT, method:.post, parameters:parameters).responseString { response in
+            hud.dismiss()
+            switch response.result {
+            case .success:
+                if response.result.value == "berhasil"{
+                    self.performSegue(withIdentifier: "editnews_to_home", sender: self)
+                }
+            case .failure( _):
+                print(Keys.error)
+            }
+            
+        }
+    }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "editnews_to_komentar"  {
+            if let vc = segue.destination as? Komentar {
+                vc.event_idevent = berita.idevent
+            }
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
 
     
-    func editevent(){
-        if form.validate().isEmpty {
-            let formvalues = self.form.values(includeHidden: true)
-            var parameters = [
-                Keys.user_nrp: akun.user_nrp,
-                Keys.event_judul: formvalues[Keys.event_judul] as! String,
-                Keys.event_deskripsi: formvalues[Keys.event_deskripsi] as! String,
-                Keys.event_lokasi: formvalues[Keys.event_lokasi] as! String,
-                Keys.event_published: (formvalues[Keys.event_published] as! Bool ? "1" : "0"),
-                Keys.event_internal: (formvalues[Keys.event_internal] as! Bool ? "1" : "0"),
-            ]
-            if create {
-                parameters[Keys.mode] = Keys.create
-                parameters[Keys.idevent] = berita.idevent
-            }else{
-                parameters[Keys.mode] = Keys.update
-            }
-            let imageui = formvalues[Keys.image]! ?? nil
-            var imageData : Data!
-            if imageui != nil {
-                imageData = UIImagePNGRepresentation(imageui as! UIImage)
-            }
-            let hud = JGProgressHUD(style: .light)
-//            hud.textLabel.text = ""
-            hud.show(in: self.view)
-            Alamofire.upload( multipartFormData: { multipartFormData in
-                if imageui != nil {
-                    multipartFormData.append(imageData, withName: Keys.image, fileName: "image.png" , mimeType: "image/png")
-                }
-                for (key, val) in parameters {
-                    multipartFormData.append(val.data(using: .utf8)!, withName: key)
-                }
-            }, to: Keys.URL_CRUD_EVENT, encodingCompletion: { encodingResult in
-                hud.dismiss(afterDelay: 1.0)
-                switch encodingResult {
-                case .success(let upload, _, _): upload.responseString { response in
-                    if response.result.value == "berhasil" {
-                        
-                    }
-                    }case .failure( _):
-                        let popup = PopupDialog(title: "Error", message: "Server bermasalah", gestureDismissal: true)
-                        self.present(popup, animated: true, completion: nil)
-                }
-            })
-        }
-    }
     
     @IBAction func cancelclick(_ sender: Any) {
         dismiss(animated: true, completion: nil)

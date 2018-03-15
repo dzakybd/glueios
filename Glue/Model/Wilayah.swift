@@ -14,6 +14,7 @@ class Wilayah
     var wilayah_nama:String = ""
     var wilayah_created:String = ""
     var wilayah_updated:String = ""
+    var jumlahuser:String = ""
     
     func Populate(dictionary:NSDictionary) {
         
@@ -21,5 +22,6 @@ class Wilayah
         wilayah_nama = dictionary["wilayah_nama"] as! String
         wilayah_created = dictionary["wilayah_created"] as! String
         wilayah_updated = dictionary["wilayah_updated"] as! String
+        jumlahuser = dictionary["jumlahuser"] as! String
     }
 }

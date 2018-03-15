@@ -74,8 +74,8 @@ class HostViewController: MenuContainerViewController {
             
             let temp = defaults.get(for: Key<User>(Keys.saved_user))!
             
-            if temp.user_akses == "0" || temp.user_akses == "1" {
-                controllersIdentifiers.append("WilayahUniversitas")
+            if temp.user_akses == "0" {
+            controllersIdentifiers.append("WilayahUniversitas")
             }
             
         }else {

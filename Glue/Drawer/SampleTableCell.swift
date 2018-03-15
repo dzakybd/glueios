@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import ChameleonFramework
+
 class SampleTableCell: UITableViewCell {
 
     @IBOutlet weak var titleLabel: UILabel!

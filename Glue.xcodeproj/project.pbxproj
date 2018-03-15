@@ -12,6 +12,11 @@
 		3549BDCD1F75FF6900501356 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3549BDCB1F75FF6900501356 /* Main.storyboard */; };
 		3549BDD21F75FF6900501356 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3549BDD01F75FF6900501356 /* LaunchScreen.storyboard */; };
 		5209F820204D185C00AEAEDF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5209F81F204D185C00AEAEDF /* Assets.xcassets */; };
+		52210C632058F57F00E1610D /* EditTautan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52210C622058F57F00E1610D /* EditTautan.swift */; };
+		52210C652058F58F00E1610D /* EditKerja.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52210C642058F58F00E1610D /* EditKerja.swift */; };
+		52210C672058F5A900E1610D /* EditWilayah.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52210C662058F5A900E1610D /* EditWilayah.swift */; };
+		52210C6B20593E8000E1610D /* Komentar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52210C6A20593E8000E1610D /* Komentar.swift */; };
+		52210C6D20593EE400E1610D /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52210C6C20593EE400E1610D /* CommentCell.swift */; };
 		5229033C2054BE77006774D7 /* EditNews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5229033B2054BE77006774D7 /* EditNews.swift */; };
 		5229033E2054DD24006774D7 /* HomeWilayah.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5229033D2054DD24006774D7 /* HomeWilayah.swift */; };
 		522903402054DD36006774D7 /* HomeUniversitas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5229033F2054DD36006774D7 /* HomeUniversitas.swift */; };
@@ -26,6 +31,8 @@
 		52376BC5204FD10900472F47 /* UserKerja.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52376BC4204FD10900472F47 /* UserKerja.swift */; };
 		52376BC7204FD11F00472F47 /* UserTautan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52376BC6204FD11F00472F47 /* UserTautan.swift */; };
 		52376BCB204FD1DD00472F47 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52376BCA204FD1DD00472F47 /* User.swift */; };
+		52568FFE205A6F2700A8B733 /* WilayahUnivCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52568FFD205A6F2700A8B733 /* WilayahUnivCell.swift */; };
+		52569000205A70B400A8B733 /* EditUniversitas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52568FFF205A70B400A8B733 /* EditUniversitas.swift */; };
 		527D2FCE2023781C00CA8ADF /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D2FCD2023781C00CA8ADF /* Chat.swift */; };
 		527D2FD32023803800CA8ADF /* HostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D2FD12023803800CA8ADF /* HostViewController.swift */; };
 		52BB42E02050F7C90084894A /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BB42DF2050F7C90084894A /* Event.swift */; };
@@ -55,6 +62,11 @@
 		3549BDD31F75FF6900501356 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		42DBFA76F7861006EAD602CB /* Pods-Glue.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Glue.release.xcconfig"; path = "Pods/Target Support Files/Pods-Glue/Pods-Glue.release.xcconfig"; sourceTree = "<group>"; };
 		5209F81F204D185C00AEAEDF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		52210C622058F57F00E1610D /* EditTautan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTautan.swift; sourceTree = "<group>"; };
+		52210C642058F58F00E1610D /* EditKerja.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditKerja.swift; sourceTree = "<group>"; };
+		52210C662058F5A900E1610D /* EditWilayah.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditWilayah.swift; sourceTree = "<group>"; };
+		52210C6A20593E8000E1610D /* Komentar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Komentar.swift; sourceTree = "<group>"; };
+		52210C6C20593EE400E1610D /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
 		5229033B2054BE77006774D7 /* EditNews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditNews.swift; sourceTree = "<group>"; };
 		5229033D2054DD24006774D7 /* HomeWilayah.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWilayah.swift; sourceTree = "<group>"; };
 		5229033F2054DD36006774D7 /* HomeUniversitas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeUniversitas.swift; sourceTree = "<group>"; };
@@ -69,6 +81,8 @@
 		52376BC4204FD10900472F47 /* UserKerja.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserKerja.swift; sourceTree = "<group>"; };
 		52376BC6204FD11F00472F47 /* UserTautan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTautan.swift; sourceTree = "<group>"; };
 		52376BCA204FD1DD00472F47 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		52568FFD205A6F2700A8B733 /* WilayahUnivCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WilayahUnivCell.swift; sourceTree = "<group>"; };
+		52568FFF205A70B400A8B733 /* EditUniversitas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditUniversitas.swift; sourceTree = "<group>"; };
 		527D2FCD2023781C00CA8ADF /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
 		527D2FD12023803800CA8ADF /* HostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HostViewController.swift; sourceTree = "<group>"; };
 		52BB42DF2050F7C90084894A /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
@@ -155,6 +169,8 @@
 				52F1E7A22057B0D1003CED26 /* MemberImage.xib */,
 				52F1E7A42057B9F7003CED26 /* ImageClass.swift */,
 				52F1E7A72057E295003CED26 /* MemberCell.swift */,
+				52210C6C20593EE400E1610D /* CommentCell.swift */,
+				52568FFD205A6F2700A8B733 /* WilayahUnivCell.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -201,6 +217,11 @@
 				5229033F2054DD36006774D7 /* HomeUniversitas.swift */,
 				522EF831205669CA0041D236 /* NewsFilter.swift */,
 				52F1E7A92057E412003CED26 /* MemberFilter.swift */,
+				52210C622058F57F00E1610D /* EditTautan.swift */,
+				52210C642058F58F00E1610D /* EditKerja.swift */,
+				52210C662058F5A900E1610D /* EditWilayah.swift */,
+				52210C6A20593E8000E1610D /* Komentar.swift */,
+				52568FFF205A70B400A8B733 /* EditUniversitas.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -382,7 +403,9 @@
 				3549BDCA1F75FF6900501356 /* Login.swift in Sources */,
 				3549BDC81F75FF6900501356 /* AppDelegate.swift in Sources */,
 				52346D8E204C8B570011F70B /* SampleTableCell.swift in Sources */,
+				52569000205A70B400A8B733 /* EditUniversitas.swift in Sources */,
 				5229033C2054BE77006774D7 /* EditNews.swift in Sources */,
+				52210C6D20593EE400E1610D /* CommentCell.swift in Sources */,
 				52E47A9B20204F000015828E /* Changepass.swift in Sources */,
 				522EF830205668E20041D236 /* FilterProtocol.swift in Sources */,
 				522EF832205669CA0041D236 /* NewsFilter.swift in Sources */,
@@ -396,6 +419,7 @@
 				52BB42E42050F8D50084894A /* Wilayah.swift in Sources */,
 				52E47AA32020514F0015828E /* HomeChat.swift in Sources */,
 				52E47AA5202051630015828E /* HomeNearme.swift in Sources */,
+				52210C672058F5A900E1610D /* EditWilayah.swift in Sources */,
 				52376BC7204FD11F00472F47 /* UserTautan.swift in Sources */,
 				52BB42E02050F7C90084894A /* Event.swift in Sources */,
 				52E47A9F202050E00015828E /* HomeNews.swift in Sources */,
@@ -405,6 +429,10 @@
 				52376BCB204FD1DD00472F47 /* User.swift in Sources */,
 				522D7694201E0F1300061BB2 /* Keys.swift in Sources */,
 				522EF82D2056620A0041D236 /* NewsCell.swift in Sources */,
+				52568FFE205A6F2700A8B733 /* WilayahUnivCell.swift in Sources */,
+				52210C652058F58F00E1610D /* EditKerja.swift in Sources */,
+				52210C632058F57F00E1610D /* EditTautan.swift in Sources */,
+				52210C6B20593E8000E1610D /* Komentar.swift in Sources */,
 				52346D8A204C8AF90011F70B /* Storyboardable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
