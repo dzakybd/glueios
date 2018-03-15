@@ -20,12 +20,6 @@ import UIKit
 import InteractiveSideMenu
 import DefaultsKit
 
-/*
- HostViewController is container view controller, contains menu controller and the list of relevant view controllers.
-
- Responsible for creating and selecting menu items content controlers.
- Has opportunity to show/hide side menu.
- */
 class HostViewController: MenuContainerViewController {
 
     override var prefersStatusBarHidden: Bool {
@@ -75,7 +69,7 @@ class HostViewController: MenuContainerViewController {
             let temp = defaults.get(for: Key<User>(Keys.saved_user))!
             
             if temp.user_akses == "0" {
-            controllersIdentifiers.append("WilayahUniversitas")
+                controllersIdentifiers.append("WilayahUniversitas")
             }
             
         }else {

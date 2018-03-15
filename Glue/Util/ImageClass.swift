@@ -26,20 +26,5 @@ class NewsImage : UIView{
     }
 }
 
-//class LogoView: UIView {
-//
-//    override init(frame: CGRect) {
-//        super.init(frame: frame)
-//        let imageView = UIImageView(image: UIImage(named: "Eureka"))
-//        imageView.frame = CGRect(x: 0, y: 0, width: 320, height: 130)
-//        imageView.autoresizingMask = .flexibleWidth
-//        self.frame = CGRect(x: 0, y: 0, width: 320, height: 130)
-//        imageView.contentMode = .scaleAspectFit
-//        addSubview(imageView)
-//    }
-//    
-//    required init?(coder aDecoder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
-//}
+
 

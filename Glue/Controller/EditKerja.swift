@@ -20,6 +20,10 @@ class EditKerja: FormViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
       
+        if create {
+            self.navigationItem.title = "Buat data pekerjaan"
+        }
+        
         let calendar = Calendar.current
         let currentyear = calendar.component(.year, from: Date())
         let angka = Array(1980...currentyear)
@@ -30,7 +34,7 @@ class EditKerja: FormViewController {
             <<< TextRow(Keys.kerja_perusahaan){
                 $0.title = "Perusahaan"
                 $0.add(rule: RuleRequired())
-                $0.placeholder = "Masukan perusahaan"
+                $0.placeholder = "misal Bank Indonesia"
                 if !kerja.kerja_perusahaan.isEmpty {
                     $0.value = kerja.kerja_perusahaan
                 }
@@ -44,7 +48,7 @@ class EditKerja: FormViewController {
             <<< TextRow(Keys.kerja_jabatan){
                 $0.add(rule: RuleRequired())
                 $0.title = "Jabatan"
-                $0.placeholder = "Masukan jabatan"
+                $0.placeholder = "misal Manajer"
                 if !kerja.kerja_jabatan.isEmpty {
                     $0.value = kerja.kerja_jabatan
                 }
@@ -58,7 +62,7 @@ class EditKerja: FormViewController {
             
             <<< TextRow(Keys.kerja_lokasi){
                 $0.title = "Lokasi"
-                $0.placeholder = "Masukan lokasi"
+                $0.placeholder = "misal nama jalan / kota "
                 if !kerja.kerja_lokasi.isEmpty {
                     $0.value = kerja.kerja_lokasi
                 }
@@ -77,10 +81,10 @@ class EditKerja: FormViewController {
                 $0.title = "Hapus"
                 $0.hidden = Condition(booleanLiteral: create)
                 }.onCellSelection { (cell, row) in
-                    let popup = PopupDialog(title: "Peringatan", message: "Anda yakin menghapus?", buttonAlignment: .horizontal, gestureDismissal: true)
-                    let buttonOne = CancelButton(title: "Batal") {
+                    let popup = PopupDialog(title: Keys.warning, message: "Anda yakin menghapus?", buttonAlignment: .horizontal, gestureDismissal: true)
+                    let buttonOne = CancelButton(title: Keys.tidak) {
                     }
-                    let buttonTwo = DestructiveButton(title: "Ya") {
+                    let buttonTwo = DestructiveButton(title: Keys.ya) {
                         self.form.removeAll()
 //                        self.hapuskerja()
                     }
@@ -105,16 +109,16 @@ class EditKerja: FormViewController {
             Keys.idkerja: kerja.idkerja
         ]
         Alamofire.request(Keys.URL_CRUD_KERJA, method:.post, parameters:parameters).responseString { response in
+            hud.dismiss()
             switch response.result {
             case .success:
                 if response.result.value == "berhasil"{
-                    
                     self.getowndata()
                 }
             case .failure( _):
-                print(Keys.error)
+                let popup = PopupDialog(title: Keys.error, message: "Server bermasalah", gestureDismissal: true)
+                self.present(popup, animated: true, completion: nil)
             }
-            hud.dismiss()
         }
     }
     
@@ -132,16 +136,16 @@ class EditKerja: FormViewController {
             Keys.kerja_masuk_keluar: "\(formvalues[Keys.kerja_masuk_keluar + "1"] as! String),\(formvalues[Keys.kerja_masuk_keluar + "2"] as! String)"
         ]
         Alamofire.request(Keys.URL_CRUD_KERJA, method:.post, parameters:parameters).responseString { response in
+            hud.dismiss()
             switch response.result {
             case .success:
                 if response.result.value == "berhasil"{
-                    
                     self.getowndata()
                 }
             case .failure( _):
-                print(Keys.error)
+                let popup = PopupDialog(title: Keys.error, message: "Server bermasalah", gestureDismissal: true)
+                self.present(popup, animated: true, completion: nil)
             }
-            hud.dismiss()
         }
     }
     
@@ -159,16 +163,16 @@ class EditKerja: FormViewController {
             Keys.kerja_masuk_keluar: "\(formvalues[Keys.kerja_masuk_keluar + "1"] as! String),\(formvalues[Keys.kerja_masuk_keluar + "2"] as! String)"
         ]
         Alamofire.request(Keys.URL_CRUD_KERJA, method:.post, parameters:parameters).responseString { response in
+            hud.dismiss()
             switch response.result {
             case .success:
                 if response.result.value == "berhasil"{
-                    
                     self.getowndata()
                 }
             case .failure( _):
-                print(Keys.error)
+                let popup = PopupDialog(title: Keys.error, message: "Server bermasalah", gestureDismissal: true)
+                self.present(popup, animated: true, completion: nil)
             }
-            hud.dismiss()
         }
     }
     

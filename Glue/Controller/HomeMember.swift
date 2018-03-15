@@ -16,7 +16,6 @@ import JGProgressHUD
 
 class HomeMember: UIViewController, SideMenuItemContent, UICollectionViewDelegate, UICollectionViewDataSource, FilterProtocol {
     
-    
     var akuns = [User]()
     var akun = User()
     let defaults = Defaults()
@@ -25,14 +24,24 @@ class HomeMember: UIViewController, SideMenuItemContent, UICollectionViewDelegat
     var parameters = [String: String]()
     var index = Int()
     var create = Bool()
+    var filtered = false
     
     @IBOutlet weak var addbutton: UIBarButtonItem!
     @IBOutlet weak var membercollection: UICollectionView!
     
-    func sharedfilter(data: [String : String]) {
+    func sharedfilter(data: [String : String], used: Bool) {
         parameters = [String: String]()
         parameters = data
+        filtered = used
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if !filtered {
+            parameters = [String: String]()
+        }
         getdata()
+        filtered = false
     }
     
     func getdata(){
@@ -55,7 +64,8 @@ class HomeMember: UIViewController, SideMenuItemContent, UICollectionViewDelegat
                 }
                 self.membercollection.reloadData()
             case .failure( _):
-                print(Keys.error)
+                let popup = PopupDialog(title: Keys.error, message: "Server bermasalah", gestureDismissal: true)
+                self.present(popup, animated: true, completion: nil)
             }
         }
     }
@@ -142,6 +152,7 @@ class HomeMember: UIViewController, SideMenuItemContent, UICollectionViewDelegat
         getdata()
         refreshControl.endRefreshing()
     }
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "homemember_to_memberfilter"  {

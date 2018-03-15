@@ -23,6 +23,10 @@ class EditUniversitas: FormViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        if create {
+            self.navigationItem.title = "Buat data universitas"
+        }
+        
         form +++ Section()
             <<< IntRow(Keys.iduniversitas){
                 $0.title = "ID Universitas"
@@ -50,10 +54,10 @@ class EditUniversitas: FormViewController {
                 $0.title = "Hapus universitas"
                 $0.hidden = Condition(booleanLiteral: universitas.jumlahuser != "0")
                 }.onCellSelection({ (cell, row) in
-                    let popup = PopupDialog(title: "Peringatan", message: "Anda yakin menghapus?", buttonAlignment: .horizontal, gestureDismissal: true)
-                    let buttonOne = CancelButton(title: "Batal") {
+                    let popup = PopupDialog(title: Keys.warning, message: "Anda yakin menghapus?", buttonAlignment: .horizontal, gestureDismissal: true)
+                    let buttonOne = CancelButton(title: Keys.tidak) {
                     }
-                    let buttonTwo = DestructiveButton(title: "Ya") {
+                    let buttonTwo = DestructiveButton(title: Keys.ya) {
                         self.hapusuniv()
                     }
                     popup.addButtons([buttonOne, buttonTwo])
@@ -96,9 +100,14 @@ class EditUniversitas: FormViewController {
             case .success:
                 if response.result.value == "berhasil"{
                     self.navigationController?.popViewController(animated: true)
+                    
+                }else if response.result.value == "gagal"{
+                    let popup = PopupDialog(title: Keys.error, message: "Proses gagal", gestureDismissal: true)
+                    self.present(popup, animated: true, completion: nil)
                 }
             case .failure( _):
-                print(Keys.error)
+                let popup = PopupDialog(title: Keys.error, message: "Server bermasalah", gestureDismissal: true)
+                self.present(popup, animated: true, completion: nil)
             }
         }
     }
@@ -138,14 +147,16 @@ class EditUniversitas: FormViewController {
                 switch response.result {
                 case .success:
                     if response.result.value == "berhasil"{
+                        self.navigationController?.popViewController(animated: true)
                         
                     }else if response.result.value == "gagal"{
-                        let popup = PopupDialog(title: "Error", message: "Proses gagal", gestureDismissal: true)
+                        let popup = PopupDialog(title: Keys.error, message: "Proses gagal", gestureDismissal: true)
                         self.present(popup, animated: true, completion: nil)
                     }
                     
                 case .failure( _):
-                    print(Keys.error)
+                    let popup = PopupDialog(title: Keys.error, message: "Server bermasalah", gestureDismissal: true)
+                    self.present(popup, animated: true, completion: nil)
                 }
             }
         }

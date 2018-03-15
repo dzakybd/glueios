@@ -146,7 +146,7 @@ class EditMember: FormViewController {
                 <<< IntRow(Keys.user_nrp){
                     $0.title = "NRP"
                     $0.add(rule: RuleRequired())
-                    $0.placeholder = "Masukan nrp"
+                    $0.placeholder = "misal 5114100001"
                     if !akun.user_nrp.isEmpty{
                         $0.value = Int(akun.user_nrp)
                     }
@@ -230,7 +230,7 @@ class EditMember: FormViewController {
                         $0.value = akun.user_nama
                     }
                     $0.add(rule: RuleRequired())
-                    $0.placeholder = "Masukan nama"
+                    $0.placeholder = "misal Andi"
                     $0.validationOptions = .validatesOnChange
                     
                     }.cellUpdate { cell, row in
@@ -242,7 +242,7 @@ class EditMember: FormViewController {
                     $0.title = "Email"
                     $0.add(rule: RuleRequired())
                     $0.add(rule: RuleEmail())
-                    $0.placeholder = "Masukan email"
+                    $0.placeholder = "misal andi@gmail.com"
                     $0.validationOptions = .validatesOnChange
                     $0.hidden = Condition(booleanLiteral: (create || notregistered))
                     $0.disabled = Condition(booleanLiteral: !own)
@@ -269,7 +269,7 @@ class EditMember: FormViewController {
                 }
                 <<< PhoneRow(Keys.user_no_hp){
                     $0.title = "Nomor HP"
-                    $0.placeholder = "Masukan nomor hp"
+                    $0.placeholder = "misal 089xxxxx"
                     $0.hidden = Condition(booleanLiteral: (create || ishide_nohp || notregistered))
                     $0.disabled = Condition(booleanLiteral: !own)
                     if akun.user_no_hp.isEmpty{
@@ -281,7 +281,7 @@ class EditMember: FormViewController {
                 }
                 <<< TextRow(Keys.user_alamat){
                     $0.title = "Alamat"
-                    $0.placeholder = "Masukan alamat"
+                    $0.placeholder = "misal nama jalan / kota"
                     $0.hidden = Condition(booleanLiteral: (create || notregistered) )
                     $0.disabled = Condition(booleanLiteral: !own)
                     if akun.user_alamat.isEmpty{
@@ -292,7 +292,7 @@ class EditMember: FormViewController {
                 }
                 <<< TextRow(Keys.user_tempat_lahir){
                     $0.title = "Tempat lahir"
-                    $0.placeholder = "Masukan tempat lahir"
+                    $0.placeholder = "misal Surabaya"
                     $0.hidden = Condition(booleanLiteral: (create || notregistered))
                     $0.disabled = Condition(booleanLiteral: !own)
                     if akun.user_tempat_lahir.isEmpty{
@@ -334,7 +334,7 @@ class EditMember: FormViewController {
                     }
                     <<< TextAreaRow(Keys.user_bio){
                         $0.title = "Bio"
-                        $0.placeholder = "Masukan bio"
+                        $0.placeholder = "isi bio"
                         $0.disabled = Condition(booleanLiteral: !own)
                         if akun.user_bio.isEmpty{
                             $0.value = ""
@@ -344,7 +344,7 @@ class EditMember: FormViewController {
                     }
                     <<< TextRow(Keys.user_status){
                         $0.title = "Status"
-                        $0.placeholder = "Masukan status"
+                        $0.placeholder = "misal Lajang"
                         $0.disabled = Condition(booleanLiteral: !own)
                         if akun.user_status.isEmpty{
                             $0.value = ""
@@ -365,7 +365,7 @@ class EditMember: FormViewController {
                     }
                     <<< TextRow(Keys.user_suku){
                         $0.title = "Suku"
-                        $0.placeholder = "suku"
+                        $0.placeholder = "misal Madura"
                         $0.hidden = Condition(booleanLiteral: ishide_suku)
                         $0.disabled = Condition(booleanLiteral: !own)
                         if akun.user_suku.isEmpty{
@@ -377,7 +377,7 @@ class EditMember: FormViewController {
                     <<< TextRow(Keys.user_goldar){
                         $0.title = "Golongan darah"
                         $0.add(rule: RuleMaxLength(maxLength: 5))
-                        $0.placeholder = "golongan darah"
+                        $0.placeholder = "misal AB"
                         $0.disabled = Condition(booleanLiteral: !own)
                         if akun.user_goldar.isEmpty{
                             $0.value = ""
@@ -390,7 +390,7 @@ class EditMember: FormViewController {
                     }
                     <<< TextRow(Keys.kuliah_fakultas1){
                         $0.title = "Fakultas S1"
-                        $0.placeholder = "nama fakultas"
+                        $0.placeholder = "misal Fakultas Ekonomi dan Bisnis"
                         $0.disabled = Condition(booleanLiteral: !own)
                         if akun.kuliah_fakultas1.isEmpty{
                             $0.value = ""
@@ -400,7 +400,7 @@ class EditMember: FormViewController {
                     }
                     <<< TextRow(Keys.kuliah_jurusan1){
                         $0.title = "Jurusan S1"
-                        $0.placeholder = "nama jurusan"
+                        $0.placeholder = "misal Ekonomi Syariah"
                         $0.disabled = Condition(booleanLiteral: !own)
                         if akun.kuliah_jurusan1.isEmpty{
                             $0.value = ""
@@ -437,7 +437,7 @@ class EditMember: FormViewController {
                     }
                     <<< TextRow(Keys.kuliah_univ2){
                         $0.title = "Universitas S2"
-                        $0.placeholder = "nama universitas"
+                        $0.placeholder = "misal Universitas Airlangga"
                         $0.hidden = "$S2 == false"
                         $0.disabled = Condition(booleanLiteral: !own)
                         if akun.kuliah_univ2.isEmpty{
@@ -448,7 +448,7 @@ class EditMember: FormViewController {
                     }
                     <<< TextRow(Keys.kuliah_fakultas2){
                         $0.title = "Fakultas S2"
-                        $0.placeholder = "nama fakultas"
+                        $0.placeholder = "misal Fakultas Ekonomi dan Bisnis"
                         $0.hidden = "$S2 == false"
                         $0.disabled = Condition(booleanLiteral: !own)
                         if akun.kuliah_fakultas2.isEmpty{
@@ -459,7 +459,7 @@ class EditMember: FormViewController {
                     }
                     <<< TextRow(Keys.kuliah_jurusan2){
                         $0.title = "Jurusan S2"
-                        $0.placeholder = "nama jurusan"
+                        $0.placeholder = "misal Ekonomi Syariah"
                         $0.hidden = "$S2 == false"
                         $0.disabled = Condition(booleanLiteral: !own)
                         if akun.kuliah_jurusan2.isEmpty{
@@ -630,10 +630,10 @@ class EditMember: FormViewController {
                     <<< ButtonRow() {
                         $0.title = "Hapus akun"
                         }.onCellSelection { (cell, row) in
-                            let popup = PopupDialog(title: "Peringatan", message: "Anda yakin menghapus akun?", buttonAlignment: .horizontal, gestureDismissal: true)
-                            let buttonOne = CancelButton(title: "Batal") {
+                            let popup = PopupDialog(title: Keys.warning, message: "Anda yakin menghapus akun?", buttonAlignment: .horizontal, gestureDismissal: true)
+                            let buttonOne = CancelButton(title: Keys.tidak) {
                             }
-                            let buttonTwo = DestructiveButton(title: "Ya") {
+                            let buttonTwo = DestructiveButton(title: Keys.ya) {
                                 self.defaults.clear(Key<User>(Keys.saved_user))
                                 self.hapusakun()
                             }
@@ -646,10 +646,10 @@ class EditMember: FormViewController {
                         $0.hidden = Condition(booleanLiteral: !own)
                         $0.title = "Keluar"
                         }.onCellSelection { (cell, row) in
-                            let popup = PopupDialog(title: "Peringatan", message: "Anda yakin keluar?", buttonAlignment: .horizontal, gestureDismissal: true)
-                            let buttonOne = CancelButton(title: "Batal") {
+                            let popup = PopupDialog(title: Keys.warning, message: "Anda yakin keluar?", buttonAlignment: .horizontal, gestureDismissal: true)
+                            let buttonOne = CancelButton(title: Keys.tidak) {
                             }
-                            let buttonTwo = DestructiveButton(title: "Ya") {
+                            let buttonTwo = DestructiveButton(title: Keys.ya) {
                                 self.defaults.clear(Key<User>(Keys.saved_user))
                                  self.performSegue(withIdentifier: "editmember_to_home", sender: self)
                             }
@@ -681,16 +681,16 @@ class EditMember: FormViewController {
             Keys.user_nrp: akun.user_nrp
         ]
         Alamofire.request(Keys.URL_CRUD_USER, method:.post, parameters:parameters).responseString { response in
+            hud.dismiss()
             switch response.result {
             case .success:
                 if response.result.value == "berhasil"{
-                    
                     self.performSegue(withIdentifier: "editmember_to_home", sender: self)
                 }
             case .failure( _):
-                print(Keys.error)
+                let popup = PopupDialog(title: Keys.error, message: "Server bermasalah", gestureDismissal: true)
+                self.present(popup, animated: true, completion: nil)
             }
-            hud.dismiss()
         }
         
     }
@@ -728,17 +728,20 @@ class EditMember: FormViewController {
             hud.textLabel.text = "Menyimpan"
             hud.show(in: self.view)
             Alamofire.request(Keys.URL_CRUD_USER, method:.post, parameters:parameters).responseString { response in
+                hud.dismiss()
                 switch response.result {
                 case .success:
                     if response.result.value == "berhasil" {
-                        hud.textLabel.text = "Success"
-                        hud.indicatorView = JGProgressHUDSuccessIndicatorView()
-                        hud.dismiss()
-                        self.dismiss(animated: true, completion: nil)
+                        if self.create {
+                            self.dismiss(animated: true, completion: nil)
+                        }else {
+                            let popup = PopupDialog(title: Keys.berhasil, message: "Proses berhasil", gestureDismissal: true)
+                            self.present(popup, animated: true, completion: nil)
+                        }
                     }
                     
                 case .failure( _):
-                    let popup = PopupDialog(title: "Error", message: "Server bermasalah", gestureDismissal: true)
+                    let popup = PopupDialog(title: Keys.error, message: "Server bermasalah", gestureDismissal: true)
                     self.present(popup, animated: true, completion: nil)
                 }
             }
@@ -840,18 +843,17 @@ class EditMember: FormViewController {
                         multipartFormData.append(val.data(using: .utf8)!, withName: key)
                     }
                 }, to: Keys.URL_CRUD_USER, encodingCompletion: { encodingResult in
+                    hud.dismiss()
                     switch encodingResult {
                     case .success(let upload, _, _): upload.responseString { response in
                         if response.result.value == "berhasil" {
-                            hud.textLabel.text = "Success"
-                            hud.indicatorView = JGProgressHUDSuccessIndicatorView()
-                            hud.dismiss()
                             Keys.getowndata(completion: { (result) in
-                                self.performSegue(withIdentifier: "editmember_to_home", sender: self)
+                                let popup = PopupDialog(title: Keys.berhasil, message: "Proses berhasil", gestureDismissal: true)
+                                self.present(popup, animated: true, completion: nil)
                             })
                         }
                     }case .failure( _):
-                        let popup = PopupDialog(title: "Error", message: "Server bermasalah", gestureDismissal: true)
+                        let popup = PopupDialog(title: Keys.error, message: "Server bermasalah", gestureDismissal: true)
                         self.present(popup, animated: true, completion: nil)
                     }
                 })

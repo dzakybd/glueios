@@ -84,8 +84,7 @@ class MemberFilter: FormViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewWillDisappear(_ animated: Bool){
-        super.viewWillDisappear(animated)
+    @IBAction func simpanclick(_ sender: Any) {
         if form.validate().isEmpty {
             let formvalues = self.form.values(includeHidden: true)
             var parameters = [String: String]()
@@ -124,10 +123,12 @@ class MemberFilter: FormViewController {
             let order = (formvalues[Keys.order]! ?? "") as! String
             parameters[Keys.order] = (order == "A ke Z" ? "0" : "1")
             
-            delegate.sharedfilter(data: parameters)
+            delegate.sharedfilter(data: parameters,used: true)
+            navigationController?.popViewController(animated: true)
         }
-        
+    
     }
+    
 
 
 }

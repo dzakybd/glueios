@@ -66,7 +66,6 @@ class Komentar: UIViewController, UICollectionViewDelegate, UICollectionViewData
             hud.textLabel.text = "Mengirim"
             hud.show(in: self.view)
             Alamofire.request(Keys.URL_CRD_COMMENT, method:.post, parameters:parameters).responseString { response in
-                print(response.result.value)
                 hud.dismiss()
                 switch response.result {
                 case .success:
@@ -74,7 +73,8 @@ class Komentar: UIViewController, UICollectionViewDelegate, UICollectionViewData
                             self.getdata()
                     }
                 case .failure( _):
-                    print(Keys.error)
+                    let popup = PopupDialog(title: Keys.error, message: "Server bermasalah", gestureDismissal: true)
+                    self.present(popup, animated: true, completion: nil)
                 }
             }
         }
@@ -103,7 +103,8 @@ class Komentar: UIViewController, UICollectionViewDelegate, UICollectionViewData
                 }
                 self.commentcollection.reloadData()
             case .failure( _):
-                print(Keys.error)
+                let popup = PopupDialog(title: Keys.error, message: "Server bermasalah", gestureDismissal: true)
+                self.present(popup, animated: true, completion: nil)
             }
         }
     }
@@ -152,10 +153,10 @@ class Komentar: UIViewController, UICollectionViewDelegate, UICollectionViewData
     @objc func tap(_ sender: UITapGestureRecognizer) {
         let indexa = self.commentcollection.indexPathForItem(at: sender.location(in: self.commentcollection))
         
-        let popup = PopupDialog(title: "Peringatan", message: "Anda yakin menghapus?", buttonAlignment: .horizontal, gestureDismissal: true)
-        let buttonOne = CancelButton(title: "Batal") {
+        let popup = PopupDialog(title: Keys.warning, message: "Anda yakin menghapus?", buttonAlignment: .horizontal, gestureDismissal: true)
+        let buttonOne = CancelButton(title: Keys.tidak) {
         }
-        let buttonTwo = DestructiveButton(title: "Ya") {
+        let buttonTwo = DestructiveButton(title: Keys.ya) {
             
             let parameters = [
                 Keys.idcomment: self.komentars[(indexa?.row)!].idcomment,
@@ -172,7 +173,8 @@ class Komentar: UIViewController, UICollectionViewDelegate, UICollectionViewData
                         self.getdata()
                     }
                 case .failure( _):
-                    print(Keys.error)
+                    let popup = PopupDialog(title: Keys.error, message: "Server bermasalah", gestureDismissal: true)
+                    self.present(popup, animated: true, completion: nil)
                 }
             }
             

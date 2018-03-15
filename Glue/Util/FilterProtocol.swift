@@ -9,5 +9,5 @@
 import Foundation
 
 protocol FilterProtocol {
-    func sharedfilter(data: [String: String])
+    func sharedfilter(data: [String: String], used: Bool)
 }

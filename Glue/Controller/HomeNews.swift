@@ -26,14 +26,23 @@ class HomeNews: UIViewController, SideMenuItemContent, UICollectionViewDelegate,
     var parameters = [String: String]()
     var index = Int()
     var create = Bool()
+    var filtered = false
+    
     @IBOutlet weak var addbutton: UIBarButtonItem!
    
-    func sharedfilter(data: [String: String]) {
-        if data.count > 0 {
+    func sharedfilter(data: [String: String], used: Bool) {
+        parameters = [String: String]()
+        parameters = data
+        filtered = used
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if !filtered {
             parameters = [String: String]()
-            parameters = data
-            getdata()
         }
+        getdata()
+        filtered = false
     }
     
     
@@ -145,7 +154,8 @@ class HomeNews: UIViewController, SideMenuItemContent, UICollectionViewDelegate,
                 }
                 self.newscollection.reloadData()
             case .failure( _):
-                print(Keys.error)
+                let popup = PopupDialog(title: Keys.error, message: "Server bermasalah", gestureDismissal: true)
+                self.present(popup, animated: true, completion: nil)
             }
         }
     }
@@ -163,6 +173,7 @@ class HomeNews: UIViewController, SideMenuItemContent, UICollectionViewDelegate,
         create = true
         performSegue(withIdentifier: "homenews_to_editnews", sender: self)
     }
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "homenews_to_newsfilter"  {

@@ -66,13 +66,12 @@ class NewsFilter: FormViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    override func viewWillDisappear(_ animated: Bool){
-        super.viewWillDisappear(animated)
+
+    @IBAction func simpanclick(_ sender: Any) {
         if form.validate().isEmpty {
             let formvalues = self.form.values(includeHidden: true)
             var parameters = [String: String]()
-          
+            
             let judul = (formvalues[Keys.event_judul]! ?? "") as! String
             if !judul.isEmpty{
                 parameters[Keys.event_judul] = judul
@@ -92,10 +91,10 @@ class NewsFilter: FormViewController {
             if wilayah != "Semua"{
                 parameters[Keys.idwilayah] = self.wilayahdict[formvalues[Keys.idwilayah] as! String]!
             }
-                
+            
             let order = (formvalues[Keys.order]! ?? "") as! String
             parameters[Keys.order] = (order == "Terbaru" ? "0" : "1")
-           
+            
             if admin {
                 let inter = (formvalues[Keys.event_internal]! ?? "") as! String
                 if inter != "Semua"{
@@ -106,10 +105,12 @@ class NewsFilter: FormViewController {
                     parameters[Keys.event_published] = (pub == "Tidak" ? "0" : "1")
                 }
             }
-           
-            delegate.sharedfilter(data: parameters)
+            
+            delegate.sharedfilter(data: parameters,used: true)
+            navigationController?.popViewController(animated: true)
         }
         
     }
+
 
 }

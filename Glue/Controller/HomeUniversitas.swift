@@ -47,7 +47,8 @@ class HomeUniversitas: UIViewController, UITableViewDelegate, UITableViewDataSou
                 }
                 self.universitastable.reloadData()
             case .failure( _):
-                print(Keys.error)
+                let popup = PopupDialog(title: Keys.error, message: "Server bermasalah", gestureDismissal: true)
+                self.present(popup, animated: true, completion: nil)
             }
         }
     }
@@ -84,6 +85,11 @@ class HomeUniversitas: UIViewController, UITableViewDelegate, UITableViewDataSou
     @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
         getdata()
         refreshControl.endRefreshing()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        getdata()
     }
     
     

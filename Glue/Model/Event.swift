@@ -21,8 +21,6 @@ class Event
     var event_thumbnail:String = ""
     var event_published:String = ""
     var event_internal:String = ""
-    var event_created:String = ""
-    var event_updated:String = ""
     var user_no_kta:String = ""
     var user_akses:String = ""
     var user_nama:String = ""
@@ -48,8 +46,6 @@ class Event
         event_thumbnail = dictionary["event_thumbnail"] as! String
         event_published = dictionary["event_published"] as! String
         event_internal = dictionary["event_internal"] as! String
-        event_created = dictionary["event_created"] as! String
-        event_updated = dictionary["event_updated"] as! String
         user_no_kta = dictionary["user_no_kta"] as! String
         user_akses = dictionary["user_akses"] as! String
         user_nama = dictionary["user_nama"] as! String

@@ -114,9 +114,12 @@ public class Keys {
     static let saved_user = "saved_user"
     static let idlocale = "id_ID"
     static let error = "Error"
-    static let dismiss = "Dismiss"
+    static let success = "Success"
     static let admin = "admin"
     static let kode_reset = "kode_reset"
+    static let warning = "Warning"
+    static let tidak = "Tidak"
+    static let ya = "Ya"
     
     
     static func TimeFromString(dateString:String) -> Date
@@ -197,8 +200,9 @@ public class Keys {
                                                 userlat = "\(currentLocation?.coordinate.latitude ?? 0)"
                                                 userlng = "\(currentLocation?.coordinate.longitude ?? 0)"
                                             }
-//                                            else if (status == INTULocationStatus.timedOut) {
-//                                            }
+                                            else if (status == INTULocationStatus.timedOut) {
+                                        
+                                            }
                                             completion(userlat, userlng)
         }
     }
@@ -253,7 +257,8 @@ public class Keys {
     
     static func getowndata(completion: @escaping (Bool) -> ()) {
         let defaults = Defaults()
-        let temp = defaults.get(for: Key<User>(Keys.saved_user))!
+        let key = Key<User>(Keys.saved_user)
+        let temp = defaults.get(for: key)!
         let parameters = [
             Keys.user_email: temp.user_email,
             Keys.user_password: temp.user_password,
@@ -265,7 +270,6 @@ public class Keys {
                 let JSON = response.result.value as! NSDictionary
                 let akun = User()
                 akun.Populate(dictionary: JSON)
-                let key = Key<User>(Keys.saved_user)
                 defaults.clear(key)
                 defaults.set(akun, for: key)
                 completion(true)

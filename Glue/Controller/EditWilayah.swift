@@ -22,11 +22,15 @@ class EditWilayah: FormViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if create {
+            self.navigationItem.title = "Buat data wilayah"
+        }
+        
         form +++ Section()
             <<< IntRow(Keys.idwilayah){
                     $0.title = "ID Wilayah"
                     $0.add(rule: RuleRequired())
-                    $0.placeholder = "Masukan angka, misal 1"
+                    $0.placeholder = "misal 1"
                     if wilayah.idwilayah != "" {
                         $0.value = Int(wilayah.idwilayah)
                     }
@@ -39,7 +43,7 @@ class EditWilayah: FormViewController {
             <<< TextRow(Keys.wilayah_nama){
                 $0.title = "Nama Wilayah"
                 $0.add(rule: RuleRequired())
-                $0.placeholder = "Masukan nama, misal Jawa Timur"
+                $0.placeholder = "misal Jawa Timur"
                 if wilayah.wilayah_nama != "" {
                     $0.value = wilayah.wilayah_nama
                 }
@@ -49,10 +53,10 @@ class EditWilayah: FormViewController {
                 $0.hidden = Condition(booleanLiteral: wilayah.jumlahuser != "0")
                 }.onCellSelection({ (cell, row) in
                     
-                    let popup = PopupDialog(title: "Peringatan", message: "Anda yakin menghapus?", buttonAlignment: .horizontal, gestureDismissal: true)
-                    let buttonOne = CancelButton(title: "Batal") {
+                    let popup = PopupDialog(title: Keys.warning, message: "Anda yakin menghapus?", buttonAlignment: .horizontal, gestureDismissal: true)
+                    let buttonOne = CancelButton(title: Keys.tidak) {
                     }
-                    let buttonTwo = DestructiveButton(title: "Ya") {
+                    let buttonTwo = DestructiveButton(title: Keys.ya) {
                         self.hapuswilayah()
                     }
                     popup.addButtons([buttonOne, buttonTwo])
@@ -95,10 +99,14 @@ class EditWilayah: FormViewController {
             case .success:
                 if response.result.value == "berhasil"{
                     self.navigationController?.popViewController(animated: true)
-
+                    
+                }else if response.result.value == "gagal"{
+                    let popup = PopupDialog(title: Keys.error, message: "Proses gagal", gestureDismissal: true)
+                    self.present(popup, animated: true, completion: nil)
                 }
             case .failure( _):
-                print(Keys.error)
+                let popup = PopupDialog(title: Keys.error, message: "Server bermasalah", gestureDismissal: true)
+                self.present(popup, animated: true, completion: nil)
             }
             
         }
@@ -127,14 +135,16 @@ class EditWilayah: FormViewController {
                 switch response.result {
                 case .success:
                     if response.result.value == "berhasil"{
-        
+                        self.navigationController?.popViewController(animated: true)
+
                     }else if response.result.value == "gagal"{
-                        let popup = PopupDialog(title: "Error", message: "Proses gagal", gestureDismissal: true)
+                        let popup = PopupDialog(title: Keys.gagal, message: "Proses gagal", gestureDismissal: true)
                         self.present(popup, animated: true, completion: nil)
                     }
                     
                 case .failure( _):
-                    print(Keys.error)
+                    let popup = PopupDialog(title: Keys.error, message: "Server bermasalah", gestureDismissal: true)
+                    self.present(popup, animated: true, completion: nil)
                 }
             }
         }

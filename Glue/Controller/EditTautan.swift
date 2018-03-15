@@ -20,10 +20,14 @@ class EditTautan: FormViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        if create {
+            self.navigationItem.title = "Buat tautan"
+        }
+        
         form +++ Section()
             <<< TextRow(Keys.tautan_judul){
                 $0.title = "Judul"
-                $0.placeholder = "Masukan judul"
+                $0.placeholder = "misal Line"
                 $0.add(rule: RuleRequired())
                 if !tautan.tautan_judul.isEmpty {
                     $0.value = tautan.tautan_judul
@@ -36,7 +40,7 @@ class EditTautan: FormViewController {
             }
             <<< TextRow(Keys.tautan_text){
                 $0.title = "Detail"
-                $0.placeholder = "Masukan url atau id sosmed"
+                $0.placeholder = "misal @bankindonesia"
                 $0.add(rule: RuleRequired())
                 if !tautan.tautan_text.isEmpty {
                     $0.value = tautan.tautan_text
@@ -51,10 +55,10 @@ class EditTautan: FormViewController {
                 $0.title = "Hapus"
                 $0.hidden = Condition(booleanLiteral: create)
                 }.onCellSelection { (cell, row) in
-                    let popup = PopupDialog(title: "Peringatan", message: "Anda yakin menghapus?", buttonAlignment: .horizontal, gestureDismissal: true)
-                    let buttonOne = CancelButton(title: "Batal") {
+                    let popup = PopupDialog(title: Keys.warning, message: "Anda yakin menghapus?", buttonAlignment: .horizontal, gestureDismissal: true)
+                    let buttonOne = CancelButton(title: Keys.tidak) {
                     }
-                    let buttonTwo = DestructiveButton(title: "Ya") {
+                    let buttonTwo = DestructiveButton(title: Keys.ya) {
                         self.hapustautan()
                     }
                     popup.addButtons([buttonOne, buttonTwo])
@@ -73,15 +77,17 @@ class EditTautan: FormViewController {
             Keys.idtautan: tautan.idtautan
         ]
         Alamofire.request(Keys.URL_CRUD_TAUTAN, method:.post, parameters:parameters).responseString { response in
+            hud.dismiss()
             switch response.result {
             case .success:
                 if response.result.value == "berhasil"{
                     self.getowndata()
                 }
             case .failure( _):
-                print(Keys.error)
+                let popup = PopupDialog(title: Keys.error, message: "Server bermasalah", gestureDismissal: true)
+                self.present(popup, animated: true, completion: nil)
             }
-            hud.dismiss()
+            
         }
     }
     
@@ -97,16 +103,16 @@ class EditTautan: FormViewController {
             Keys.tautan_text: formvalues[Keys.tautan_text] as! String
         ]
         Alamofire.request(Keys.URL_CRUD_TAUTAN, method:.post, parameters:parameters).responseString { response in
+            hud.dismiss()
             switch response.result {
             case .success:
                 if response.result.value == "berhasil"{
-                    
                     self.getowndata()
                 }
             case .failure( _):
-                print(Keys.error)
+                let popup = PopupDialog(title: Keys.error, message: "Server bermasalah", gestureDismissal: true)
+                self.present(popup, animated: true, completion: nil)
             }
-            hud.dismiss()
         }
     }
     
@@ -122,16 +128,16 @@ class EditTautan: FormViewController {
             Keys.tautan_text: formvalues[Keys.tautan_text] as! String
         ]
         Alamofire.request(Keys.URL_CRUD_TAUTAN, method:.post, parameters:parameters).responseString { response in
+            hud.dismiss()
             switch response.result {
             case .success:
                 if response.result.value == "berhasil"{
-                    
                     self.getowndata()
                 }
             case .failure( _):
-                print(Keys.error)
+                let popup = PopupDialog(title: Keys.error, message: "Server bermasalah", gestureDismissal: true)
+                self.present(popup, animated: true, completion: nil)
             }
-            hud.dismiss()
         }
     }
     

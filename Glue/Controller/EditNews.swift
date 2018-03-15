@@ -61,10 +61,16 @@ class EditNews: FormViewController {
                 switch encodingResult {
                 case .success(let upload, _, _): upload.responseString { response in
                     if response.result.value == "berhasil" {
-                        self.performSegue(withIdentifier: "editnews_to_home", sender: self)
+                        if self.create {
+                            self.performSegue(withIdentifier: "editnews_to_home", sender: self)
+                        }else{
+                            let popup = PopupDialog(title: Keys.berhasil, message: "Proses berhasil", gestureDismissal: true)
+                            self.present(popup, animated: true, completion: nil)
+                        }
+                        
                     }
                     }case .failure( _):
-                        let popup = PopupDialog(title: "Error", message: "Server bermasalah", gestureDismissal: true)
+                        let popup = PopupDialog(title: Keys.error, message: "Server bermasalah", gestureDismissal: true)
                         self.present(popup, animated: true, completion: nil)
                 }
             })
@@ -74,7 +80,9 @@ class EditNews: FormViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        akun = defaults.get(for: Key<User>(Keys.saved_user))!
+        if defaults.has(Key<User>(Keys.saved_user)){
+            akun = defaults.get(for: Key<User>(Keys.saved_user))!
+        }
         
         if akun.user_akses == "0" {
             admin = true
@@ -103,7 +111,11 @@ class EditNews: FormViewController {
                     view.newsimage.isUserInteractionEnabled = true
                     view.newsimage.addGestureRecognizer(tapGestureRecognizer)
                     if !foto.isEmpty{
-                        view.newsimage.sd_setImage(with: URL(string: self.berita.event_thumbnail), placeholderImage: UIImage(named: "icon"))
+//                        view.newsimage.frame = CGRect(x: 0, y: 0, width: 320, height: 130)
+                        view.newsimage.autoresizingMask = .flexibleWidth
+                        view.newsimage.contentMode = .scaleAspectFill
+                       view.newsimage.sd_setImage(with: URL(string: self.berita.event_thumbnail), placeholderImage: UIImage(named: "icon"))
+                
                     }
                 }
                 if !create{
@@ -119,7 +131,7 @@ class EditNews: FormViewController {
             <<< TextRow(Keys.event_judul){
                 $0.title = "Judul"
                 $0.add(rule: RuleRequired())
-                $0.placeholder = "Masukan judul"
+                $0.placeholder = "misal Leadership Camp"
                 $0.disabled = Condition(booleanLiteral: !admin)
                 if berita.event_judul.isEmpty{
                     $0.value = ""
@@ -130,7 +142,7 @@ class EditNews: FormViewController {
             <<< TextAreaRow(Keys.event_deskripsi){
                 $0.title = "Deskripsi"
                 $0.add(rule: RuleRequired())
-                $0.placeholder = "Masukan deskripsi"
+                $0.placeholder = "isi deskripsi kegiatan"
                 $0.disabled = Condition(booleanLiteral: !admin)
                 if berita.event_deskripsi.isEmpty{
                     $0.value = ""
@@ -161,7 +173,7 @@ class EditNews: FormViewController {
             <<< TextRow(Keys.event_lokasi){
                 $0.title = "Lokasi"
                 $0.add(rule: RuleRequired())
-                $0.placeholder = "Masukan lokasi"
+                $0.placeholder = "misal nama jalan / kota"
                 $0.disabled = Condition(booleanLiteral: !admin)
                 if berita.event_lokasi.isEmpty{
                     $0.value = ""
@@ -205,10 +217,10 @@ class EditNews: FormViewController {
                 $0.title = "Hapus"
                 $0.hidden = Condition(booleanLiteral: !admin || create)
                 }.onCellSelection { (cell, row) in
-                    let popup = PopupDialog(title: "Peringatan", message: "Anda yakin menghapus?", buttonAlignment: .horizontal, gestureDismissal: true)
-                    let buttonOne = CancelButton(title: "Batal") {
+                    let popup = PopupDialog(title: Keys.warning, message: "Anda yakin menghapus?", buttonAlignment: .horizontal, gestureDismissal: true)
+                    let buttonOne = CancelButton(title: Keys.tidak) {
                     }
-                    let buttonTwo = DestructiveButton(title: "Ya") {
+                    let buttonTwo = DestructiveButton(title: Keys.ya) {
                         self.hapusnews()
                     }
                     popup.addButtons([buttonOne, buttonTwo])
@@ -248,7 +260,8 @@ class EditNews: FormViewController {
                                 row.reload()
                             }
                         case .failure( _):
-                            print(Keys.error)
+                            let popup = PopupDialog(title: Keys.error, message: "Server bermasalah", gestureDismissal: true)
+                            self.present(popup, animated: true, completion: nil)
                         }
                     }
             }

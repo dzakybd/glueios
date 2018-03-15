@@ -30,6 +30,10 @@ class HomeWilayah: UIViewController, UITableViewDelegate, UITableViewDataSource 
         return cell
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        getdata()
+    }
     
     @objc func tap(_ sender: UITapGestureRecognizer) {
         let indexa = self.wilayahtable.indexPathForRow(at: sender.location(in: self.wilayahtable))
@@ -71,7 +75,8 @@ class HomeWilayah: UIViewController, UITableViewDelegate, UITableViewDataSource 
                 }
                 self.wilayahtable.reloadData()
             case .failure( _):
-                print(Keys.error)
+                let popup = PopupDialog(title: Keys.error, message: "Server bermasalah", gestureDismissal: true)
+                self.present(popup, animated: true, completion: nil)
             }
         }
     }

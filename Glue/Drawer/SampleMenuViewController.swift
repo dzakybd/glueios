@@ -24,9 +24,6 @@ import SDWebImage
 import SKPhotoBrowser
 import DefaultsKit
 
-/**
- Menu controller is responsible for creating its content and showing/hiding menu using 'menuContainerViewController' property.
- */
 class SampleMenuViewController: MenuViewController, Storyboardable {
 
     @IBOutlet fileprivate weak var tableView: UITableView!

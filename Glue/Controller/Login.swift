@@ -10,6 +10,8 @@ import UIKit
 import Alamofire
 import INTULocationManager
 import DefaultsKit
+import PopupDialog
+import JGProgressHUD
 
 class Login: UIViewController {
     @IBOutlet weak var emailtext: UITextField!
@@ -28,24 +30,23 @@ class Login: UIViewController {
                 Keys.user_lng: userlng
             ]
             
+            let hud = JGProgressHUD(style: .light)
+            hud.textLabel.text = "Masuk"
+            hud.show(in: self.view)
+            
             Alamofire.request(Keys.URL_LOGIN, method:.post, parameters:parameters).responseJSON { response in
+                hud.dismiss()
                 switch response.result {
                 case .success:
                     let JSON = response.result.value as! NSDictionary
-                    
                     let akun = User()
                     akun.Populate(dictionary: JSON)
-                    
                     let defaults = Defaults()
                     defaults.set(akun,for: Key<User>(Keys.saved_user))
-                    
                     self.performSegue(withIdentifier: "homesegue", sender: self)
                 case .failure( _):
-                    let alertController = UIAlertController(title: "Login", message:
-                        "Maaf login salah", preferredStyle: UIAlertControllerStyle.alert)
-                    alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
-                    
-                    self.present(alertController, animated: true, completion: nil)
+                    let popup = PopupDialog(title: Keys.error, message: "Login salah", gestureDismissal: true)
+                    self.present(popup, animated: true, completion: nil)
                 }
             }
         }
@@ -58,7 +59,7 @@ class Login: UIViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+      
     }
 }
 

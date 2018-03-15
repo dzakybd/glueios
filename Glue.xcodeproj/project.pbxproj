@@ -12,6 +12,7 @@
 		3549BDCD1F75FF6900501356 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3549BDCB1F75FF6900501356 /* Main.storyboard */; };
 		3549BDD21F75FF6900501356 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3549BDD01F75FF6900501356 /* LaunchScreen.storyboard */; };
 		5209F820204D185C00AEAEDF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5209F81F204D185C00AEAEDF /* Assets.xcassets */; };
+		52192A74205AFEF80090B1F3 /* NewsImage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52192A73205AFEF80090B1F3 /* NewsImage.xib */; };
 		52210C632058F57F00E1610D /* EditTautan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52210C622058F57F00E1610D /* EditTautan.swift */; };
 		52210C652058F58F00E1610D /* EditKerja.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52210C642058F58F00E1610D /* EditKerja.swift */; };
 		52210C672058F5A900E1610D /* EditWilayah.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52210C662058F5A900E1610D /* EditWilayah.swift */; };
@@ -45,7 +46,6 @@
 		52E47AA12020513B0015828E /* HomeMember.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E47AA02020513B0015828E /* HomeMember.swift */; };
 		52E47AA32020514F0015828E /* HomeChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E47AA22020514F0015828E /* HomeChat.swift */; };
 		52E47AA5202051630015828E /* HomeNearme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E47AA4202051630015828E /* HomeNearme.swift */; };
-		52F1E7A12057B0B5003CED26 /* NewsImage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52F1E7A02057B0B5003CED26 /* NewsImage.xib */; };
 		52F1E7A32057B0D1003CED26 /* MemberImage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52F1E7A22057B0D1003CED26 /* MemberImage.xib */; };
 		52F1E7A52057B9F7003CED26 /* ImageClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F1E7A42057B9F7003CED26 /* ImageClass.swift */; };
 		52F1E7A82057E295003CED26 /* MemberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F1E7A72057E295003CED26 /* MemberCell.swift */; };
@@ -62,6 +62,7 @@
 		3549BDD31F75FF6900501356 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		42DBFA76F7861006EAD602CB /* Pods-Glue.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Glue.release.xcconfig"; path = "Pods/Target Support Files/Pods-Glue/Pods-Glue.release.xcconfig"; sourceTree = "<group>"; };
 		5209F81F204D185C00AEAEDF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		52192A73205AFEF80090B1F3 /* NewsImage.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewsImage.xib; sourceTree = "<group>"; };
 		52210C622058F57F00E1610D /* EditTautan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTautan.swift; sourceTree = "<group>"; };
 		52210C642058F58F00E1610D /* EditKerja.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditKerja.swift; sourceTree = "<group>"; };
 		52210C662058F5A900E1610D /* EditWilayah.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditWilayah.swift; sourceTree = "<group>"; };
@@ -95,7 +96,6 @@
 		52E47AA02020513B0015828E /* HomeMember.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMember.swift; sourceTree = "<group>"; };
 		52E47AA22020514F0015828E /* HomeChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeChat.swift; sourceTree = "<group>"; };
 		52E47AA4202051630015828E /* HomeNearme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNearme.swift; sourceTree = "<group>"; };
-		52F1E7A02057B0B5003CED26 /* NewsImage.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsImage.xib; sourceTree = "<group>"; };
 		52F1E7A22057B0D1003CED26 /* MemberImage.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MemberImage.xib; sourceTree = "<group>"; };
 		52F1E7A42057B9F7003CED26 /* ImageClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageClass.swift; sourceTree = "<group>"; };
 		52F1E7A72057E295003CED26 /* MemberCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberCell.swift; sourceTree = "<group>"; };
@@ -165,7 +165,7 @@
 				522EF82C205662090041D236 /* NewsCell.swift */,
 				522D7693201E0F1300061BB2 /* Keys.swift */,
 				522EF82F205668E20041D236 /* FilterProtocol.swift */,
-				52F1E7A02057B0B5003CED26 /* NewsImage.xib */,
+				52192A73205AFEF80090B1F3 /* NewsImage.xib */,
 				52F1E7A22057B0D1003CED26 /* MemberImage.xib */,
 				52F1E7A42057B9F7003CED26 /* ImageClass.swift */,
 				52F1E7A72057E295003CED26 /* MemberCell.swift */,
@@ -303,7 +303,7 @@
 			files = (
 				3549BDD21F75FF6900501356 /* LaunchScreen.storyboard in Resources */,
 				3549BDCD1F75FF6900501356 /* Main.storyboard in Resources */,
-				52F1E7A12057B0B5003CED26 /* NewsImage.xib in Resources */,
+				52192A74205AFEF80090B1F3 /* NewsImage.xib in Resources */,
 				5209F820204D185C00AEAEDF /* Assets.xcassets in Resources */,
 				52F1E7A32057B0D1003CED26 /* MemberImage.xib in Resources */,
 			);

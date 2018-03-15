@@ -131,7 +131,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N5i-PW-KXQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="852" y="-562.66866566716647"/>
+            <point key="canvasLocation" x="794" y="-622"/>
         </scene>
         <!--Signup-->
         <scene sceneID="GVw-wc-pDt">
@@ -156,7 +156,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9UJ-fw-toy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1591.2" y="-223.53823088455775"/>
+            <point key="canvasLocation" x="1506" y="-273"/>
         </scene>
         <!--Base Drawer-->
         <scene sceneID="4cw-XM-fpm">
@@ -175,7 +175,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="26q-rj-0ZL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1728.8" y="930.58470764617698"/>
+            <point key="canvasLocation" x="1870" y="1358"/>
         </scene>
         <!--Wilayah-->
         <scene sceneID="deh-5d-TQF">
@@ -355,7 +355,13 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="vg6-0T-S85"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Filter news" id="QkP-PY-c5G"/>
+                    <navigationItem key="navigationItem" title="Filter news" id="QkP-PY-c5G">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="c6s-Pt-Yxo">
+                            <connections>
+                                <action selector="simpanclick:" destination="wEz-bC-Nta" id="8yS-Gt-iFW"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hsN-eu-cIf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -853,7 +859,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yAA-8z-R7x" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1514.4000000000001" y="58.020989505247378"/>
+            <point key="canvasLocation" x="-1369" y="-157"/>
         </scene>
         <!--Ubah akun-->
         <scene sceneID="8aT-bz-PK3">
@@ -886,7 +892,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0ru-w5-oXu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="636" y="844"/>
+            <point key="canvasLocation" x="844" y="806"/>
         </scene>
         <!--Ubah berita-->
         <scene sceneID="4Ul-kj-FL5">
@@ -1077,12 +1083,12 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <segue destination="Xno-Kb-ssq" kind="show" identifier="editkerja_to_editmember" id="bYF-sX-KJW"/>
+                        <segue destination="Xno-Kb-ssq" kind="showDetail" identifier="editkerja_to_editmember" action="showViewController:sender:" id="bYF-sX-KJW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="agU-9x-MpL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1450" y="801"/>
+            <point key="canvasLocation" x="-1818" y="609"/>
         </scene>
         <!--Navigation Edit Member-->
         <scene sceneID="RDq-6t-u66">
@@ -1120,12 +1126,12 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <segue destination="Xno-Kb-ssq" kind="show" identifier="edittautan_to_editmember" id="oH9-QH-cYP"/>
+                        <segue destination="Xno-Kb-ssq" kind="showDetail" identifier="edittautan_to_editmember" action="showViewController:sender:" id="oH9-QH-cYP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bdK-qm-DyX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1428" y="1458"/>
+            <point key="canvasLocation" x="-1666" y="1375"/>
         </scene>
         <!--Navigation Edit News-->
         <scene sceneID="zR0-oI-JDv">
@@ -1143,7 +1149,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vlN-tq-4YQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-564" y="1522.488755622189"/>
+            <point key="canvasLocation" x="-630" y="1625"/>
         </scene>
         <!--Wilayah & Universitas-->
         <scene sceneID="NGZ-Df-4Mv">
@@ -1209,7 +1215,13 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="sKp-8S-FH8"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Filter member" id="SbP-H3-Zx5"/>
+                    <navigationItem key="navigationItem" title="Filter member" id="SbP-H3-Zx5">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="CxI-Lr-Okv">
+                            <connections>
+                                <action selector="simpanclick:" destination="tts-gh-qV1" id="erW-cc-pm0"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ec1-Iw-Y3y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1222,7 +1234,8 @@
         <image name="icon" width="190" height="209"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="UNz-Ld-yiW"/>
         <segue reference="bYF-sX-KJW"/>
-        <segue reference="tdS-JI-SVg"/>
+        <segue reference="mDb-i1-uVL"/>
     </inferredMetricsTieBreakers>
 </document>

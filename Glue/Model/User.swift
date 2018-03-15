@@ -41,9 +41,6 @@ class User: Codable{
     var ishide_agama:String = ""
     var ishide_suku:String = ""
     var ishide_tautan:String = ""
-    var user_last_login:String = ""
-    var user_created:String = ""
-    var user_updated:String = ""
     var iduniversitas:String = ""
     var universitas_nama:String = ""
     var idwilayah:String = ""
@@ -85,9 +82,6 @@ class User: Codable{
         ishide_agama = dictionary["ishide_agama"] as! String
         ishide_suku = dictionary["ishide_suku"] as! String
         ishide_tautan = dictionary["ishide_tautan"] as! String
-        user_last_login = dictionary["user_last_login"] as! String
-        user_created = dictionary["user_created"] as! String
-        user_updated = dictionary["user_updated"] as! String
         iduniversitas = dictionary["iduniversitas"] as! String
         universitas_nama = dictionary["universitas_nama"] as! String
         idwilayah = dictionary["idwilayah"] as! String
