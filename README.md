@@ -19,9 +19,6 @@ glue benbi versi ios
 - Pengurus mengelola news yang ia buat
 - Pembina mengelola news dan akun yang pengurus2 daerahnya buat
 - Admin pembina untuk seluruh daerah
-- akun ftp dan mysql ios - keragenbi16
-- akun pembina mirnayantijayasari@gmail.com - mirnayanti
-- akun admin azkaa@admin.com - adminazkaa
 - Kode 2016-16-01-002, 2016 tahun menerima, 16 jatim, 01 univ, 002 id
 
 Role :
