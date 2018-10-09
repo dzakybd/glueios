@@ -42,8 +42,12 @@ class Login: UIViewController {
                     let akun = User()
                     akun.Populate(dictionary: JSON)
                     let defaults = Defaults()
+//                    Auth.auth().signIn(withEmail: akun.user_email, password: akun.user_password) { (user, error) in
+//                        akun.user_uid = (user?.uid)!
                     defaults.set(akun,for: Key<User>(Keys.saved_user))
                     self.performSegue(withIdentifier: "homesegue", sender: self)
+//                    }
+                    
                 case .failure( _):
                     let popup = PopupDialog(title: Keys.error, message: "Login salah", gestureDismissal: true)
                     self.present(popup, animated: true, completion: nil)

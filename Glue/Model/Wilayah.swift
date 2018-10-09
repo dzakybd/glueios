@@ -18,10 +18,10 @@ class Wilayah
     
     func Populate(dictionary:NSDictionary) {
         
-        idwilayah = dictionary["idwilayah"] as! String
-        wilayah_nama = dictionary["wilayah_nama"] as! String
-        wilayah_created = dictionary["wilayah_created"] as! String
-        wilayah_updated = dictionary["wilayah_updated"] as! String
-        jumlahuser = dictionary["jumlahuser"] as! String
+        idwilayah = dictionary["idwilayah"] as? String ?? ""
+        wilayah_nama = dictionary["wilayah_nama"] as? String ?? ""
+        wilayah_created = dictionary["wilayah_created"] as? String ?? ""
+        wilayah_updated = dictionary["wilayah_updated"] as? String ?? ""
+        jumlahuser = dictionary["jumlahuser"] as? String ?? ""
     }
 }

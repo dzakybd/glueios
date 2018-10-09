@@ -7,7 +7,6 @@
 //
 
 import UIKit
-//import KYDrawerController
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -20,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().barTintColor =  Keys.gradcolors[0]
         UINavigationBar.appearance().tintColor = UIColor.flatWhite
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.flatWhite]
+//        FirebaseApp.configure()
         return true
     }
 

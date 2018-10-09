@@ -20,13 +20,13 @@ class Universitas
     
     func Populate(dictionary:NSDictionary) {
         
-        iduniversitas = dictionary["iduniversitas"] as! String
-        wilayah_idwilayah = dictionary["wilayah_idwilayah"] as! String
-        universitas_nama = dictionary["universitas_nama"] as! String
-        universitas_created = dictionary["universitas_created"] as! String
-        universitas_updated = dictionary["universitas_updated"] as! String
-        jumlahuser = dictionary["jumlahuser"] as! String
-        wilayah_nama = dictionary["wilayah_nama"] as! String
+        iduniversitas = dictionary["iduniversitas"] as? String ?? ""
+        wilayah_idwilayah = dictionary["wilayah_idwilayah"] as? String ?? ""
+        universitas_nama = dictionary["universitas_nama"] as? String ?? ""
+        universitas_created = dictionary["universitas_created"] as? String ?? ""
+        universitas_updated = dictionary["universitas_updated"] as? String ?? ""
+        jumlahuser = dictionary["jumlahuser"] as? String ?? ""
+        wilayah_nama = dictionary["wilayah_nama"] as? String ?? ""
         
     }
     

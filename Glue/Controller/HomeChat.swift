@@ -8,12 +8,21 @@
 
 import UIKit
 import InteractiveSideMenu
+import DefaultsKit
 
 class HomeChat: UIViewController, SideMenuItemContent {
+//    var ref: DatabaseReference!
+//    var akun = User()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+//        ref = Database.database().reference()
+//        akun = defaults.get(for: Key<User>(Keys.saved_user))!
+//        getlistchat()
+    }
+    
+    func getlistchat(){
+        
     }
     
     override func didReceiveMemoryWarning() {

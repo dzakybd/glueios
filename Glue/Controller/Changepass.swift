@@ -122,9 +122,10 @@ class Changepass: FormViewController {
             let hud = JGProgressHUD(style: .light)
             hud.textLabel.text = "Mengirim"
             hud.show(in: self.view)
+            let password = formvalues[Keys.user_password] as! String
             let parameters = [
                 Keys.user_email: formvalues[Keys.user_email+"2"] as! String,
-                Keys.user_password: formvalues[Keys.user_password] as! String,
+                Keys.user_password: password,
                 Keys.kode_reset: formvalues[Keys.kode_reset] as! String
             ]
             Alamofire.request(Keys.URL_RESET_PASS, method:.post, parameters:parameters).responseString { response in
@@ -132,8 +133,15 @@ class Changepass: FormViewController {
                 switch response.result {
                 case .success:
                     if response.result.value == "berhasil"{
-                      let  popup = PopupDialog(title: Keys.berhasil, message: "Password diganti, silahkan login", gestureDismissal: true)
-                        self.present(popup, animated: true, completion: nil)
+//                        Auth.auth().currentUser?.updatePassword(to: password, completion: { (error) in
+                            let popup = PopupDialog(title: Keys.berhasil, message: "Password diganti, silahkan login", gestureDismissal: false)
+                            let button = DefaultButton(title: Keys.ya) {
+                                self.navigationController!.popViewController(animated: true)
+                            }
+                            popup.addButtons([button])
+                            self.present(popup, animated: true, completion: nil)
+//                        })
+//                        
                     }else if response.result.value == "error_email"{
                        let popup = PopupDialog(title: Keys.error, message: "Email tidak terdaftar", gestureDismissal: true)
                         self.present(popup, animated: true, completion: nil)

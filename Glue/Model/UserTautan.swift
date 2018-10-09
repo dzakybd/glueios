@@ -16,10 +16,10 @@ class UserTautan: Codable
     var tautan_text:String = ""
     
     func Populate(dictionary:NSDictionary) {
-        idtautan = dictionary["idtautan"] as! String
-        user_nrp = dictionary["user_nrp"] as! String
-        tautan_judul = dictionary["tautan_judul"] as! String
-        tautan_text = dictionary["tautan_text"] as! String
+        idtautan = dictionary["idtautan"] as? String ?? ""
+        user_nrp = dictionary["user_nrp"] as? String ?? ""
+        tautan_judul = dictionary["tautan_judul"] as? String ?? ""
+        tautan_text = dictionary["tautan_text"] as? String ?? ""
     }
     
     class func PopulateArray(array:NSArray) -> [UserTautan]{

@@ -21,14 +21,14 @@ class EventComment
     var user_thumbnail:String = ""
     
     func Populate(dictionary:NSDictionary) {
-        idcomment = dictionary["idcomment"] as! String
-        user_nrp = dictionary["user_nrp"] as! String
-        event_idevent = dictionary["event_idevent"] as! String
-        comment_text = dictionary["comment_text"] as! String
-        comment_created = dictionary["comment_created"] as! String
-        user_no_kta = dictionary["user_no_kta"] as! String
-        user_akses = dictionary["user_akses"] as! String
-        user_nama = dictionary["user_nama"] as! String
-        user_thumbnail = dictionary["user_thumbnail"] as! String
+        idcomment = dictionary["idcomment"] as? String ?? ""
+        user_nrp = dictionary["user_nrp"] as? String ?? ""
+        event_idevent = dictionary["event_idevent"] as? String ?? ""
+        comment_text = dictionary["comment_text"] as? String ?? ""
+        comment_created = dictionary["comment_created"] as? String ?? ""
+        user_no_kta = dictionary["user_no_kta"] as? String ?? ""
+        user_akses = dictionary["user_akses"] as? String ?? ""
+        user_nama = dictionary["user_nama"] as? String ?? ""
+        user_thumbnail = dictionary["user_thumbnail"] as? String ?? ""
     }
 }

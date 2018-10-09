@@ -628,7 +628,13 @@ class EditMember: FormViewController {
                     $0.hidden = Condition(booleanLiteral: !(!create && (admin || own)) )
                 }
                     <<< ButtonRow() {
-                        $0.title = "Hapus akun"
+                        $0.hidden = Condition(booleanLiteral: !own)
+                        $0.title = "💬 Chat"
+                        }.onCellSelection { (cell, row) in
+//                            self.performSegue(withIdentifier: "editmember_to_chat", sender: self)
+                        }
+                    <<< ButtonRow() {
+                        $0.title = "Hapus"
                         }.onCellSelection { (cell, row) in
                             let popup = PopupDialog(title: Keys.warning, message: "Anda yakin menghapus akun?", buttonAlignment: .horizontal, gestureDismissal: true)
                             let buttonOne = CancelButton(title: Keys.tidak) {
@@ -685,7 +691,27 @@ class EditMember: FormViewController {
             switch response.result {
             case .success:
                 if response.result.value == "berhasil"{
-                    self.performSegue(withIdentifier: "editmember_to_home", sender: self)
+                    
+                    if self.own {
+//                        Auth.auth().currentUser?.delete(completion: { (error) in
+                            self.performSegue(withIdentifier: "editmember_to_home", sender: self)
+//                        })
+                    }else {
+                     
+//                        try? Auth.auth().signOut()
+//                        Auth.auth().signIn(withEmail: self.akun.user_email, password: self.akun.user_password) { (user, error) in
+//                            user?.delete(completion: { (error) in
+//                                
+//                                try? Auth.auth().signOut()
+//                                let akuntemp = self.defaults.get(for: Key<User>(Keys.saved_user))!
+//                                Auth.auth().signIn(withEmail: akuntemp.user_email, password: akuntemp.user_password, completion: { (user, error) in
+                                    self.dismiss(animated: true, completion: nil)
+//                                })
+//                            })
+//                        }
+                        
+                    }
+                    
                 }
             case .failure( _):
                 let popup = PopupDialog(title: Keys.error, message: "Server bermasalah", gestureDismissal: true)
@@ -753,13 +779,15 @@ class EditMember: FormViewController {
         if form.validate().isEmpty {
             Keys.getlocation(completion: { (userlat, userlng) in
                 let formvalues = self.form.values(includeHidden: true)
+                let email = formvalues[Keys.user_email] as! String
+                let password = formvalues[Keys.user_password] as! String
                 var parameters = [
                     Keys.mode: Keys.update,
                     Keys.own: Keys.yes,
                     Keys.user_nrp: String(formvalues[Keys.user_nrp] as! Int),
                     Keys.user_nama: formvalues[Keys.user_nama] as! String,
-                    Keys.user_email: formvalues[Keys.user_email] as! String,
-                    Keys.user_password: formvalues[Keys.user_password] as! String,
+                    Keys.user_email: email,
+                    Keys.user_password: password,
                     Keys.user_jk: ((formvalues[Keys.user_jk] as! String) == "Perempuan" ? "0" : "1"),
                     Keys.user_no_hp: formvalues[Keys.user_no_hp] as! String,
                     Keys.user_alamat: formvalues[Keys.user_alamat] as! String,
@@ -847,6 +875,18 @@ class EditMember: FormViewController {
                     switch encodingResult {
                     case .success(let upload, _, _): upload.responseString { response in
                         if response.result.value == "berhasil" {
+                            
+//                                if email != self.akun.user_email {
+//                                    Auth.auth().currentUser?.updateEmail(to: email, completion: { (error) in
+//                                        
+//                                    })
+//                                }
+//                                if password != self.akun.user_password {
+//                                    Auth.auth().currentUser?.updatePassword(to: password, completion: { (error) in
+//                                        
+//                                    })
+//                                }
+                            
                             Keys.getowndata(completion: { (result) in
                                 let popup = PopupDialog(title: Keys.berhasil, message: "Proses berhasil", gestureDismissal: true)
                                 self.present(popup, animated: true, completion: nil)

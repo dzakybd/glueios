@@ -35,28 +35,28 @@ class Event
     
     func Populate(dictionary:NSDictionary) {
         
-        idevent = dictionary["idevent"] as! String
-        user_nrp = dictionary["user_nrp"] as! String
-        event_judul = dictionary["event_judul"] as! String
-        event_deskripsi = dictionary["event_deskripsi"] as! String
-        event_tanggal = dictionary["event_tanggal"] as! String
-        event_waktu = dictionary["event_waktu"] as! String
-        event_lokasi = dictionary["event_lokasi"] as! String
-        event_foto = dictionary["event_foto"] as! String
-        event_thumbnail = dictionary["event_thumbnail"] as! String
-        event_published = dictionary["event_published"] as! String
-        event_internal = dictionary["event_internal"] as! String
-        user_no_kta = dictionary["user_no_kta"] as! String
-        user_akses = dictionary["user_akses"] as! String
-        user_nama = dictionary["user_nama"] as! String
-        user_thumbnail = dictionary["user_thumbnail"] as! String
-        iduniversitas = dictionary["iduniversitas"] as! String
-        universitas_nama = dictionary["universitas_nama"] as! String
-        idwilayah = dictionary["idwilayah"] as! String
-        wilayah_nama = dictionary["wilayah_nama"] as! String
-        user_tahun_beasiswa = dictionary["user_tahun_beasiswa"] as! String
-        isulike = dictionary["isulike"] as! String
-        likes = dictionary["likes"] as! String
+        idevent = dictionary["idevent"] as? String ?? ""
+        user_nrp = dictionary["user_nrp"] as? String ?? ""
+        event_judul = dictionary["event_judul"] as? String ?? ""
+        event_deskripsi = dictionary["event_deskripsi"] as? String ?? ""
+        event_tanggal = dictionary["event_tanggal"] as? String ?? ""
+        event_waktu = dictionary["event_waktu"] as? String ?? ""
+        event_lokasi = dictionary["event_lokasi"] as? String ?? ""
+        event_foto = dictionary["event_foto"] as? String ?? ""
+        event_thumbnail = dictionary["event_thumbnail"] as? String ?? ""
+        event_published = dictionary["event_published"] as? String ?? ""
+        event_internal = dictionary["event_internal"] as? String ?? ""
+        user_no_kta = dictionary["user_no_kta"] as? String ?? ""
+        user_akses = dictionary["user_akses"] as? String ?? ""
+        user_nama = dictionary["user_nama"] as? String ?? ""
+        user_thumbnail = dictionary["user_thumbnail"] as? String ?? ""
+        iduniversitas = dictionary["iduniversitas"] as? String ?? ""
+        universitas_nama = dictionary["universitas_nama"] as? String ?? ""
+        idwilayah = dictionary["idwilayah"] as? String ?? ""
+        wilayah_nama = dictionary["wilayah_nama"] as? String ?? ""
+        user_tahun_beasiswa = dictionary["user_tahun_beasiswa"] as? String ?? ""
+        isulike = dictionary["isulike"] as? String ?? ""
+        likes = dictionary["likes"] as? String ?? ""
     }
 
     

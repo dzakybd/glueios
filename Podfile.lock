@@ -36,6 +36,22 @@ DEPENDENCIES:
   - SKPhotoBrowser
   - SwiftIconFont
 
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - DefaultsKit
+    - DynamicBlurView
+    - Eureka
+    - GenericPasswordRow
+    - ImageRow
+    - InteractiveSideMenu
+    - INTULocationManager
+    - JGProgressHUD
+    - PopupDialog
+    - SDWebImage
+    - SKPhotoBrowser
+    - SwiftIconFont
+
 EXTERNAL SOURCES:
   ChameleonFramework:
     :branch: wip/swift4
@@ -62,6 +78,6 @@ SPEC CHECKSUMS:
   SKPhotoBrowser: 5969c3813727f11fe37bea74a40425cafcb32f61
   SwiftIconFont: ebd8ee931a1e7072b61a87aec53f3a0786ef7f2b
 
-PODFILE CHECKSUM: 7a05c7ff21a62bbd3c701727ebbd6f888f0459b5
+PODFILE CHECKSUM: acadf38210d8207aadca913aaf864d0553d2fda0
 
-COCOAPODS: 1.4.0
+COCOAPODS: 1.5.3

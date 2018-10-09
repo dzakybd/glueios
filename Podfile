@@ -18,5 +18,4 @@ target 'Glue' do
     pod 'SwiftIconFont'
     pod 'DefaultsKit'
   # Pods for Glue
-
 end

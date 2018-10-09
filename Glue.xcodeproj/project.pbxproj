@@ -36,6 +36,8 @@
 		52569000205A70B400A8B733 /* EditUniversitas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52568FFF205A70B400A8B733 /* EditUniversitas.swift */; };
 		527D2FCE2023781C00CA8ADF /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D2FCD2023781C00CA8ADF /* Chat.swift */; };
 		527D2FD32023803800CA8ADF /* HostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D2FD12023803800CA8ADF /* HostViewController.swift */; };
+		5289CADE205C145200FB1C4F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5289CADD205C145200FB1C4F /* GoogleService-Info.plist */; };
+		5297BED620B3200C0071F5B9 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5297BED520B3200C0071F5B9 /* MapKit.framework */; };
 		52BB42E02050F7C90084894A /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BB42DF2050F7C90084894A /* Event.swift */; };
 		52BB42E22050F7DA0084894A /* EventComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BB42E12050F7DA0084894A /* EventComment.swift */; };
 		52BB42E42050F8D50084894A /* Wilayah.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BB42E32050F8D50084894A /* Wilayah.swift */; };
@@ -86,6 +88,8 @@
 		52568FFF205A70B400A8B733 /* EditUniversitas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditUniversitas.swift; sourceTree = "<group>"; };
 		527D2FCD2023781C00CA8ADF /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
 		527D2FD12023803800CA8ADF /* HostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HostViewController.swift; sourceTree = "<group>"; };
+		5289CADD205C145200FB1C4F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		5297BED520B3200C0071F5B9 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		52BB42DF2050F7C90084894A /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		52BB42E12050F7DA0084894A /* EventComment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventComment.swift; sourceTree = "<group>"; };
 		52BB42E32050F8D50084894A /* Wilayah.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wilayah.swift; sourceTree = "<group>"; };
@@ -109,6 +113,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5297BED620B3200C0071F5B9 /* MapKit.framework in Frameworks */,
 				7BEFF1D55B2FF0E3EE247314 /* Pods_Glue.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -145,6 +150,7 @@
 				3549BDC71F75FF6900501356 /* AppDelegate.swift */,
 				3549BDCB1F75FF6900501356 /* Main.storyboard */,
 				3549BDD01F75FF6900501356 /* LaunchScreen.storyboard */,
+				5289CADD205C145200FB1C4F /* GoogleService-Info.plist */,
 				3549BDD31F75FF6900501356 /* Info.plist */,
 			);
 			path = Glue;
@@ -229,6 +235,7 @@
 		DBB6B79CA369450A84EBF0D5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5297BED520B3200C0071F5B9 /* MapKit.framework */,
 				A7CAE39EEA533C2C4E871EDA /* Pods_Glue.framework */,
 			);
 			name = Frameworks;
@@ -245,8 +252,7 @@
 				3549BDC01F75FF6900501356 /* Sources */,
 				3549BDC11F75FF6900501356 /* Frameworks */,
 				3549BDC21F75FF6900501356 /* Resources */,
-				6B015BE7596A553A37018CFC /* [CP] Embed Pods Frameworks */,
-				55AE88D46A909DD48968D8A3 /* [CP] Copy Pods Resources */,
+				52308380539F50BB86100D66 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -264,15 +270,16 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0900;
-				LastUpgradeCheck = 0900;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Dzaky ZF";
 				TargetAttributes = {
 					3549BDC31F75FF6900501356 = {
 						CreatedOnToolsVersion = 9.0;
+						LastSwiftMigration = 1000;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Maps.iOS = {
-								enabled = 0;
+								enabled = 1;
 							};
 						};
 					};
@@ -306,6 +313,7 @@
 				52192A74205AFEF80090B1F3 /* NewsImage.xib in Resources */,
 				5209F820204D185C00AEAEDF /* Assets.xcassets in Resources */,
 				52F1E7A32057B0D1003CED26 /* MemberImage.xib in Resources */,
+				5289CADE205C145200FB1C4F /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -330,25 +338,12 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		55AE88D46A909DD48968D8A3 /* [CP] Copy Pods Resources */ = {
+		52308380539F50BB86100D66 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Glue/Pods-Glue-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		6B015BE7596A553A37018CFC /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+			inputFileListPaths = (
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Glue/Pods-Glue-frameworks.sh",
@@ -368,6 +363,8 @@
 				"${BUILT_PRODUCTS_DIR}/SwiftIconFont/SwiftIconFont.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ChameleonFramework.framework",
@@ -473,6 +470,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -480,6 +478,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -513,6 +512,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -530,6 +530,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -537,6 +538,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -562,6 +564,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -571,14 +574,16 @@
 			baseConfigurationReference = 83FBE68615665A42583891C5 /* Pods-Glue.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = S8EHWVRC9K;
+				DEVELOPMENT_TEAM = TDKFUN72FM;
 				INFOPLIST_FILE = Glue/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Genbi.Glue;
+				PRODUCT_BUNDLE_IDENTIFIER = com.genbi.glueios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -590,14 +595,16 @@
 			baseConfigurationReference = 42DBFA76F7861006EAD602CB /* Pods-Glue.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = S8EHWVRC9K;
+				DEVELOPMENT_TEAM = TDKFUN72FM;
 				INFOPLIST_FILE = Glue/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Genbi.Glue;
+				PRODUCT_BUNDLE_IDENTIFIER = com.genbi.glueios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

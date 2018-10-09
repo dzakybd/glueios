@@ -85,9 +85,11 @@ class Signup: FormViewController {
               
                 let formvalues = self.form.values()
                 let imageui = formvalues[Keys.image]! ?? nil
+                let email = formvalues[Keys.user_email] as! String
+                let password = formvalues[Keys.user_password] as! String
                 let parameters = [
-                    Keys.user_email: formvalues[Keys.user_email] as! String,
-                    Keys.user_password: formvalues[Keys.user_password] as! String,
+                    Keys.user_email: email,
+                    Keys.user_password: password,
                     Keys.user_nrp: String(formvalues[Keys.user_nrp] as! Int),
                     Keys.user_nama: formvalues[Keys.user_nama] as! String,
                     Keys.user_no_hp: formvalues[Keys.user_no_hp] as! String,
@@ -114,9 +116,17 @@ class Signup: FormViewController {
                     case .success(let upload, _, _): upload.responseString { response in
                         switch response.result.value! {
                         case "berhasil", "":
-                            Keys.getowndata(completion: { (result) in
-                                self.performSegue(withIdentifier: "signup_to_home", sender: self)
-                            })
+//                           Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
+//                            Keys.getowndata(completion: { (result) in
+//                                self.performSegue(withIdentifier: "signup_to_home", sender: self)
+//                            })
+                            let popup = PopupDialog(title: Keys.berhasil, message: "Berhasil, silahkan login", gestureDismissal: false)
+                            let button = DefaultButton(title: Keys.ya) {
+                                self.navigationController!.popViewController(animated: true)
+                            }
+                            popup.addButtons([button])
+                            self.present(popup, animated: true, completion: nil)
+//                            }
                         case "error_nrp":
                             let popup = PopupDialog(title: Keys.error, message: "NRP belum terdaftar", gestureDismissal: true)
                             self.present(popup, animated: true, completion: nil)

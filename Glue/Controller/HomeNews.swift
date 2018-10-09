@@ -137,7 +137,7 @@ class HomeNews: UIViewController, SideMenuItemContent, UICollectionViewDelegate,
         if notregistered{
             parameters[Keys.event_internal] = "0"
         }
-        
+        print(parameters)
         let hud = JGProgressHUD(style: .light)
         hud.textLabel.text = "Memuat"
         hud.show(in: self.view)

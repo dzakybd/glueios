@@ -10,8 +10,10 @@ import UIKit
 import Alamofire
 import PopupDialog
 import JGProgressHUD
+import InteractiveSideMenu
+import DefaultsKit
 
-class HomeWilayah: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class HomeWilayah: UIViewController, UITableViewDelegate, UITableViewDataSource, SideMenuItemContent {
     
     var wilayahs = [Wilayah]()
     var index = Int()
@@ -105,6 +107,10 @@ class HomeWilayah: UIViewController, UITableViewDelegate, UITableViewDataSource 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    @IBAction func openMenu(_ sender: Any) {
+        showSideMenu()
     }
     
     @IBAction func addclick(_ sender: Any) {

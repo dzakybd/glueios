@@ -18,12 +18,12 @@ class UserKerja: Codable
     var kerja_masuk_keluar:String = ""
     
     func Populate(dictionary:NSDictionary) {
-        idkerja = dictionary["idkerja"] as! String
-        user_nrp = dictionary["user_nrp"] as! String
-        kerja_jabatan = dictionary["kerja_jabatan"] as! String
-        kerja_perusahaan = dictionary["kerja_perusahaan"] as! String
-        kerja_lokasi = dictionary["kerja_lokasi"] as! String
-        kerja_masuk_keluar = dictionary["kerja_masuk_keluar"] as! String
+        idkerja = dictionary["idkerja"] as? String ?? ""
+        user_nrp = dictionary["user_nrp"] as? String ?? ""
+        kerja_jabatan = dictionary["kerja_jabatan"] as? String ?? ""
+        kerja_perusahaan = dictionary["kerja_perusahaan"] as? String ?? ""
+        kerja_lokasi = dictionary["kerja_lokasi"] as? String ?? ""
+        kerja_masuk_keluar = dictionary["kerja_masuk_keluar"] as? String ?? ""
     }
 
     class func PopulateArray(array:NSArray) -> [UserKerja]
